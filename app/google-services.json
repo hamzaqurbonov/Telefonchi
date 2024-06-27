@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "240467959528",
+    "project_id": "telefonchi-c6562",
+    "storage_bucket": "telefonchi-c6562.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:240467959528:android:2ef772a05756f9009f335d",
+        "android_client_info": {
+          "package_name": "com.example.telefonchi"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCfW9-1zFq3J2P7vZtmK3v_Rd0Rtp6xi-k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
