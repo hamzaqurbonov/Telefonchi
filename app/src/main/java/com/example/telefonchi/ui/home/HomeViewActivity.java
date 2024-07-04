@@ -1,8 +1,12 @@
 package com.example.telefonchi.ui.home;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -15,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.telefonchi.R;
 import com.example.telefonchi.ui.home.view.CityModel;
+import com.example.telefonchi.ui.home.view.EditHameViewActivity;
 import com.example.telefonchi.ui.home.view.HomeViewAdapter;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -34,6 +39,7 @@ public class HomeViewActivity extends AppCompatActivity {
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     String month, docId;
     TextView nameTextView;
+    Button addButtonId;
     private RecyclerView recyclerView;
     public List<CityModel> activityllist = new ArrayList<>();
     @Override
@@ -41,6 +47,8 @@ public class HomeViewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_home_view);
+
+
 
         nameTextView = findViewById(R.id.textView);
         recyclerView = findViewById(R.id.recycler_home_view_ID);
@@ -64,11 +72,9 @@ public class HomeViewActivity extends AppCompatActivity {
 
                             activityllist.add(new CityModel((String) values.get("name") , (String) values.get("sum")));
                         }
-//                        activityllist.add(new CityModel("name10" , "Sum10"));
-//                        activityllist.add(new CityModel("name11", "Sum11"));
+                          Log.d("demo2", "Map  " + arrayMapList.toString());
+//                        Log.d("demo2", "activityllist " + activityllist.toString());
 
-                        Log.d("demo2", "activityllist " + activityllist.toString());
-                        Log.d("demo2", "Map  " + arrayMapList.toString());
 //                        initViews();
 
                         refreshAdapter(activityllist);
@@ -79,7 +85,7 @@ public class HomeViewActivity extends AppCompatActivity {
 
         });
 
-
+        AddButton();
 
 
 
@@ -96,12 +102,21 @@ public class HomeViewActivity extends AppCompatActivity {
     private void refreshAdapter(List<CityModel> activityllist) {
 
 //        recyclerView = findViewById(R.id.recycler_home_view_ID);
-        recyclerView.setLayoutManager(new GridLayoutManager(HomeViewActivity.this, 3));
+        recyclerView.setLayoutManager(new GridLayoutManager(HomeViewActivity.this, 1));
 
         HomeViewAdapter adapter = new HomeViewAdapter(this, activityllist, listner);
         recyclerView.setAdapter(adapter);
     }
 
-
+    private void AddButton() {
+        addButtonId = findViewById(R.id.add_button_id);
+        addButtonId.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HomeViewActivity.this, EditHameViewActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
 
 }

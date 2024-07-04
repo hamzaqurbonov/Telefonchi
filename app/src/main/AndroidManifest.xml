@@ -13,6 +13,9 @@
         android:theme="@style/Theme.Telefonchi"
         tools:targetApi="31">
         <activity
+            android:name=".ui.home.view.EditHameViewActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.home.HomeViewActivity"
             android:exported="false" />
         <activity

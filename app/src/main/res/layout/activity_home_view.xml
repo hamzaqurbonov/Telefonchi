@@ -30,6 +30,18 @@
         tools:layout_editor_absoluteX="-1dp" />
 
 
+        <Button
+            android:id="@+id/add_button_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="Add text"
+            android:textAllCaps="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/recycler_home_view_ID" />
+
 
 
 
