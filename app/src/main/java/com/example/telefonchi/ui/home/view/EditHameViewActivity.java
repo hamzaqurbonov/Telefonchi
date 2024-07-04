@@ -19,8 +19,10 @@ import com.example.telefonchi.R;
 import com.example.telefonchi.ui.home.HomeViewActivity;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -54,6 +56,25 @@ public class EditHameViewActivity extends AppCompatActivity {
                 city.put("name", "Los Angeles");
                 city.put("state", editSumId.getText().toString());
                 city.put("country", editNameId.getText().toString());
+
+
+                Map<String, Object> nestedData = new HashMap<>();
+                city.put("listExample", Arrays.asList(nestedData));
+
+//                Arrays.asList(nestedData[1]).forEach((item)-> {
+//                    MyObjectList.add(item);
+//                });
+                nestedData.put("a", 5);
+                nestedData.put("b", true);
+
+                city.put("objectExample", nestedData);
+
+                Map<String, Object> data = new HashMap<>();
+
+//                DocumentReference newCityRef = db.collection("cities").document();
+//                newCityRef.set(data);
+
+
 
                 db.collection("cities").document("LA")
                         .set(city)
