@@ -24,10 +24,10 @@ public class HomeViewAdapter extends RecyclerView.Adapter< RecyclerView.ViewHold
 
 private RecyclerViewClickListner listner;
         HomeViewActivity homeViewActivity;
-        List<String> activityllist ;
+        List<CityModel> activityllist ;
 
 
-public HomeViewAdapter(HomeViewActivity homeViewActivity, List<String> activityllist, RecyclerViewClickListner listner) {
+public HomeViewAdapter(HomeViewActivity homeViewActivity, List<CityModel> activityllist, RecyclerViewClickListner listner) {
         this.activityllist = activityllist;
         this.homeViewActivity = homeViewActivity;
         this.listner = listner;
@@ -44,15 +44,23 @@ public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int
 
 @Override
 public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+    CityModel member = activityllist.get(position);
+
+    TextView TextName = ((HomeViewAdapterHolder) holder).TextViewName;
+    TextName.setText(member.getName());
+
+    TextView TextSum = ((HomeViewAdapterHolder) holder).TextViewSum;
+    TextSum.setText(member.getSum());
 
 //        TextView Url= ((OneChildAdapterViewHolder) holder).TextViewName;
 //        Url.setText(homeViewActivity.activityllist.get(position));
-    ((HomeViewAdapterHolder) holder).TextViewName.setText(homeViewActivity.activityllist.get(position));
+//    ((HomeViewAdapterHolder) holder).TextViewName.setText(homeViewActivity.activityllist.get(position));
+//    ((HomeViewAdapterHolder) holder).TextViewSum.setText(homeViewActivity.activityllist.get(position));
 
 
 
 
-    Log.d("demo2", homeViewActivity.activityllist.get(position));
+    Log.d("demo2", member.getName() + " " + member.getSum() );
         }
 
 @Override
@@ -65,14 +73,14 @@ public int getItemCount() {
 
 public class HomeViewAdapterHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
     View view;
-    TextView TextViewName;
+    TextView TextViewName, TextViewSum;
 
     public HomeViewAdapterHolder(View v) {
         super(v);
         view = v;
 
         TextViewName = view.findViewById(R.id.text_view_name);
-//        last_name = view.findViewById(R.id.first_name);
+        TextViewSum = view.findViewById(R.id.text_view_sum);
         view.setOnClickListener(this);
     }
 

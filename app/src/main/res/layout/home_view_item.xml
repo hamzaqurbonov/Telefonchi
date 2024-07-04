@@ -32,16 +32,16 @@
                 android:padding="10dp"
                 android:layout_marginLeft="5dp"/>
 
-            <!--            <TextView-->
-            <!--                android:id="@+id/textLikeIdTraslate"-->
-            <!--                android:layout_width="match_parent"-->
-            <!--                android:layout_height="wrap_content"-->
-            <!--                android:layout_weight="1"-->
-            <!--                android:padding="3dp"-->
-            <!--                android:text="Translate"-->
-            <!--                android:textColor="@color/black"-->
-            <!--                android:layout_marginLeft="5dp"-->
-            <!--                android:textStyle="italic"/>-->
+                        <TextView
+                            android:id="@+id/text_view_sum"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:padding="3dp"
+                            android:text="Translate"
+                            android:textColor="@color/black"
+                            android:layout_marginLeft="5dp"
+                            android:textStyle="italic"/>
 
         </LinearLayout>
 

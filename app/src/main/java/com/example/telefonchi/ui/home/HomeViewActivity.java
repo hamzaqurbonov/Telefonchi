@@ -14,23 +14,28 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.telefonchi.R;
+import com.example.telefonchi.ui.home.view.CityModel;
 import com.example.telefonchi.ui.home.view.HomeViewAdapter;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 public class HomeViewActivity extends AppCompatActivity {
+    ArrayList<String> nextArrayList = new ArrayList<String>();
+    CityModel cityModel;
     private HomeViewAdapter.RecyclerViewClickListner listner;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     String month, docId;
     TextView nameTextView;
     private RecyclerView recyclerView;
-    public List<String> activityllist = new ArrayList<>();
+    public List<CityModel> activityllist = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,15 +55,22 @@ public class HomeViewActivity extends AppCompatActivity {
                     if (document.exists()) {
 
                         ArrayList<String> arrayMapList = (ArrayList<String>) document.get("tag");
-                        for (Object transaction: arrayMapList) {
-                            Map values = (Map)transaction;
-                            activityllist.add((String) values.get("name"));
 
 
+                        for (Object transaction : arrayMapList) {
+                            Map values = (Map) transaction;
+//                            activityllist.add((String) values.get("name"));
+//                            activityllist.add((String) values.get("sum"));
+
+                            activityllist.add(new CityModel((String) values.get("name") , (String) values.get("sum")));
                         }
-                        Log.d("demo2", activityllist.toString());
+//                        activityllist.add(new CityModel("name10" , "Sum10"));
+//                        activityllist.add(new CityModel("name11", "Sum11"));
+
+                        Log.d("demo2", "activityllist " + activityllist.toString());
+                        Log.d("demo2", "Map  " + arrayMapList.toString());
 //                        initViews();
-//                        setOnClickListner();
+
                         refreshAdapter(activityllist);
 
                     }
@@ -66,6 +78,11 @@ public class HomeViewActivity extends AppCompatActivity {
             }
 
         });
+
+
+
+
+
         nameTextView.setText(month);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
@@ -76,7 +93,7 @@ public class HomeViewActivity extends AppCompatActivity {
 
 
 
-    private void refreshAdapter(List<String> activityllist) {
+    private void refreshAdapter(List<CityModel> activityllist) {
 
 //        recyclerView = findViewById(R.id.recycler_home_view_ID);
         recyclerView.setLayoutManager(new GridLayoutManager(HomeViewActivity.this, 3));
