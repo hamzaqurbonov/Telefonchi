@@ -19,14 +19,17 @@ import com.example.telefonchi.R;
 import com.example.telefonchi.ui.home.HomeViewActivity;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class EditHameViewActivity extends AppCompatActivity {
+//    List<Map<String, Object>> modellist = new ArrayList<Map<String, Object>>();
+    Map<String,Object> nestedData = new HashMap<>();
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     private EditText editNameId, editSumId;
     private Button addContactId;
@@ -45,7 +48,7 @@ public class EditHameViewActivity extends AppCompatActivity {
         stringName = getIntent().getStringExtra("name");
         stringSum = getIntent().getStringExtra("sum");
 
-        editNameId.setText(stringName);
+        editNameId.setText("name");
         editSumId.setText(stringSum);
 
         addContactId.setOnClickListener(new View.OnClickListener() {
@@ -53,30 +56,26 @@ public class EditHameViewActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 Map<String, Object> city = new HashMap<>();
-                city.put("name", "Los Angeles");
-                city.put("state", editSumId.getText().toString());
-                city.put("country", editNameId.getText().toString());
-
-
-                Map<String, Object> nestedData = new HashMap<>();
-                city.put("listExample", Arrays.asList(nestedData));
-
-//                Arrays.asList(nestedData[1]).forEach((item)-> {
-//                    MyObjectList.add(item);
-//                });
-                nestedData.put("a", 5);
-                nestedData.put("b", true);
-
-                city.put("objectExample", nestedData);
-
-                Map<String, Object> data = new HashMap<>();
-
-//                DocumentReference newCityRef = db.collection("cities").document();
-//                newCityRef.set(data);
+                city.put("month", "Yanvar");
+//                city.put("name", editNameId.getText().toString());
 
 
 
-                db.collection("cities").document("LA")
+//                Map<String,Object> nestedData = new HashMap<>();
+//                nestedData.put("sum", editSumId.getText().toString());
+//                nestedData.put("name", editNameId.getText().toString());
+
+                List<Map<String, Object>> modellist = prepareMemerList();
+
+                city.put("tag", modellist);
+                Log.d("demo4", "bos " + modellist);
+
+//                city.put("tag", Arrays.asList(nestedData));
+//                city.put("tag2",  Arrays.stream(ints).forEach(nestedData));
+
+
+
+                db.collection("users").document("Yanvar")
                         .set(city)
                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
@@ -90,6 +89,7 @@ public class EditHameViewActivity extends AppCompatActivity {
                                 Log.w("demo3", "Error writing document", e);
                             }
                         });
+
 
 
 
@@ -110,4 +110,21 @@ public class EditHameViewActivity extends AppCompatActivity {
             return insets;
         });
     }
+
+    private List<Map<String, Object>> prepareMemerList() {
+
+        List<Map<String, Object>> modellist = new ArrayList<Map<String, Object>>();
+        Map<String,Object> nestedData = new HashMap<>();
+        nestedData.put("sum", editSumId.getText().toString());
+        nestedData.put("name", editNameId.getText().toString());
+
+        for (int i = 0; i<5; i++) {
+            modellist.add(0,nestedData);
+
+            Log.d("demo4", "asdd " + modellist);
+        }
+        return modellist;
+
+    }
+
 }

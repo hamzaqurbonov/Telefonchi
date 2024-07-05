@@ -73,7 +73,7 @@ public class HomeViewActivity extends AppCompatActivity {
                             activityllist.add(new CityModel((String) values.get("name") , (String) values.get("sum")));
                         }
                           Log.d("demo2", "Map  " + arrayMapList.toString());
-//                        Log.d("demo2", "activityllist " + activityllist.toString());
+                        Log.d("demo2", "activityllist " + activityllist.get(0));
 
 //                        initViews();
 
