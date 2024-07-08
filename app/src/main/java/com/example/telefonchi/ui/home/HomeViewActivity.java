@@ -55,35 +55,55 @@ public class HomeViewActivity extends AppCompatActivity {
         month = getIntent().getExtras().getString("month");
         docId = getIntent().getExtras().getString("docId");
 
-        db.collection("users").document(docId).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful()) {
-                    DocumentSnapshot document = task.getResult();
-                    if (document.exists()) {
+        db.collection("users")
+                .document(docId)
+                .collection(docId)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                ArrayList<String> arrayMapList = new ArrayList<>();
+                                activityllist.add(new CityModel((String) document.get("name"), (String) document.get("sum")));
+//                                Log.d("demo5", document.getId() + " => " + document.getData());
+//                                Log.d("demo5", document.getId() + " => " + document.get("name"));
 
-                        ArrayList<String> arrayMapList = (ArrayList<String>) document.get("tag");
-
-
-                        for (Object transaction : arrayMapList) {
-                            Map values = (Map) transaction;
-//                            activityllist.add((String) values.get("name"));
-//                            activityllist.add((String) values.get("sum"));
-
-                            activityllist.add(new CityModel((String) values.get("name") , (String) values.get("sum")));
+                            }
+                        } else {
+                            Log.d("demo5", "Error getting documents: ", task.getException());
                         }
-                          Log.d("demo2", "Map  " + arrayMapList.toString());
-                        Log.d("demo2", "activityllist " + activityllist.get(0));
-
-//                        initViews();
-
                         refreshAdapter(activityllist);
-
                     }
-                }
-            }
+                });
 
-        });
+//        db.collection("users").document(docId).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+//            @Override
+//            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+//                if (task.isSuccessful()) {
+//                    DocumentSnapshot document = task.getResult();
+//                    if (document.exists()) {
+//
+//                        ArrayList<String> arrayMapList = (ArrayList<String>) document.get("tag");
+//
+//
+//                        for (Object transaction : arrayMapList) {
+//                            Map values = (Map) transaction;
+//
+//                            activityllist.add(new CityModel((String) values.get("name") , (String) values.get("sum")));
+//                        }
+//                          Log.d("demo2", "Map  " + arrayMapList.toString());
+//                        Log.d("demo2", "activityllist " + activityllist.get(0));
+//
+////                        initViews();
+//
+//                        refreshAdapter(activityllist);
+//
+//                    }
+//                }
+//            }
+//
+//        });
 
         AddButton();
 
@@ -114,6 +134,7 @@ public class HomeViewActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(HomeViewActivity.this, EditHameViewActivity.class);
+                intent.putExtra("docId", docId);
                 startActivity(intent);
             }
         });
