@@ -42,9 +42,6 @@ public class HomeFragment extends Fragment {
         View root = binding.getRoot();
         recyclerView = root.findViewById(R.id.recycler_Id);
 
-
-
-
         setUpRecyclerView();
         return root;
     }

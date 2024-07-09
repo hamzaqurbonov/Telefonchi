@@ -6,7 +6,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -23,18 +22,15 @@ import com.example.telefonchi.ui.home.view.EditHameViewActivity;
 import com.example.telefonchi.ui.home.view.HomeViewAdapter;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class HomeViewActivity extends AppCompatActivity {
-    ArrayList<String> nextArrayList = new ArrayList<String>();
-    CityModel cityModel;
+
     private HomeViewAdapter.RecyclerViewClickListner listner;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     String month, docId;
@@ -48,65 +44,14 @@ public class HomeViewActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_home_view);
 
-
-
         nameTextView = findViewById(R.id.textView);
         recyclerView = findViewById(R.id.recycler_home_view_ID);
         month = getIntent().getExtras().getString("month");
         docId = getIntent().getExtras().getString("docId");
 
-        db.collection("users")
-                .document(docId)
-                .collection(docId)
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                ArrayList<String> arrayMapList = new ArrayList<>();
-                                activityllist.add(new CityModel((String) document.get("name"), (String) document.get("sum")));
-//                                Log.d("demo5", document.getId() + " => " + document.getData());
-//                                Log.d("demo5", document.getId() + " => " + document.get("name"));
 
-                            }
-                        } else {
-                            Log.d("demo5", "Error getting documents: ", task.getException());
-                        }
-                        refreshAdapter(activityllist);
-                    }
-                });
-
-//        db.collection("users").document(docId).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-//            @Override
-//            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-//                if (task.isSuccessful()) {
-//                    DocumentSnapshot document = task.getResult();
-//                    if (document.exists()) {
-//
-//                        ArrayList<String> arrayMapList = (ArrayList<String>) document.get("tag");
-//
-//
-//                        for (Object transaction : arrayMapList) {
-//                            Map values = (Map) transaction;
-//
-//                            activityllist.add(new CityModel((String) values.get("name") , (String) values.get("sum")));
-//                        }
-//                          Log.d("demo2", "Map  " + arrayMapList.toString());
-//                        Log.d("demo2", "activityllist " + activityllist.get(0));
-//
-////                        initViews();
-//
-//                        refreshAdapter(activityllist);
-//
-//                    }
-//                }
-//            }
-//
-//        });
-
+        createDb();
         AddButton();
-
 
 
         nameTextView.setText(month);
@@ -118,10 +63,34 @@ public class HomeViewActivity extends AppCompatActivity {
     }
 
 
+    public List<CityModel> createDb () {
+        db.collection("users")
+                .document(docId)
+                .collection(docId)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                ArrayList<String> arrayMapList = new ArrayList<>();
+                                activityllist.add(new CityModel((String) document.get("name"), (String) document.get("sum"), document.getId()));
+//                                Log.d("demo5", document.getId() + " => " + document.getData());
+//                                Log.d("demo5", document.getId() + " => " + document.get("name"));
 
-    private void refreshAdapter(List<CityModel> activityllist) {
+                            }
+                        } else {
+                            Log.d("demo5", "Error getting documents: ", task.getException());
+                        }
+                        refreshAdapter();
+                    }
+                });
+        return activityllist;
+    }
 
-//        recyclerView = findViewById(R.id.recycler_home_view_ID);
+
+
+    public  void  refreshAdapter() {
         recyclerView.setLayoutManager(new GridLayoutManager(HomeViewActivity.this, 1));
 
         HomeViewAdapter adapter = new HomeViewAdapter(this, activityllist, listner);
@@ -139,5 +108,11 @@ public class HomeViewActivity extends AppCompatActivity {
             }
         });
     }
+
+    public String docId2 () {
+    String docId2 = docId;
+    return docId2;
+    }
+
 
 }
