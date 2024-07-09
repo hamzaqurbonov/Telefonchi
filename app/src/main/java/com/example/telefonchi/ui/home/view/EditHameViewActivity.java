@@ -30,14 +30,16 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 public class EditHameViewActivity extends AppCompatActivity {
 //    List<Map<String, Object>> modellist = new ArrayList<Map<String, Object>>();
+   HomeViewActivity homeViewActivity;
     Map<String,Object> nestedData = new HashMap<>();
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     private EditText editNameId, editSumId;
     private Button addContactId;
-    String stringName, stringSum, docId;
+    String stringName, stringSum, docId, addTrue, collegGetId, collection;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,16 +47,21 @@ public class EditHameViewActivity extends AppCompatActivity {
         setContentView(R.layout.activity_edit_hame_view);
 
         docId = getIntent().getExtras().getString("docId");
+        addTrue = getIntent().getExtras().getString("add");
+        collegGetId = getIntent().getExtras().getString("collegGetId");
+        collection = getIntent().getExtras().getString("collection");
+
 
         editNameId = findViewById(R.id.edit_name_id);
         editSumId = findViewById(R.id.edit_sum_id);
         addContactId = findViewById(R.id.add_contact_id);
 
-//        stringName = getIntent().getStringExtra();
-//        stringSum = getIntent().getStringExtra("sum");
+        stringName = getIntent().getStringExtra("nameEdit");
+        stringSum = getIntent().getStringExtra("sumEdit");
 
-        editNameId.setText("");
-        editSumId.setText("");
+        editNameId.setText(stringName);
+        editSumId.setText(stringSum);
+
 
         addContactId.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,16 +73,52 @@ public class EditHameViewActivity extends AppCompatActivity {
                 nestedData.put("sum", editSumId.getText().toString());
                 nestedData.put("name", editNameId.getText().toString());
 
-                CollectionReference citiesRef = db.collection("users");
-                citiesRef.document(docId).collection(docId).add(nestedData);
-//                Toast.makeText(EditHameViewActivity.this, "Course Updated..", Toast.LENGTH_SHORT).show();
+                Log.d("demo8",  addTrue);
 
-                Intent i = new Intent(EditHameViewActivity.this, HomeViewActivity.class);
-                startActivity(i);
-                nestedData.clear();
-                addContactId.clearComposingText();
+                if(Objects.equals(addTrue, "a")) {
+                    CollectionReference citiesRef = db.collection("users");
+                    citiesRef.document(docId).collection(docId).add(nestedData);
+                    Log.d("demo8", "true");
+                    Intent i = new Intent(EditHameViewActivity.this, HomeViewActivity.class);
+                    startActivity(i);
+
+                } else if (Objects.equals(addTrue, "b"))
+                {
+
+                    db.collection("users").document(collection +"/" + collegGetId)
+                            .set(nestedData)
+                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void aVoid) {
+//                                Log.d(TAG, "DocumentSnapshot successfully written!");
+                                }
+                            })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+//                                Log.w(TAG, "Error writing document", e);
+                                }
+                            });
+
+                    Log.d("demo8", "fasle" + " " + addTrue);
+                    Intent i = new Intent(EditHameViewActivity.this, HomeViewActivity.class);
+                    startActivity(i);
+                }
+
+
+
+//                nestedData.clear();
+//                addContactId.clearComposingText();
             }
         });
+
+
+
+
+
+
+
+
 
 
 

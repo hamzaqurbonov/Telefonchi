@@ -104,6 +104,7 @@ public class HomeViewActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(HomeViewActivity.this, EditHameViewActivity.class);
                 intent.putExtra("docId", docId);
+                intent.putExtra("add", "a");
                 startActivity(intent);
             }
         });
