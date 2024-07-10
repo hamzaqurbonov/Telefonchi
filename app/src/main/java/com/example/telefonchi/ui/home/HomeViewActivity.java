@@ -1,16 +1,25 @@
 package com.example.telefonchi.ui.home;
 
+import android.app.SearchManager;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.SearchView;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.graphics.Insets;
+import androidx.core.view.MenuItemCompat;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -20,39 +29,73 @@ import com.example.telefonchi.R;
 import com.example.telefonchi.ui.home.view.CityModel;
 import com.example.telefonchi.ui.home.view.EditHameViewActivity;
 import com.example.telefonchi.ui.home.view.HomeViewAdapter;
+import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class HomeViewActivity extends AppCompatActivity {
+    private HomeViewAdapter adapterInt;
 
-    private HomeViewAdapter.RecyclerViewClickListner listner;
+    private HomeViewAdapter listner;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     String month, docId;
     TextView nameTextView;
     Button addButtonId;
-    private RecyclerView recyclerView;
+    private RecyclerView recyclerViewInt;
     public List<CityModel> activityllist = new ArrayList<>();
+    public List<CityModel> activityllistSearch = new ArrayList<>();
+
+    MenuItem menuItem;
+    SearchView searchView;
+    Toolbar toolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_home_view);
 
+        toolbar = findViewById( R.id.toolbar_search);
+        AppCompatActivity activity = (AppCompatActivity) HomeViewActivity.this;
+        activity.setSupportActionBar( toolbar );
+        activity.getSupportActionBar().setTitle("");
+
+//        AppCompatActivity activity = (AppCompatActivity) HomeViewActivity.this;
+//        setSupportActionBar(toolbar);
+//        Objects.requireNonNull(getSupportActionBar()).setTitle("");
+
+
         nameTextView = findViewById(R.id.textView);
-        recyclerView = findViewById(R.id.recycler_home_view_ID);
+        recyclerViewInt = findViewById(R.id.recycler_home_view_ID);
+
         month = getIntent().getExtras().getString("month");
         docId = getIntent().getExtras().getString("docId");
 
 
-        createDb();
-        AddButton();
+        Query query = db.collection("users")
+                .document(docId)
+                .collection(docId).orderBy("name", Query.Direction.DESCENDING);
 
+        FirestoreRecyclerOptions<CityModel> optionsInt = new FirestoreRecyclerOptions.Builder<CityModel>()
+                .setQuery(query, CityModel.class).build();
+//        Log.d("demo22", docId);
+
+        adapterInt = new HomeViewAdapter(optionsInt);
+//        recyclerViewInt.setHasFixedSize(true);
+        recyclerViewInt.setLayoutManager(new GridLayoutManager(this,1  ));
+        recyclerViewInt.setAdapter(adapterInt);
+
+
+//        createDb();
+        AddButton();
+//        refreshAdapter();
 
         nameTextView.setText(month);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
@@ -63,39 +106,6 @@ public class HomeViewActivity extends AppCompatActivity {
     }
 
 
-    public List<CityModel> createDb () {
-        db.collection("users")
-                .document(docId)
-                .collection(docId)
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                ArrayList<String> arrayMapList = new ArrayList<>();
-                                activityllist.add(new CityModel((String) document.get("name"), (String) document.get("sum"), document.getId()));
-//                                Log.d("demo5", document.getId() + " => " + document.getData());
-//                                Log.d("demo5", document.getId() + " => " + document.get("name"));
-
-                            }
-                        } else {
-                            Log.d("demo5", "Error getting documents: ", task.getException());
-                        }
-                        refreshAdapter();
-                    }
-                });
-        return activityllist;
-    }
-
-
-
-    public  void  refreshAdapter() {
-        recyclerView.setLayoutManager(new GridLayoutManager(HomeViewActivity.this, 1));
-
-        HomeViewAdapter adapter = new HomeViewAdapter(this, activityllist, listner);
-        recyclerView.setAdapter(adapter);
-    }
 
     private void AddButton() {
         addButtonId = findViewById(R.id.add_button_id);
@@ -115,5 +125,83 @@ public class HomeViewActivity extends AppCompatActivity {
     return docId2;
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_search,menu);
 
+        MenuItem item = menu.findItem(R.id.menu_search_id);
+
+        SearchView searchView = (SearchView)item.getActionView();
+        searchView.setIconified(true);
+        searchView.setQueryHint("Qidiruv");
+
+        SearchManager searchManager = (SearchManager) HomeViewActivity.this.getSystemService(Context.SEARCH_SERVICE);
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(HomeViewActivity.this.getComponentName()));
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+//                processSearch(s);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                processSearch(s);
+                return false;
+            }
+        });
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    private void processSearch(String s) {
+
+//        FirebaseRecyclerOptions<model> options =
+//                new FirebaseRecyclerOptions.Builder<model>()
+//                        .setQuery(FirebaseDatabase.getInstance().getReference().child("students"). orderByChild("name").startAt(s).endAt("\uf8ff") ,model.class)
+//                        .build();
+//        adapter = new myadapter(options);
+//        adapter.startListening();
+//        rview.setAdapter(adapter);
+//        activityllist.clear();
+
+
+        Query query = db.collection("users")
+                .document(docId)
+                .collection(docId).orderBy("name", Query.Direction.DESCENDING).startAt(s);
+
+        FirestoreRecyclerOptions<CityModel> optionsInt = new FirestoreRecyclerOptions.Builder<CityModel>()
+                .setQuery(query, CityModel.class).build();
+
+        Log.d("demo22", s);
+
+        adapterInt = new HomeViewAdapter(optionsInt);
+        if(adapterInt  != null) adapterInt.startListening();
+//        if(adapterInt  != null) adapterInt.stopListening();
+        recyclerViewInt.setAdapter(adapterInt);
+
+//        if(optionsInt == null) {
+//            adapterInt = new HomeViewAdapter(optionsInt);
+//            recyclerViewInt.setAdapter(adapterInt);
+//        } else {
+//            adapterInt.updateOptions(optionsInt);
+//        }
+    }
+
+
+
+    @Override
+    public void onStart() {
+        super.onStart();
+//        recyclerViewInt.getRecycledViewPool().clear();
+//        adapterInt.notifyDataSetChanged();
+//        adapterInt.startListening();
+        if(adapterInt  != null) adapterInt.startListening();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+//        adapterInt.stopListening();
+        if(adapterInt  != null) adapterInt.stopListening();
+    }
 }
