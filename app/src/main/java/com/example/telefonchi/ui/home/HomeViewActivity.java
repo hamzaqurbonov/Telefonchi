@@ -154,20 +154,11 @@ public class HomeViewActivity extends AppCompatActivity {
     }
 
     private void processSearch(String s) {
-
-//        FirebaseRecyclerOptions<model> options =
-//                new FirebaseRecyclerOptions.Builder<model>()
-//                        .setQuery(FirebaseDatabase.getInstance().getReference().child("students"). orderByChild("name").startAt(s).endAt("\uf8ff") ,model.class)
-//                        .build();
-//        adapter = new myadapter(options);
-//        adapter.startListening();
-//        rview.setAdapter(adapter);
-//        activityllist.clear();
-
-
         Query query = db.collection("users")
                 .document(docId)
-                .collection(docId).orderBy("name", Query.Direction.DESCENDING).startAt(s);
+                .collection(docId).orderBy("name", Query.Direction.DESCENDING)
+                .whereGreaterThanOrEqualTo("name", s)
+                .whereLessThanOrEqualTo("name", s + "\uf8ff");
 
         FirestoreRecyclerOptions<CityModel> optionsInt = new FirestoreRecyclerOptions.Builder<CityModel>()
                 .setQuery(query, CityModel.class).build();
