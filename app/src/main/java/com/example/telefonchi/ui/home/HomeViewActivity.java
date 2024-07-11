@@ -32,29 +32,25 @@ import com.example.telefonchi.ui.home.view.HomeViewAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
 public class HomeViewActivity extends AppCompatActivity {
     private HomeViewAdapter adapterInt;
-
-    private HomeViewAdapter listner;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     String month, docId;
     TextView nameTextView;
     Button addButtonId;
     private RecyclerView recyclerViewInt;
-    public List<CityModel> activityllist = new ArrayList<>();
-    public List<CityModel> activityllistSearch = new ArrayList<>();
-
-    MenuItem menuItem;
-    SearchView searchView;
+    public List<String> activityllist ;
     Toolbar toolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,22 +74,10 @@ public class HomeViewActivity extends AppCompatActivity {
         month = getIntent().getExtras().getString("month");
         docId = getIntent().getExtras().getString("docId");
 
-
-        Query query = db.collection("users")
-                .document(docId)
-                .collection(docId).orderBy("name", Query.Direction.DESCENDING);
-
-        FirestoreRecyclerOptions<CityModel> optionsInt = new FirestoreRecyclerOptions.Builder<CityModel>()
-                .setQuery(query, CityModel.class).build();
-//        Log.d("demo22", docId);
-
-        adapterInt = new HomeViewAdapter(optionsInt);
-//        recyclerViewInt.setHasFixedSize(true);
-        recyclerViewInt.setLayoutManager(new GridLayoutManager(this,1  ));
-        recyclerViewInt.setAdapter(adapterInt);
+        activityllist = Collections.singletonList(getIntent().getExtras().getString("docId"));
 
 
-//        createDb();
+        createDb();
         AddButton();
 //        refreshAdapter();
 
@@ -106,6 +90,21 @@ public class HomeViewActivity extends AppCompatActivity {
     }
 
 
+    private void createDb() {
+
+        Query query = db.collection("users")
+                .document(docId)
+                .collection(docId).orderBy("name", Query.Direction.DESCENDING);
+
+        FirestoreRecyclerOptions<CityModel> optionsInt = new FirestoreRecyclerOptions.Builder<CityModel>()
+                .setQuery(query, CityModel.class).build();
+//        Log.d("demo22", docId);
+
+        adapterInt = new HomeViewAdapter(optionsInt , activityllist);
+//        recyclerViewInt.setHasFixedSize(true);
+        recyclerViewInt.setLayoutManager(new GridLayoutManager(this,1  ));
+        recyclerViewInt.setAdapter(adapterInt);
+    }
 
     private void AddButton() {
         addButtonId = findViewById(R.id.add_button_id);
@@ -118,11 +117,6 @@ public class HomeViewActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-    }
-
-    public String docId2 () {
-    String docId2 = docId;
-    return docId2;
     }
 
     @Override
@@ -165,7 +159,7 @@ public class HomeViewActivity extends AppCompatActivity {
 
         Log.d("demo22", s);
 
-        adapterInt = new HomeViewAdapter(optionsInt);
+        adapterInt = new HomeViewAdapter(optionsInt, activityllist);
         if(adapterInt  != null) adapterInt.startListening();
 //        if(adapterInt  != null) adapterInt.stopListening();
         recyclerViewInt.setAdapter(adapterInt);
@@ -177,8 +171,6 @@ public class HomeViewActivity extends AppCompatActivity {
 //            adapterInt.updateOptions(optionsInt);
 //        }
     }
-
-
 
     @Override
     public void onStart() {

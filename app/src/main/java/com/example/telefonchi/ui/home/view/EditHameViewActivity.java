@@ -33,8 +33,7 @@ import java.util.Map;
 import java.util.Objects;
 
 public class EditHameViewActivity extends AppCompatActivity {
-//    List<Map<String, Object>> modellist = new ArrayList<Map<String, Object>>();
-   HomeViewActivity homeViewActivity;
+
     Map<String,Object> nestedData = new HashMap<>();
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     private EditText editNameId, editSumId;
@@ -50,6 +49,8 @@ public class EditHameViewActivity extends AppCompatActivity {
         addTrue = getIntent().getExtras().getString("add");
         collegGetId = getIntent().getExtras().getString("collegGetId");
         collection = getIntent().getExtras().getString("collection");
+
+        Log.d("demo22", "collection " + collection);
 
 
         editNameId = findViewById(R.id.edit_name_id);
@@ -85,7 +86,7 @@ public class EditHameViewActivity extends AppCompatActivity {
                 } else if (Objects.equals(addTrue, "b"))
                 {
 
-                    db.collection("users").document(collection +"/" + collegGetId)
+                    db.collection("users").document(collection + "/" + collection +"/" + collegGetId)
                             .set(nestedData)
                             .addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
@@ -104,24 +105,8 @@ public class EditHameViewActivity extends AppCompatActivity {
                     Intent i = new Intent(EditHameViewActivity.this, HomeViewActivity.class);
                     startActivity(i);
                 }
-
-
-
-//                nestedData.clear();
-//                addContactId.clearComposingText();
             }
         });
-
-
-
-
-
-
-
-
-
-
-
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
