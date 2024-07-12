@@ -1,5 +1,6 @@
 package com.example.telefonchi.ui.home.view;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
@@ -47,6 +48,7 @@ public class HomeViewAdapter extends FirestoreRecyclerAdapter<CityModel, HomeVie
         return new LongHolder(v);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onBindViewHolder(@NonNull LongHolder holder, int position, @NonNull CityModel cityModel) {
 
@@ -54,7 +56,7 @@ public class HomeViewAdapter extends FirestoreRecyclerAdapter<CityModel, HomeVie
 
 
         holder.TextViewName.setText(cityModel.getName());
-        holder.TextViewSum.setText(cityModel.getSum());
+        holder.TextViewSum.setText(Integer.toString(cityModel.getSum()));
 
 
         holder.editSelect.setOnClickListener(new View.OnClickListener() {

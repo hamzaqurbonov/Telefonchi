@@ -38,7 +38,8 @@ public class EditHameViewActivity extends AppCompatActivity {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     private EditText editNameId, editSumId;
     private Button addContactId;
-    String stringName, stringSum, docId, addTrue, collegGetId, collection;
+    String stringName, docId, addTrue, collegGetId, collection, stringSum;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,7 +59,7 @@ public class EditHameViewActivity extends AppCompatActivity {
         addContactId = findViewById(R.id.add_contact_id);
 
         stringName = getIntent().getStringExtra("nameEdit");
-        stringSum = getIntent().getStringExtra("sumEdit");
+        stringSum = String.valueOf(getIntent().getExtras().getInt("sumEdit"));
 
         editNameId.setText(stringName);
         editSumId.setText(stringSum);
@@ -68,10 +69,7 @@ public class EditHameViewActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-//                Map<String, Object> city = new HashMap<>();
-//                city.put("month", "Yanvar");
-
-                nestedData.put("sum", editSumId.getText().toString());
+                nestedData.put("sum", 2);
                 nestedData.put("name", editNameId.getText().toString());
 
                 Log.d("demo8",  addTrue);

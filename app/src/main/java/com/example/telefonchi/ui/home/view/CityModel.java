@@ -1,15 +1,16 @@
 package com.example.telefonchi.ui.home.view;
 
 public class CityModel {
-    private String name;
-    private String sum;
+    private String name, nickname, telephone, comment, year;
+    private int    sum, startSum, finishSum, amountMonth,sumMonth;
 
-    public CityModel(String name, String sum) {
-        this.name = name;
-        this.sum = sum;
-    }
     public CityModel() {
 
+    }
+
+    public CityModel(String name, int  sum) {
+        this.name = name;
+        this.sum = sum;
     }
 
     public String getName() {
@@ -20,11 +21,11 @@ public class CityModel {
         this.name = name;
     }
 
-    public String getSum() {
+    public int getSum() {
         return sum;
     }
 
-    public void setSum(String sum) {
+    public void setSum(int  sum) {
         this.sum = sum;
     }
 }
