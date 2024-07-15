@@ -40,7 +40,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="TextName"
+                android:text="name"
                 android:textSize="14dp"
                 android:textColor="#1E7EC1"
                 android:textStyle="italic"
@@ -48,13 +48,96 @@
                 android:layout_marginLeft="5dp"/>
 
             <TextView
-                android:id="@+id/text_view_sum"
+                android:id="@+id/text_view_nick"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="nick"
+                android:textSize="14dp"
+                android:textColor="#1E7EC1"
+                android:textStyle="italic"
+                android:padding="0dp"
+                android:layout_marginLeft="5dp"/>
+            <TextView
+                android:id="@+id/text_view_year"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="year"
+                android:textSize="14dp"
+                android:textColor="@color/black"
+                android:textStyle="italic"
+                android:padding="0dp"
+                android:layout_marginLeft="5dp"/>
+
+            <TextView
+                android:id="@+id/text_view_totalSum"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:padding="0dp"
-                android:text="Translate"
+                android:text="totalSum"
                 android:textColor="@color/black"
+                android:layout_marginLeft="5dp"
+                android:textStyle="italic"/>
+            <TextView
+                android:id="@+id/text_view_startSum"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="0dp"
+                android:text="startSum"
+                android:textColor="@color/black"
+                android:layout_marginLeft="5dp"
+                android:textStyle="italic"/>
+            <TextView
+                android:id="@+id/text_view_finishSum"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="0dp"
+                android:text="finishSum"
+                android:textColor="@color/black"
+                android:layout_marginLeft="5dp"
+                android:textStyle="italic"/>
+            <TextView
+                android:id="@+id/text_view_amountMonth"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="0dp"
+                android:text="amountMonth"
+                android:textColor="@color/black"
+                android:layout_marginLeft="5dp"
+                android:textStyle="italic"/>
+            <TextView
+                android:id="@+id/text_view_sumMonth"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="0dp"
+                android:text="sumMonth"
+                android:textColor="@color/black"
+                android:layout_marginLeft="5dp"
+                android:textStyle="italic"/>
+            <TextView
+                android:id="@+id/text_view_tel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="0dp"
+                android:text="tel"
+                android:textColor="@color/black"
+                android:layout_marginLeft="5dp"
+                android:textStyle="italic"/>
+            <TextView
+                android:id="@+id/text_comment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="0dp"
+                android:text="comment"
+                android:textColor="#1E7EC1"
                 android:layout_marginLeft="5dp"
                 android:textStyle="italic"/>
 

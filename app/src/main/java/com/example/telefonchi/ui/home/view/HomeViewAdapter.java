@@ -1,7 +1,9 @@
 package com.example.telefonchi.ui.home.view;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -55,8 +57,16 @@ public class HomeViewAdapter extends FirestoreRecyclerAdapter<CityModel, HomeVie
         String firebaseDocId = getSnapshots().getSnapshot(position).getId();
 
 
-        holder.TextViewName.setText(cityModel.getName());
-        holder.TextViewSum.setText(Integer.toString(cityModel.getSum()));
+        holder.TextName.setText(cityModel.getName());
+        holder.TextnNick.setText(cityModel.getNick());
+        holder.TextYear.setText(Integer.toString(cityModel.getYear()));
+        holder.TextTotalSum.setText(Integer.toString(cityModel.getTotalSum()));
+        holder.TextStartSum.setText(Integer.toString(cityModel.getStartSum()));
+        holder.TextFinshSum.setText(Integer.toString(cityModel.getFinishSum()));
+        holder.TextAmountSum.setText(Integer.toString(cityModel.getAmountMonth()));
+        holder.TextSumMonth.setText(Integer.toString(cityModel.getSumMonth()));
+        holder.TextTel.setText(Integer.toString(cityModel.getTel()));
+        holder.TextComment.setText(cityModel.getComment());
 
 
         holder.editSelect.setOnClickListener(new View.OnClickListener() {
@@ -65,11 +75,20 @@ public class HomeViewAdapter extends FirestoreRecyclerAdapter<CityModel, HomeVie
 //                Log.d("demo22", "firebaseDocId " + activityllist.get(0));
 
 //            Log.d("demo22", "firebaseDocId " + firebaseDocId);
-                Log.d("demo22", cityModel.getName() + " " + cityModel.getSum());
+                Log.d("demo22", cityModel.getName() + " " + cityModel.getTotalSum());
 //            Intent intent = new Intent(activity, EditHameViewActivity.class);
                 Intent intent = new Intent(v.getContext(), EditHameViewActivity.class);
+
                 intent.putExtra("nameEdit", cityModel.getName());
-                intent.putExtra("sumEdit", cityModel.getSum());
+                intent.putExtra("nickEdit", cityModel.getNick());
+                intent.putExtra("yearEdit", cityModel.getYear());
+                intent.putExtra("totalSumEdit", cityModel.getTotalSum());
+                intent.putExtra("startSumEdit", cityModel.getStartSum());
+                intent.putExtra("finishSumEdit", cityModel.getFinishSum());
+                intent.putExtra("amountMonthEdit", cityModel.getAmountMonth());
+                intent.putExtra("sumMonthEdit", cityModel.getSumMonth());
+                intent.putExtra("telEdit", cityModel.getTel());
+                intent.putExtra("commentEdit", cityModel.getComment());
                 intent.putExtra("collegGetId", firebaseDocId);
                 intent.putExtra("collection", (CharSequence) activityllist.get(0));
                 intent.putExtra("add", "b");
@@ -80,27 +99,46 @@ public class HomeViewAdapter extends FirestoreRecyclerAdapter<CityModel, HomeVie
         holder.deleteSelect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FirebaseFirestore db = FirebaseFirestore.getInstance();
-                db.collection("users").document(activityllist.get(0) + '/' + activityllist.get(0) + '/' + firebaseDocId)
-                        .delete()
-                        .addOnSuccessListener(new OnSuccessListener<Void>() {
-                            @Override
-                            public void onSuccess(Void aVoid) {
-//                            Log.d("demo6", "DocumentSnapshot successfully deleted!");
-                            }
-                        })
-                        .addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-//                            Log.w("demo6", "Error deleting document", e);
-                            }
-                        });
-//            Log.d("demo7", member.getName() + " " + member.getSum() + " " + member.getId() + homeViewActivity.docId2());
-                Toast.makeText(v.getContext(), "Matin o'chirildi", Toast.LENGTH_SHORT).show();
-//            Refresh(homeViewActivity.createDb());
+                AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
+                builder.setTitle("Matinni o'chirish");
+                builder.setMessage("Matinni o'chirishni istaysizmi?");
+                builder.setPositiveButton("Ha", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+//              Delete fiuksiyasini qo'shish mumkun
+                        FirebaseFirestore db = FirebaseFirestore.getInstance();
+                        db.collection("users").document(activityllist.get(0) + '/' + activityllist.get(0) + '/' + firebaseDocId)
+                                .delete()
+                                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void aVoid) {
+                                    }
+                                })
+                                .addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                    }
+                                });
+                        Toast.makeText(v.getContext(),  "Matin o'chirildi!", Toast.LENGTH_SHORT).show();
+                        //Refresh Activity
+//                        Intent intent = new Intent(v.getContext(), v.getContext().getClass());
+//                        v.getContext(). startActivity(intent);
+
+//                finish();
+                    }
+                });
+                builder.setNegativeButton("Yo'q", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                    }
+                });
+                builder.create().show();
             }
         });
     }
+
 
 //    void Refresh(List<CityModel>  events) {
 //        activityllist.clear();
@@ -110,12 +148,21 @@ public class HomeViewAdapter extends FirestoreRecyclerAdapter<CityModel, HomeVie
 
     class LongHolder extends RecyclerView.ViewHolder {
 
-    TextView TextViewName, TextViewSum;
+    TextView TextName, TextnNick, TextYear, TextTotalSum, TextStartSum, TextFinshSum, TextAmountSum, TextSumMonth, TextTel, TextComment;
     ImageView deleteSelect, editSelect;
         public LongHolder(View itemView) {
             super(itemView);
-        TextViewName = itemView.findViewById(R.id.text_view_name);
-        TextViewSum = itemView.findViewById(R.id.text_view_sum);
+            TextName = itemView.findViewById(R.id.text_view_name);
+            TextnNick = itemView.findViewById(R.id.text_view_nick);
+            TextYear = itemView.findViewById(R.id.text_view_year);
+            TextTotalSum = itemView.findViewById(R.id.text_view_totalSum);
+            TextStartSum = itemView.findViewById(R.id.text_view_startSum);
+            TextFinshSum = itemView.findViewById(R.id.text_view_finishSum);
+            TextAmountSum = itemView.findViewById(R.id.text_view_amountMonth);
+            TextSumMonth = itemView.findViewById(R.id.text_view_sumMonth);
+            TextTel = itemView.findViewById(R.id.text_view_tel);
+            TextComment = itemView.findViewById(R.id.text_comment);
+
         deleteSelect = itemView.findViewById(R.id.delete_select);
         editSelect = itemView.findViewById(R.id.edit_select);
 

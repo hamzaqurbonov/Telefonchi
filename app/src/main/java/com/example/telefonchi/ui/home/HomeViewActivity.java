@@ -1,7 +1,9 @@
 package com.example.telefonchi.ui.home;
 
+import android.app.AlertDialog;
 import android.app.SearchManager;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,6 +15,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.SearchView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -171,6 +174,10 @@ public class HomeViewActivity extends AppCompatActivity {
 //            adapterInt.updateOptions(optionsInt);
 //        }
     }
+
+
+
+
 
     @Override
     public void onStart() {
