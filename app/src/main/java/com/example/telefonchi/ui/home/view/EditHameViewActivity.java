@@ -49,15 +49,15 @@ public class EditHameViewActivity extends AppCompatActivity {
 
         //Edit R.id
         nameEditId = findViewById(R.id.edit_name_id);
-        nickEditId = findViewById(R.id.edit_nick_id);
-        yearEditId = findViewById(R.id.edit_year_id);
-        totalSumEditId = findViewById(R.id.edit_totalSum_id);
-        startSumEditId = findViewById(R.id.edit_startSum_id);
-        finishSumEditId = findViewById(R.id.edit_finishSum_id);
-        amountMonthEditId = findViewById(R.id.edit_amountMonth_id);
-        sumMonthEditId = findViewById(R.id.edit_sumMonth_id);
-        telEditId = findViewById(R.id.edit_tel_id);
-        commentEditId = findViewById(R.id.edit_comment_id);
+//        nickEditId = findViewById(R.id.edit_nick_id);
+//        yearEditId = findViewById(R.id.edit_year_id);
+//        totalSumEditId = findViewById(R.id.edit_totalSum_id);
+//        startSumEditId = findViewById(R.id.edit_startSum_id);
+//        finishSumEditId = findViewById(R.id.edit_finishSum_id);
+//        amountMonthEditId = findViewById(R.id.edit_amountMonth_id);
+//        sumMonthEditId = findViewById(R.id.edit_sumMonth_id);
+//        telEditId = findViewById(R.id.edit_tel_id);
+//        commentEditId = findViewById(R.id.edit_comment_id);
         //button
         addContactId = findViewById(R.id.add_contact_id);
 
@@ -69,42 +69,42 @@ public class EditHameViewActivity extends AppCompatActivity {
 
         //HomeViewAdapter getEdit getIntent()
         nameEdit = getIntent().getStringExtra("nameEdit");
-        nickEdit = getIntent().getStringExtra("nickEdit");
-        yearEdit = String.valueOf(getIntent().getExtras().getInt("yearEdit"));
-        totalSumEdit = String.valueOf(getIntent().getExtras().getInt("totalSumEdit"));
-        startSumEdit = String.valueOf(getIntent().getExtras().getInt("startSumEdit"));
-        finishSumEdit = String.valueOf(getIntent().getExtras().getInt("finishSumEdit"));
-        amountMonthEdit = String.valueOf(getIntent().getExtras().getInt("amountMonthEdit"));
-        sumMonthEdit = String.valueOf(getIntent().getExtras().getInt("sumMonthEdit"));
-        telEdit = String.valueOf(getIntent().getExtras().getInt("telEdit"));
-        commentEdit = getIntent().getStringExtra("commentEdit");
+//        nickEdit = getIntent().getStringExtra("nickEdit");
+//        yearEdit = String.valueOf(getIntent().getExtras().getInt("yearEdit"));
+//        totalSumEdit = String.valueOf(getIntent().getExtras().getInt("totalSumEdit"));
+//        startSumEdit = String.valueOf(getIntent().getExtras().getInt("startSumEdit"));
+//        finishSumEdit = String.valueOf(getIntent().getExtras().getInt("finishSumEdit"));
+//        amountMonthEdit = String.valueOf(getIntent().getExtras().getInt("amountMonthEdit"));
+//        sumMonthEdit = String.valueOf(getIntent().getExtras().getInt("sumMonthEdit"));
+//        telEdit = String.valueOf(getIntent().getExtras().getInt("telEdit"));
+//        commentEdit = getIntent().getStringExtra("commentEdit");
 
         //add Map text
         nameEditId.setText(nameEdit);
-        nickEditId.setText(nickEdit);
-        yearEditId.setText(yearEdit);
-        totalSumEditId.setText(totalSumEdit);
-        startSumEditId.setText(startSumEdit);
-        finishSumEditId.setText(finishSumEdit);
-        amountMonthEditId.setText(amountMonthEdit);
-        sumMonthEditId.setText(sumMonthEdit);
-        telEditId.setText(telEdit);
-        commentEditId.setText(commentEdit);
+//        nickEditId.setText(nickEdit);
+//        yearEditId.setText(yearEdit);
+//        totalSumEditId.setText(totalSumEdit);
+//        startSumEditId.setText(startSumEdit);
+//        finishSumEditId.setText(finishSumEdit);
+//        amountMonthEditId.setText(amountMonthEdit);
+//        sumMonthEditId.setText(sumMonthEdit);
+//        telEditId.setText(telEdit);
+//        commentEditId.setText(commentEdit);
 
 
         addContactId.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 nestedData.put("name", nameEditId.getText().toString());
-                nestedData.put("nick", nickEditId.getText().toString());
-                nestedData.put("year", Integer.parseInt(yearEditId.getText().toString()));
-                nestedData.put("totalSum", Integer.parseInt(totalSumEditId.getText().toString()));
-                nestedData.put("startSum", Integer.parseInt(startSumEditId.getText().toString()));
-                nestedData.put("finishSum", Integer.parseInt(finishSumEditId.getText().toString()));
-                nestedData.put("amountMonth", Integer.parseInt(amountMonthEditId.getText().toString()));
-                nestedData.put("sumMonth", Integer.parseInt(sumMonthEditId.getText().toString()));
-                nestedData.put("tel", Integer.parseInt(telEditId.getText().toString()));
-                nestedData.put("comment", commentEditId.getText().toString());
+//                nestedData.put("nick", nickEditId.getText().toString());
+//                nestedData.put("year", Integer.parseInt(yearEditId.getText().toString()));
+//                nestedData.put("totalSum", Integer.parseInt(totalSumEditId.getText().toString()));
+//                nestedData.put("startSum", Integer.parseInt(startSumEditId.getText().toString()));
+//                nestedData.put("finishSum", Integer.parseInt(finishSumEditId.getText().toString()));
+//                nestedData.put("amountMonth", Integer.parseInt(amountMonthEditId.getText().toString()));
+//                nestedData.put("sumMonth", Integer.parseInt(sumMonthEditId.getText().toString()));
+//                nestedData.put("tel", Integer.parseInt(telEditId.getText().toString()));
+//                nestedData.put("comment", commentEditId.getText().toString());
 
                 Log.d("demo8",  addTrue);
 

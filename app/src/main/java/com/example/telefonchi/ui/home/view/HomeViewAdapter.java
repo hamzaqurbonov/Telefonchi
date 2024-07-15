@@ -80,15 +80,15 @@ public class HomeViewAdapter extends FirestoreRecyclerAdapter<CityModel, HomeVie
                 Intent intent = new Intent(v.getContext(), EditHameViewActivity.class);
 
                 intent.putExtra("nameEdit", cityModel.getName());
-                intent.putExtra("nickEdit", cityModel.getNick());
-                intent.putExtra("yearEdit", cityModel.getYear());
-                intent.putExtra("totalSumEdit", cityModel.getTotalSum());
-                intent.putExtra("startSumEdit", cityModel.getStartSum());
-                intent.putExtra("finishSumEdit", cityModel.getFinishSum());
-                intent.putExtra("amountMonthEdit", cityModel.getAmountMonth());
-                intent.putExtra("sumMonthEdit", cityModel.getSumMonth());
-                intent.putExtra("telEdit", cityModel.getTel());
-                intent.putExtra("commentEdit", cityModel.getComment());
+//                intent.putExtra("nickEdit", cityModel.getNick());
+//                intent.putExtra("yearEdit", cityModel.getYear());
+//                intent.putExtra("totalSumEdit", cityModel.getTotalSum());
+//                intent.putExtra("startSumEdit", cityModel.getStartSum());
+//                intent.putExtra("finishSumEdit", cityModel.getFinishSum());
+//                intent.putExtra("amountMonthEdit", cityModel.getAmountMonth());
+//                intent.putExtra("sumMonthEdit", cityModel.getSumMonth());
+//                intent.putExtra("telEdit", cityModel.getTel());
+//                intent.putExtra("commentEdit", cityModel.getComment());
                 intent.putExtra("collegGetId", firebaseDocId);
                 intent.putExtra("collection", (CharSequence) activityllist.get(0));
                 intent.putExtra("add", "b");
