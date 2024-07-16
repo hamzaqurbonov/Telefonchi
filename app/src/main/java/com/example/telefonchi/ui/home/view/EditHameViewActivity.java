@@ -1,12 +1,12 @@
 package com.example.telefonchi.ui.home.view;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -20,15 +20,9 @@ import com.example.telefonchi.ui.home.HomeViewActivity;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.SetOptions;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
@@ -41,6 +35,8 @@ public class EditHameViewActivity extends AppCompatActivity {
     String docId, addTrue, collegGetId, collection;
     String nameEdit, nickEdit, yearEdit, totalSumEdit, startSumEdit, finishSumEdit, amountMonthEdit, sumMonthEdit, telEdit, commentEdit;
 
+
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,15 +45,15 @@ public class EditHameViewActivity extends AppCompatActivity {
 
         //Edit R.id
         nameEditId = findViewById(R.id.edit_name_id);
-//        nickEditId = findViewById(R.id.edit_nick_id);
-//        yearEditId = findViewById(R.id.edit_year_id);
-//        totalSumEditId = findViewById(R.id.edit_totalSum_id);
-//        startSumEditId = findViewById(R.id.edit_startSum_id);
-//        finishSumEditId = findViewById(R.id.edit_finishSum_id);
-//        amountMonthEditId = findViewById(R.id.edit_amountMonth_id);
-//        sumMonthEditId = findViewById(R.id.edit_sumMonth_id);
-//        telEditId = findViewById(R.id.edit_tel_id);
-//        commentEditId = findViewById(R.id.edit_comment_id);
+        nickEditId = findViewById(R.id.edit_nick_id);
+        yearEditId = findViewById(R.id.edit_year_id);
+        totalSumEditId = findViewById(R.id.edit_totalSum_id);
+        startSumEditId = findViewById(R.id.edit_startSum_id);
+        finishSumEditId = findViewById(R.id.edit_finishSum_id);
+        amountMonthEditId = findViewById(R.id.edit_amountMonth_id);
+        sumMonthEditId = findViewById(R.id.edit_sumMonth_id);
+        telEditId = findViewById(R.id.edit_tel_id);
+        commentEditId = findViewById(R.id.edit_comment_id);
         //button
         addContactId = findViewById(R.id.add_contact_id);
 
@@ -69,56 +65,49 @@ public class EditHameViewActivity extends AppCompatActivity {
 
         //HomeViewAdapter getEdit getIntent()
         nameEdit = getIntent().getStringExtra("nameEdit");
-//        nickEdit = getIntent().getStringExtra("nickEdit");
-//        yearEdit = String.valueOf(getIntent().getExtras().getInt("yearEdit"));
-//        totalSumEdit = String.valueOf(getIntent().getExtras().getInt("totalSumEdit"));
-//        startSumEdit = String.valueOf(getIntent().getExtras().getInt("startSumEdit"));
-//        finishSumEdit = String.valueOf(getIntent().getExtras().getInt("finishSumEdit"));
-//        amountMonthEdit = String.valueOf(getIntent().getExtras().getInt("amountMonthEdit"));
-//        sumMonthEdit = String.valueOf(getIntent().getExtras().getInt("sumMonthEdit"));
-//        telEdit = String.valueOf(getIntent().getExtras().getInt("telEdit"));
-//        commentEdit = getIntent().getStringExtra("commentEdit");
+        nickEdit = getIntent().getStringExtra("nickEdit");
+        yearEdit = String.valueOf(getIntent().getExtras().getInt("yearEdit"));
+        totalSumEdit = String.valueOf(getIntent().getExtras().getInt("totalSumEdit"));
+        startSumEdit = String.valueOf(getIntent().getExtras().getInt("startSumEdit"));
+        finishSumEdit = String.valueOf(getIntent().getExtras().getInt("finishSumEdit"));
+        amountMonthEdit = String.valueOf(getIntent().getExtras().getInt("amountMonthEdit"));
+        sumMonthEdit = String.valueOf(getIntent().getExtras().getInt("sumMonthEdit"));
+        telEdit = String.valueOf(getIntent().getExtras().getInt("telEdit"));
+        commentEdit = getIntent().getStringExtra("commentEdit");
+
 
         //add Map text
         nameEditId.setText(nameEdit);
-//        nickEditId.setText(nickEdit);
-//        yearEditId.setText(yearEdit);
-//        totalSumEditId.setText(totalSumEdit);
-//        startSumEditId.setText(startSumEdit);
-//        finishSumEditId.setText(finishSumEdit);
-//        amountMonthEditId.setText(amountMonthEdit);
-//        sumMonthEditId.setText(sumMonthEdit);
-//        telEditId.setText(telEdit);
-//        commentEditId.setText(commentEdit);
+        nickEditId.setText(nickEdit);
+        yearEditId.setText(yearEdit);
+        totalSumEditId.setText(totalSumEdit);
+        startSumEditId.setText(startSumEdit);
+        finishSumEditId.setText(Integer.toString(Integer.parseInt(totalSumEdit)  - Integer.parseInt(startSumEdit)));
+        amountMonthEditId.setText(amountMonthEdit);
+        sumMonthEditId.setText(Integer.toString(Integer.parseInt(sumMonthEdit)  / Integer.parseInt("2")));
+        telEditId.setText(telEdit);
+        commentEditId.setText(commentEdit);
 
+        Log.d("demo15", "");
 
         addContactId.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 nestedData.put("name", nameEditId.getText().toString());
-//                nestedData.put("nick", nickEditId.getText().toString());
-//                nestedData.put("year", Integer.parseInt(yearEditId.getText().toString()));
-//                nestedData.put("totalSum", Integer.parseInt(totalSumEditId.getText().toString()));
-//                nestedData.put("startSum", Integer.parseInt(startSumEditId.getText().toString()));
-//                nestedData.put("finishSum", Integer.parseInt(finishSumEditId.getText().toString()));
-//                nestedData.put("amountMonth", Integer.parseInt(amountMonthEditId.getText().toString()));
-//                nestedData.put("sumMonth", Integer.parseInt(sumMonthEditId.getText().toString()));
-//                nestedData.put("tel", Integer.parseInt(telEditId.getText().toString()));
-//                nestedData.put("comment", commentEditId.getText().toString());
+                nestedData.put("nick", nickEditId.getText().toString());
+                nestedData.put("year", Integer.parseInt(yearEditId.getText().toString()));
+                nestedData.put("totalSum", Integer.parseInt(totalSumEditId.getText().toString()));
+                nestedData.put("startSum", Integer.parseInt(startSumEditId.getText().toString()));
+                nestedData.put("finishSum", Integer.parseInt(finishSumEditId.getText().toString()));
+                nestedData.put("amountMonth", Integer.parseInt(amountMonthEditId.getText().toString()));
+                nestedData.put("sumMonth", Integer.parseInt(sumMonthEditId.getText().toString()));
+                nestedData.put("tel", Integer.parseInt(telEditId.getText().toString()));
+                nestedData.put("comment", commentEditId.getText().toString());
 
-                Log.d("demo8",  addTrue);
+//                Log.d("demo8",  addTrue);
 
-                if(Objects.equals(addTrue, "a")) {
-                    CollectionReference citiesRef = db.collection("users");
-                    citiesRef.document(docId).collection(docId).add(nestedData);
-                    Log.d("demo8", "true");
-                    Intent i = new Intent(EditHameViewActivity.this, HomeViewActivity.class);
-                    startActivity(i);
-
-                } else if (Objects.equals(addTrue, "b"))
-                {
-
-                    db.collection("users").document(collection + "/" + collection +"/" + collegGetId)
+                if(Objects.equals(addTrue, "b")) {
+                    db.collection("users").document(collection + "/" + collection + "/" + collegGetId)
                             .set(nestedData)
                             .addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
@@ -136,6 +125,15 @@ public class EditHameViewActivity extends AppCompatActivity {
                     Log.d("demo8", "fasle" + " " + addTrue);
                     Intent i = new Intent(EditHameViewActivity.this, HomeViewActivity.class);
                     startActivity(i);
+
+                } else if (Objects.equals(addTrue, "a"))
+                {
+                    CollectionReference citiesRef = db.collection("users");
+                    citiesRef.document(docId).collection(docId).add(nestedData);
+                    Log.d("demo8", "true");
+                    Intent i = new Intent(EditHameViewActivity.this, HomeViewActivity.class);
+                    startActivity(i);
+
                 }
             }
         });
@@ -146,6 +144,8 @@ public class EditHameViewActivity extends AppCompatActivity {
             return insets;
         });
     }
+
+
 
 //    private List<Map<String, Object>> prepareMemerList() {
 //

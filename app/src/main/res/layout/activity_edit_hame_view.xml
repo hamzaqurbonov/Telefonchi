@@ -3,46 +3,35 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/main"
-        tools:context=".ui.home.view.EditHameViewActivity"
-        android:orientation="vertical">
-
-    <!--    <EditText-->
-<!--        android:id="@+id/edit_name_id"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_margin="5dp"-->
-<!--        android:hint="Ismi"-->
-<!--        app:layout_constraintBottom_toTopOf="@+id/add_contact_id"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintHorizontal_bias="0.5"-->
-<!--        app:layout_constraintStart_toStartOf="parent" />-->
+    android:orientation="horizontal"
+    tools:context=".ui.home.view.EditHameViewActivity">
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/edit_name_input"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
         android:layout_marginEnd="32dp"
+        app:counterEnabled="true"
+        app:counterMaxLength="40"
+        app:endIconMode="clear_text"
+        app:helperText="Miqdor*"
+        app:helperTextTextColor="#125AEA"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:startIconDrawable="@drawable/baseline_co_present_24"
-        app:helperText="Miqdor*"
-        app:counterEnabled="true"
-        app:counterMaxLength="39"
-        app:helperTextTextColor="#125AEA"
-        app:endIconMode="clear_text">
+        app:startIconDrawable="@drawable/baseline_co_present_24">
+
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edit_name_id"
-            android:maxLength="40"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Ismi"/>
+            android:hint="Ismi"
+            android:maxLength="41" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -50,33 +39,186 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
         android:layout_marginEnd="32dp"
+        android:inputType="number"
+        app:counterEnabled="true"
+        app:counterMaxLength="40"
+        app:endIconMode="clear_text"
+        app:helperText="Miqdor*"
+        app:helperTextTextColor="#125AEA"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:startIconDrawable="@drawable/baseline_co_present_24"
-        app:helperText="Miqdor*"
-        app:counterEnabled="true"
-        app:counterMaxLength="39"
-        app:helperTextTextColor="#125AEA"
-        app:endIconMode="clear_text">
+        app:layout_constraintTop_toBottomOf="@+id/edit_name_input"
+        app:prefixTextColor="#125AEA"
+        app:startIconDrawable="@drawable/baseline_co_present_24">
+
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edit_nick_id"
-            android:maxLength="40"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Ismi"/>
+            android:hint="Mo'ljal(F.I.O yoki manzil)"
+            android:maxLength="41" />
     </com.google.android.material.textfield.TextInputLayout>
 
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/edit_nick_input"
+        android:id="@+id/edit_year_input"
+        android:layout_width="174dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:inputType="number"
+        app:counterEnabled="true"
+        app:counterMaxLength="4"
+        app:endIconMode="clear_text"
+        app:helperText="Miqdor*"
+        app:helperTextTextColor="#125AEA"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edit_nick_input"
+        app:prefixTextColor="#125AEA"
+        android:enabled="false">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edit_year_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Yil"
+            android:inputType="number"
+            android:maxLength="4" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/edit_totalSum_input"
+        android:layout_width="174dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:inputType="number"
+        app:counterEnabled="true"
+        app:counterMaxLength="9"
+        app:endIconMode="clear_text"
+        app:helperText="Miqdor*"
+        app:helperTextTextColor="#125AEA"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edit_year_input"
+        app:prefixTextColor="#125AEA">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edit_totalSum_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Jami summa"
+            android:inputType="number"
+            android:maxLength="9" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/edit_startSum_input"
+        android:layout_width="173dp"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        app:counterEnabled="true"
+        app:counterMaxLength="9"
+        app:endIconMode="clear_text"
+        app:helperText="Miqdor*"
+        app:helperTextTextColor="#125AEA"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/edit_totalSum_input"
+        app:layout_constraintTop_toBottomOf="@+id/edit_amountMonth_input"
+        app:prefixTextColor="#125AEA">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edit_startSum_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Boshlang'ich to'lov"
+            android:inputType="number"
+            android:maxLength="9" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/edit_finishSum_input"
+        android:layout_width="174dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:inputType="number"
+        app:counterEnabled="true"
+        app:counterMaxLength="9"
+        app:endIconMode="clear_text"
+        app:helperText="Miqdor*"
+        app:helperTextTextColor="#125AEA"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edit_totalSum_input"
+        app:prefixTextColor="#125AEA"
+        android:enabled="false">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edit_finishSum_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Qolgan summa"
+            android:inputType="number"
+            android:maxLength="9" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/edit_amountMonth_input"
+        android:layout_width="173dp"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        app:counterEnabled="true"
+        app:counterMaxLength="2"
+        app:endIconMode="clear_text"
+        app:helperText="Miqdor*"
+        app:helperTextTextColor="#125AEA"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/edit_year_input"
+        app:layout_constraintTop_toTopOf="@+id/edit_year_input"
+        app:prefixTextColor="#125AEA">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edit_amountMonth_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="To'lov oyi"
+            android:inputType="number"
+            android:maxLength="2" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/edit_sumMonth_input"
+        android:layout_width="173dp"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        app:counterEnabled="true"
+        app:counterMaxLength="9"
+        app:endIconMode="clear_text"
+        app:helperText="Miqdor*"
+        app:helperTextTextColor="#125AEA"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/edit_finishSum_input"
+        app:layout_constraintTop_toBottomOf="@+id/edit_startSum_input"
+        app:prefixTextColor="#125AEA"
+        android:enabled="false">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edit_sumMonth_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Oyiga to'lov"
+            android:inputType="number"
+            android:maxLength="9" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/edit_tel_input"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
+
         app:counterEnabled="true"
         app:counterMaxLength="9"
         app:endIconMode="clear_text"
@@ -85,13 +227,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edit_name_input"
-        app:startIconDrawable="@drawable/baseline_app_shortcut_24"
+        app:layout_constraintTop_toBottomOf="@+id/edit_sumMonth_input"
         app:prefixText="+998"
+        android:inputType="phone"
         app:prefixTextColor="#125AEA"
-        android:inputType="number">
+        app:startIconDrawable="@drawable/baseline_app_shortcut_24">
+
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/edit_nick_id"
+            android:id="@+id/edit_tel_id"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Telefon"
@@ -100,171 +243,29 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/edit_nick_input"
+        android:id="@+id/edit_comment_input"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
         app:counterEnabled="true"
-        app:counterMaxLength="9"
+        app:counterMaxLength="70"
         app:endIconMode="clear_text"
         app:helperText="Miqdor*"
         app:helperTextTextColor="#125AEA"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edit_name_input"
-        app:startIconDrawable="@drawable/baseline_app_shortcut_24"
-        app:prefixText="+998"
+        app:layout_constraintTop_toBottomOf="@+id/edit_tel_input"
         app:prefixTextColor="#125AEA"
-        android:inputType="number">
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/edit_nick_id"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Telefon"
-            android:inputType="number"
-            android:maxLength="9" />
-    </com.google.android.material.textfield.TextInputLayout>
+        app:startIconDrawable="@drawable/baseline_border_color_24">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/edit_nick_input"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp"
-        app:counterEnabled="true"
-        app:counterMaxLength="9"
-        app:endIconMode="clear_text"
-        app:helperText="Miqdor*"
-        app:helperTextTextColor="#125AEA"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edit_name_input"
-        app:startIconDrawable="@drawable/baseline_app_shortcut_24"
-        app:prefixText="+998"
-        app:prefixTextColor="#125AEA"
-        android:inputType="number">
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/edit_nick_id"
+            android:id="@+id/edit_comment_id"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Telefon"
-            android:inputType="number"
-            android:maxLength="9" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/edit_nick_input"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp"
-        app:counterEnabled="true"
-        app:counterMaxLength="9"
-        app:endIconMode="clear_text"
-        app:helperText="Miqdor*"
-        app:helperTextTextColor="#125AEA"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edit_name_input"
-        app:startIconDrawable="@drawable/baseline_app_shortcut_24"
-        app:prefixText="+998"
-        app:prefixTextColor="#125AEA"
-        android:inputType="number">
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/edit_nick_id"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Telefon"
-            android:inputType="number"
-            android:maxLength="9" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/edit_nick_input"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp"
-        app:counterEnabled="true"
-        app:counterMaxLength="9"
-        app:endIconMode="clear_text"
-        app:helperText="Miqdor*"
-        app:helperTextTextColor="#125AEA"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edit_name_input"
-        app:startIconDrawable="@drawable/baseline_app_shortcut_24"
-        app:prefixText="+998"
-        app:prefixTextColor="#125AEA"
-        android:inputType="number">
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/edit_nick_id"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Telefon"
-            android:inputType="number"
-            android:maxLength="9" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/edit_nick_input"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp"
-        app:counterEnabled="true"
-        app:counterMaxLength="9"
-        app:endIconMode="clear_text"
-        app:helperText="Miqdor*"
-        app:helperTextTextColor="#125AEA"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edit_name_input"
-        app:startIconDrawable="@drawable/baseline_app_shortcut_24"
-        app:prefixText="+998"
-        app:prefixTextColor="#125AEA"
-        android:inputType="number">
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/edit_nick_id"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Telefon"
-            android:inputType="number"
-            android:maxLength="9" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/edit_nick_input"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp"
-        app:counterEnabled="true"
-        app:counterMaxLength="9"
-        app:endIconMode="clear_text"
-        app:helperText="Miqdor*"
-        app:helperTextTextColor="#125AEA"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edit_name_input"
-        app:startIconDrawable="@drawable/baseline_app_shortcut_24"
-        app:prefixText="+998"
-        app:prefixTextColor="#125AEA"
-        android:inputType="number">
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/edit_nick_id"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Telefon"
-            android:inputType="number"
-            android:maxLength="9" />
+            android:hint="Izoh"
+            android:maxLength="71" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
