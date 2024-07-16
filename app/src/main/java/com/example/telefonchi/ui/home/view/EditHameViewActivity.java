@@ -76,6 +76,7 @@ public class EditHameViewActivity extends AppCompatActivity {
         commentEdit = getIntent().getStringExtra("commentEdit");
 
 
+
         //add Map text
         nameEditId.setText(nameEdit);
         nickEditId.setText(nickEdit);
@@ -84,11 +85,12 @@ public class EditHameViewActivity extends AppCompatActivity {
         startSumEditId.setText(startSumEdit);
         finishSumEditId.setText(Integer.toString(Integer.parseInt(totalSumEdit)  - Integer.parseInt(startSumEdit)));
         amountMonthEditId.setText(amountMonthEdit);
-        sumMonthEditId.setText(Integer.toString(Integer.parseInt(sumMonthEdit)  / Integer.parseInt("2")));
+        if(Objects.equals(addTrue, "a")) {
+            sumMonthEditId.setText(sumMonthEdit);
+            return;
+        } else { sumMonthEditId.setText(Integer.toString(Integer.parseInt(finishSumEdit)  / Integer.parseInt(amountMonthEdit))); }
         telEditId.setText(telEdit);
         commentEditId.setText(commentEdit);
-
-        Log.d("demo15", "");
 
         addContactId.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -143,6 +145,12 @@ public class EditHameViewActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+    }
+
+    public static int value1(int i, int f ){
+        int j = i / f;
+
+        return j;
     }
 
 
