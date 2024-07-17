@@ -51,7 +51,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edit_name_input"
         app:prefixTextColor="#125AEA"
-        app:startIconDrawable="@drawable/baseline_co_present_24">
+        app:startIconDrawable="@drawable/baseline_apartment_24">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edit_nick_id"
@@ -73,7 +73,8 @@
         app:helperTextTextColor="#125AEA"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edit_nick_input"
-        app:prefixTextColor="#125AEA">
+        app:prefixTextColor="#125AEA"
+        app:startIconDrawable="@drawable/baseline_content_paste_24">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edit_year_id"
@@ -94,7 +95,8 @@
         app:helperTextTextColor="#125AEA"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edit_year_input"
-        app:prefixTextColor="#125AEA">
+        app:prefixTextColor="#125AEA"
+        app:startIconDrawable="@drawable/baseline_attach_money_24">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edit_totalSum_id"
@@ -138,7 +140,8 @@
         app:helperTextTextColor="#125AEA"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edit_totalSum_input"
-        app:prefixTextColor="#125AEA">
+        app:prefixTextColor="#125AEA"
+        app:startIconDrawable="@drawable/baseline_attach_money_24">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edit_finishSum_id"
@@ -213,7 +216,7 @@
         app:layout_constraintTop_toBottomOf="@+id/edit_sumMonth_input"
         app:prefixText="+998"
         app:prefixTextColor="#125AEA"
-        app:startIconDrawable="@drawable/baseline_app_shortcut_24">
+        app:startIconDrawable="@drawable/baseline_add_call_24">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edit_tel_id"
@@ -240,7 +243,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edit_tel_input"
         app:prefixTextColor="#125AEA"
-        app:startIconDrawable="@drawable/baseline_border_color_24">
+        app:startIconDrawable="@drawable/baseline_abc_24">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edit_comment_id"
