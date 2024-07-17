@@ -67,16 +67,13 @@
         android:layout_width="174dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
+        android:enabled="false"
         android:inputType="number"
-        app:counterEnabled="true"
-        app:counterMaxLength="4"
         app:endIconMode="clear_text"
-        app:helperText="Miqdor*"
         app:helperTextTextColor="#125AEA"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edit_nick_input"
-        app:prefixTextColor="#125AEA"
-        android:enabled="false">
+        app:prefixTextColor="#125AEA">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edit_year_id"
@@ -93,10 +90,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:inputType="number"
-        app:counterEnabled="true"
-        app:counterMaxLength="9"
         app:endIconMode="clear_text"
-        app:helperText="Miqdor*"
         app:helperTextTextColor="#125AEA"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edit_year_input"
@@ -116,10 +110,7 @@
         android:layout_width="173dp"
         android:layout_height="wrap_content"
         android:inputType="number"
-        app:counterEnabled="true"
-        app:counterMaxLength="9"
         app:endIconMode="clear_text"
-        app:helperText="Miqdor*"
         app:helperTextTextColor="#125AEA"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -141,16 +132,13 @@
         android:layout_width="174dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
+        android:enabled="false"
         android:inputType="number"
-        app:counterEnabled="true"
-        app:counterMaxLength="9"
         app:endIconMode="clear_text"
-        app:helperText="Miqdor*"
         app:helperTextTextColor="#125AEA"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edit_totalSum_input"
-        app:prefixTextColor="#125AEA"
-        android:enabled="false">
+        app:prefixTextColor="#125AEA">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edit_finishSum_id"
@@ -166,10 +154,7 @@
         android:layout_width="173dp"
         android:layout_height="wrap_content"
         android:inputType="number"
-        app:counterEnabled="true"
-        app:counterMaxLength="2"
         app:endIconMode="clear_text"
-        app:helperText="Miqdor*"
         app:helperTextTextColor="#125AEA"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -190,18 +175,15 @@
         android:id="@+id/edit_sumMonth_input"
         android:layout_width="173dp"
         android:layout_height="wrap_content"
+        android:enabled="false"
         android:inputType="number"
-        app:counterEnabled="true"
-        app:counterMaxLength="9"
         app:endIconMode="clear_text"
-        app:helperText="Miqdor*"
         app:helperTextTextColor="#125AEA"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/edit_finishSum_input"
         app:layout_constraintTop_toBottomOf="@+id/edit_startSum_input"
-        app:prefixTextColor="#125AEA"
-        android:enabled="false">
+        app:prefixTextColor="#125AEA">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edit_sumMonth_id"
@@ -219,6 +201,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
 
+        android:inputType="phone"
         app:counterEnabled="true"
         app:counterMaxLength="9"
         app:endIconMode="clear_text"
@@ -229,7 +212,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edit_sumMonth_input"
         app:prefixText="+998"
-        android:inputType="phone"
         app:prefixTextColor="#125AEA"
         app:startIconDrawable="@drawable/baseline_app_shortcut_24">
 
@@ -272,105 +254,12 @@
         android:id="@+id/add_contact_id"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:layout_marginBottom="56dp"
         android:text="Qo'shish"
         android:textAllCaps="false"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edit_comment_input" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
-
-<!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
-<!--    xmlns:app="http://schemas.android.com/apk/res-auto"-->
-<!--    xmlns:tools="http://schemas.android.com/tools"-->
-<!--    android:id="@+id/main"-->
-<!--    android:layout_width="match_parent"-->
-<!--    android:layout_height="match_parent"-->
-<!--    tools:context=".ui.home.view.EditHameViewActivity"-->
-<!--    android:orientation="vertical">-->
-
-
-<!--    &lt;!&ndash;edit text to enter course duration&ndash;&gt;-->
-<!--    <EditText-->
-<!--        android:id="@+id/edit_name_id"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_margin="5dp"-->
-<!--        android:hint="Ismi" />-->
-<!--    <EditText-->
-<!--        android:id="@+id/edit_nick_id"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_margin="5dp"-->
-<!--        android:hint="Mo'ljal(F.I.O yoki manzil)" />-->
-
-<!--    <EditText-->
-<!--        android:id="@+id/edit_year_id"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_margin="5dp"-->
-<!--        android:inputType="number"-->
-<!--        android:hint="Yil" />-->
-<!--    <EditText-->
-<!--        android:id="@+id/edit_totalSum_id"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_margin="5dp"-->
-<!--        android:inputType="number"-->
-<!--        android:hint="Jami summa" />-->
-<!--    <EditText-->
-<!--        android:id="@+id/edit_startSum_id"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_margin="5dp"-->
-<!--        android:inputType="number"-->
-<!--        android:hint="Boshlang'ich to'lov" />-->
-<!--    <EditText-->
-<!--        android:id="@+id/edit_finishSum_id"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_margin="5dp"-->
-<!--        android:inputType="number"-->
-<!--        android:hint="Qolgan summa" />-->
-<!--    <EditText-->
-<!--        android:id="@+id/edit_amountMonth_id"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_margin="5dp"-->
-<!--        android:inputType="number"-->
-<!--        android:hint="To'lov oyi" />-->
-<!--    <EditText-->
-<!--        android:id="@+id/edit_sumMonth_id"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_margin="5dp"-->
-<!--        android:inputType="number"-->
-<!--        android:hint="Oyiga to'lov" />-->
-<!--    <EditText-->
-<!--        android:id="@+id/edit_tel_id"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_margin="5dp"-->
-<!--        android:inputType="number"-->
-<!--        android:hint="Telefon" />-->
-
-<!--    <EditText-->
-<!--        android:id="@+id/edit_comment_id"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="84dp"-->
-<!--        android:layout_margin="5dp"-->
-<!--        android:hint="Izoh" />-->
-
-<!--    <Button-->
-<!--        android:id="@+id/add_contact_id"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_margin="5dp"-->
-<!--        android:text="Qo'shish"-->
-<!--        android:textAllCaps="false" />-->
-
-<!--</LinearLayout>-->

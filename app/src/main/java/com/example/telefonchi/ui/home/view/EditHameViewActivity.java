@@ -64,16 +64,36 @@ public class EditHameViewActivity extends AppCompatActivity {
         collection = getIntent().getExtras().getString("collection");
 
         //HomeViewAdapter getEdit getIntent()
-        nameEdit = getIntent().getStringExtra("nameEdit");
-        nickEdit = getIntent().getStringExtra("nickEdit");
-        yearEdit = String.valueOf(getIntent().getExtras().getInt("yearEdit"));
-        totalSumEdit = String.valueOf(getIntent().getExtras().getInt("totalSumEdit"));
-        startSumEdit = String.valueOf(getIntent().getExtras().getInt("startSumEdit"));
-        finishSumEdit = String.valueOf(getIntent().getExtras().getInt("finishSumEdit"));
-        amountMonthEdit = String.valueOf(getIntent().getExtras().getInt("amountMonthEdit"));
-        sumMonthEdit = String.valueOf(getIntent().getExtras().getInt("sumMonthEdit"));
-        telEdit = String.valueOf(getIntent().getExtras().getInt("telEdit"));
-        commentEdit = getIntent().getStringExtra("commentEdit");
+        Intent intentReceived = getIntent();
+        Bundle extras = intentReceived.getExtras();
+
+        if (extras != null){
+            Log.d("demo15", "0 ");
+            nameEdit = extras.getString("nameEdit");
+            nickEdit = extras.getString("nickEdit");
+            yearEdit = String.valueOf(extras.getInt("yearEdit"));
+            totalSumEdit = String.valueOf(extras.getInt("totalSumEdit"));
+            startSumEdit = String.valueOf(extras.getInt("startSumEdit"));
+            finishSumEdit = String.valueOf(extras.getInt("finishSumEdit"));
+            amountMonthEdit = String.valueOf(extras.getInt("amountMonthEdit"));
+            sumMonthEdit = String.valueOf(extras.getInt("sumMonthEdit"));
+            telEdit = String.valueOf(extras.getInt("telEdit"));
+            commentEdit = extras.getString("commentEdit");
+        }else {
+            Log.d("demo15", "-1 ");
+            nameEdit = "";
+            nickEdit = "";
+            yearEdit = "0";
+            totalSumEdit = "0";
+            startSumEdit = "0";
+            finishSumEdit = "0";
+            amountMonthEdit = "0";
+            sumMonthEdit = "0";
+            telEdit = "0";
+            commentEdit = "";
+        }
+
+
 
 
 
@@ -87,8 +107,14 @@ public class EditHameViewActivity extends AppCompatActivity {
         amountMonthEditId.setText(amountMonthEdit);
         if(Objects.equals(addTrue, "a")) {
             sumMonthEditId.setText(sumMonthEdit);
-            return;
-        } else { sumMonthEditId.setText(Integer.toString(Integer.parseInt(finishSumEdit)  / Integer.parseInt(amountMonthEdit))); }
+            Log.d("demo15", "1 " + amountMonthEdit);
+        } else if (Integer.parseInt(amountMonthEdit) == 0) {
+            sumMonthEditId.setText(Integer.toString(Integer.parseInt("0")));
+            Log.d("demo15", "2 " + amountMonthEdit);
+        } else if (Integer.parseInt(amountMonthEdit) > 0) {
+            sumMonthEditId.setText(Integer.toString(Integer.parseInt(finishSumEdit)  / Integer.parseInt(amountMonthEdit)));
+            Log.d("demo15", "3 " + amountMonthEdit);
+        }
         telEditId.setText(telEdit);
         commentEditId.setText(commentEdit);
 
@@ -127,6 +153,7 @@ public class EditHameViewActivity extends AppCompatActivity {
                     Log.d("demo8", "fasle" + " " + addTrue);
                     Intent i = new Intent(EditHameViewActivity.this, HomeViewActivity.class);
                     startActivity(i);
+                    nestedData.clear();
 
                 } else if (Objects.equals(addTrue, "a"))
                 {
@@ -137,7 +164,9 @@ public class EditHameViewActivity extends AppCompatActivity {
                     startActivity(i);
 
                 }
+
             }
+
         });
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
