@@ -265,4 +265,15 @@
         app:layout_constraintTop_toBottomOf="@+id/edit_comment_input" />
 
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_edit_id"
+        android:layout_width="match_parent"
+        android:layout_height="225dp"
+        android:layout_marginTop="2dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/add_contact_id" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

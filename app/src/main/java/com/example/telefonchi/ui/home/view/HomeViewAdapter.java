@@ -143,11 +143,6 @@ public class HomeViewAdapter extends FirestoreRecyclerAdapter<CityModel, HomeVie
     }
 
 
-//    void Refresh(List<CityModel>  events) {
-//        activityllist.clear();
-//        activityllist.addAll(events);
-//        notifyDataSetChanged();
-//    }
 
     class LongHolder extends RecyclerView.ViewHolder {
 
