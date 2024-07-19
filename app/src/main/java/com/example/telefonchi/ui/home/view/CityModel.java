@@ -1,8 +1,12 @@
 package com.example.telefonchi.ui.home.view;
 
+import java.util.List;
+
 public class CityModel {
     private String name, nick, comment;
     private int    totalSum, startSum, finishSum, amountMonth,sumMonth,  tel, year ;
+
+//    private List<String> regions;
 
     public CityModel() {
 
@@ -19,6 +23,7 @@ public class CityModel {
         this.finishSum = finishSum;
         this.amountMonth = amountMonth;
         this.sumMonth = sumMonth;
+//        this.regions = regions;
     }
 
     public String getName() {
@@ -60,4 +65,8 @@ public class CityModel {
     public int getSumMonth() {
         return sumMonth;
     }
+
+//    public List<String> getRegions() {
+//        return regions;
+//    }
 }

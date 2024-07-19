@@ -20,9 +20,14 @@ import com.example.telefonchi.ui.home.HomeViewActivity;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
@@ -42,6 +47,9 @@ public class EditHameViewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_edit_hame_view);
+
+        List<Map<String, Object>> modellist = prepareMemerList();
+
 
         //Edit R.id
         nameEditId = findViewById(R.id.edit_name_id);
@@ -94,9 +102,6 @@ public class EditHameViewActivity extends AppCompatActivity {
         }
 
 
-
-
-
         //add Map text
         nameEditId.setText(nameEdit);
         nickEditId.setText(nickEdit);
@@ -131,6 +136,8 @@ public class EditHameViewActivity extends AppCompatActivity {
                 nestedData.put("sumMonth", Integer.parseInt(sumMonthEditId.getText().toString()));
                 nestedData.put("tel", Integer.parseInt(telEditId.getText().toString()));
                 nestedData.put("comment", commentEditId.getText().toString());
+                nestedData.put("regions",  FieldValue.arrayUnion("greater_virginia"));
+
 
 //                Log.d("demo8",  addTrue);
 
@@ -150,10 +157,14 @@ public class EditHameViewActivity extends AppCompatActivity {
                                 }
                             });
 
+
+//                    DocumentReference arrayUnion = db.collection("users").document(collection + "/" + collection + "/" + collegGetId);
+//                    arrayUnion.update("regions", FieldValue.serverTimestamp());
+
                     Log.d("demo8", "fasle" + " " + addTrue);
                     Intent i = new Intent(EditHameViewActivity.this, HomeViewActivity.class);
                     startActivity(i);
-                    nestedData.clear();
+//                    nestedData.clear();
 
                 } else if (Objects.equals(addTrue, "a"))
                 {
@@ -176,28 +187,22 @@ public class EditHameViewActivity extends AppCompatActivity {
         });
     }
 
-    public static int value1(int i, int f ){
-        int j = i / f;
 
-        return j;
+
+    private List<Map<String, Object>> prepareMemerList() {
+
+        List<Map<String, Object>> modellist = new ArrayList<>();
+        Map<String,Object> nestedData = new HashMap<>();
+        nestedData.put("sum", "sdsd");
+        nestedData.put("name", "sssss");
+
+        for (int i = 0; i<3; i++) {
+            modellist.add(0,nestedData);
+
+            Log.d("demo16", "asdd " + modellist);
+        }
+        return modellist;
+
     }
-
-
-
-//    private List<Map<String, Object>> prepareMemerList() {
-//
-//        List<Map<String, Object>> modellist = new ArrayList<>();
-//        Map<String,Object> nestedData = new HashMap<>();
-//        nestedData.put("sum", editSumId.getText().toString());
-//        nestedData.put("name", editNameId.getText().toString());
-//
-//        for (int i = 0; i<3; i++) {
-//            modellist.add(0,nestedData);
-//
-//            Log.d("demo4", "asdd " + modellist);
-//        }
-//        return modellist;
-//
-//    }
 
 }

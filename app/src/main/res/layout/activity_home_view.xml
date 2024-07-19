@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/material_dynamic_neutral60"
+    android:background="#0C2D48"
     tools:context=".ui.home.HomeViewActivity">
 
 
@@ -15,7 +15,7 @@
         android:layout_height="30dp"
         android:gravity="center"
         android:text="TextView"
-        android:textColor="#292980"
+        android:textColor="#E57F44"
         android:textSize="25dp"
         android:textStyle="bold"
         app:layout_constraintTop_toBottomOf="@+id/toolbar_search"

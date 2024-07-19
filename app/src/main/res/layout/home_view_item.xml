@@ -60,9 +60,9 @@
                     android:gravity="center|left"
                     android:padding="0dp"
                     android:text="Ismi"
-                    android:textColor="#293239"
+                    android:textColor="#0C2D48"
                     android:textSize="14dp"
-                    android:textStyle="italic" />
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/text_view_name"
@@ -76,9 +76,9 @@
                     android:gravity="center|end"
                     android:padding="0dp"
                     android:text="name"
-                    android:textColor="#1E7EC1"
+                    android:textColor="#286D56"
                     android:textSize="14dp"
-                    android:textStyle="italic" />
+                    android:textStyle="normal" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -101,9 +101,9 @@
                     android:gravity="center|left"
                     android:padding="0dp"
                     android:text="Mo'ljal(F.I.O yoki manzil)"
-                    android:textColor="#293239"
+                    android:textColor="#0C2D48"
                     android:textSize="14dp"
-                    android:textStyle="italic" />
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/text_view_nick"
@@ -117,9 +117,9 @@
                     android:gravity="center|end"
                     android:padding="0dp"
                     android:text="name"
-                    android:textColor="#1E7EC1"
+                    android:textColor="#286D56"
                     android:textSize="14dp"
-                    android:textStyle="italic" />
+                    android:textStyle="normal" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -142,9 +142,9 @@
                     android:gravity="center|left"
                     android:padding="0dp"
                     android:text="Yil"
-                    android:textColor="#293239"
+                    android:textColor="#0C2D48"
                     android:textSize="14dp"
-                    android:textStyle="italic" />
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/text_view_year"
@@ -158,9 +158,9 @@
                     android:gravity="center|end"
                     android:padding="0dp"
                     android:text="name"
-                    android:textColor="#1E7EC1"
+                    android:textColor="#286D56"
                     android:textSize="14dp"
-                    android:textStyle="italic" />
+                    android:textStyle="normal" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -183,9 +183,9 @@
                     android:gravity="center|left"
                     android:padding="0dp"
                     android:text="Jami summa"
-                    android:textColor="#293239"
+                    android:textColor="#0C2D48"
                     android:textSize="14dp"
-                    android:textStyle="italic" />
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/text_view_totalSum"
@@ -199,9 +199,9 @@
                     android:gravity="center|end"
                     android:padding="0dp"
                     android:text="name"
-                    android:textColor="#1E7EC1"
+                    android:textColor="#286D56"
                     android:textSize="14dp"
-                    android:textStyle="italic" />
+                    android:textStyle="normal" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -224,9 +224,9 @@
                     android:gravity="center|left"
                     android:padding="0dp"
                     android:text="Boshlang'ich to'lov"
-                    android:textColor="#293239"
+                    android:textColor="#0C2D48"
                     android:textSize="14dp"
-                    android:textStyle="italic" />
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/text_view_startSum"
@@ -240,9 +240,9 @@
                     android:gravity="center|end"
                     android:padding="0dp"
                     android:text="name"
-                    android:textColor="#1E7EC1"
+                    android:textColor="#286D56"
                     android:textSize="14dp"
-                    android:textStyle="italic" />
+                    android:textStyle="normal" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -265,9 +265,9 @@
                     android:gravity="center|left"
                     android:padding="0dp"
                     android:text="Qolgan summa"
-                    android:textColor="#293239"
+                    android:textColor="#0C2D48"
                     android:textSize="14dp"
-                    android:textStyle="italic" />
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/text_view_finishSum"
@@ -281,9 +281,9 @@
                     android:gravity="center|end"
                     android:padding="0dp"
                     android:text="name"
-                    android:textColor="#1E7EC1"
+                    android:textColor="#286D56"
                     android:textSize="14dp"
-                    android:textStyle="italic" />
+                    android:textStyle="normal" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -306,9 +306,9 @@
                     android:gravity="center|left"
                     android:padding="0dp"
                     android:text="To'lov oyi"
-                    android:textColor="#293239"
+                    android:textColor="#0C2D48"
                     android:textSize="14dp"
-                    android:textStyle="italic" />
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/text_view_amountMonth"
@@ -322,9 +322,9 @@
                     android:gravity="center|end"
                     android:padding="0dp"
                     android:text="name"
-                    android:textColor="#1E7EC1"
+                    android:textColor="#286D56"
                     android:textSize="14dp"
-                    android:textStyle="italic" />
+                    android:textStyle="normal" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -347,9 +347,9 @@
                     android:gravity="center|left"
                     android:padding="0dp"
                     android:text="Oyiga to'lov"
-                    android:textColor="#293239"
+                    android:textColor="#0C2D48"
                     android:textSize="14dp"
-                    android:textStyle="italic" />
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/text_view_sumMonth"
@@ -363,9 +363,9 @@
                     android:gravity="center|end"
                     android:padding="0dp"
                     android:text="name"
-                    android:textColor="#1E7EC1"
+                    android:textColor="#286D56"
                     android:textSize="14dp"
-                    android:textStyle="italic" />
+                    android:textStyle="normal" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -388,9 +388,9 @@
                     android:gravity="center|left"
                     android:padding="0dp"
                     android:text="Telefon"
-                    android:textColor="#293239"
+                    android:textColor="#0C2D48"
                     android:textSize="14dp"
-                    android:textStyle="italic" />
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/text_view_tel"
@@ -404,9 +404,9 @@
                     android:gravity="center|end"
                     android:padding="0dp"
                     android:text="name"
-                    android:textColor="#1E7EC1"
+                    android:textColor="#286D56"
                     android:textSize="14dp"
-                    android:textStyle="italic" />
+                    android:textStyle="normal" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -429,9 +429,9 @@
                     android:gravity="center|left"
                     android:padding="0dp"
                     android:text="Izoh"
-                    android:textColor="#293239"
+                    android:textColor="#0C2D48"
                     android:textSize="14dp"
-                    android:textStyle="italic" />
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/text_comment"
@@ -445,11 +445,51 @@
                     android:gravity="center|end"
                     android:padding="0dp"
                     android:text="name"
-                    android:textColor="#1E7EC1"
+                    android:textColor="#286D56"
                     android:textSize="14dp"
-                    android:textStyle="italic" />
+                    android:textStyle="normal" />
             </RelativeLayout>
 
+            <RelativeLayout
+                android:id="@+id/relativeLayout12"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/relativeLayout10"
+                android:layout_marginTop="2dp">
+
+                <TextView
+                    android:id="@+id/textView11"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="0dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center|left"
+                    android:padding="0dp"
+                    android:text="List"
+                    android:textColor="#0C2D48"
+                    android:textSize="14dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/text_list_id"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toEndOf="@+id/textView11"
+                    android:layout_weight="1"
+                    android:gravity="center|end"
+                    android:padding="0dp"
+                    android:text="List"
+                    android:textColor="#286D56"
+                    android:textSize="14dp"
+                    android:textStyle="normal" />
+            </RelativeLayout>
         </RelativeLayout>
 
         <RelativeLayout

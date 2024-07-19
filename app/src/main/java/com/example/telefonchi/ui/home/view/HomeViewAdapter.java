@@ -67,8 +67,9 @@ public class HomeViewAdapter extends FirestoreRecyclerAdapter<CityModel, HomeVie
         holder.TextSumMonth.setText(Integer.toString(cityModel.getSumMonth()));
         holder.TextTel.setText(Integer.toString(cityModel.getTel()));
         holder.TextComment.setText(cityModel.getComment());
+//        holder.TextListId.setText(String.valueOf(cityModel.getRegions()));
 
-
+//        Log.d("demo16", cityModel.getRegions().get(1));
         holder.editSelect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -150,7 +151,7 @@ public class HomeViewAdapter extends FirestoreRecyclerAdapter<CityModel, HomeVie
 
     class LongHolder extends RecyclerView.ViewHolder {
 
-    TextView TextName, TextnNick, TextYear, TextTotalSum, TextStartSum, TextFinshSum, TextAmountSum, TextSumMonth, TextTel, TextComment;
+    TextView TextName, TextnNick, TextYear, TextTotalSum, TextStartSum, TextFinshSum, TextAmountSum, TextSumMonth, TextTel, TextComment, TextListId;
     ImageView deleteSelect, editSelect;
         public LongHolder(View itemView) {
             super(itemView);
@@ -164,6 +165,7 @@ public class HomeViewAdapter extends FirestoreRecyclerAdapter<CityModel, HomeVie
             TextSumMonth = itemView.findViewById(R.id.text_view_sumMonth);
             TextTel = itemView.findViewById(R.id.text_view_tel);
             TextComment = itemView.findViewById(R.id.text_comment);
+            TextListId = itemView.findViewById(R.id.text_list_id);
 
         deleteSelect = itemView.findViewById(R.id.delete_select);
         editSelect = itemView.findViewById(R.id.edit_select);
