@@ -90,6 +90,7 @@
         android:layout_width="174dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
+        android:enabled="false"
         android:inputType="number"
         app:endIconMode="clear_text"
         app:helperTextTextColor="#125AEA"
@@ -111,6 +112,7 @@
         android:id="@+id/edit_startSum_input"
         android:layout_width="173dp"
         android:layout_height="wrap_content"
+        android:enabled="false"
         android:inputType="number"
         app:endIconMode="clear_text"
         app:helperTextTextColor="#125AEA"
@@ -156,6 +158,7 @@
         android:id="@+id/edit_amountMonth_input"
         android:layout_width="173dp"
         android:layout_height="wrap_content"
+        android:enabled="false"
         android:inputType="number"
         app:endIconMode="clear_text"
         app:helperTextTextColor="#125AEA"
@@ -253,6 +256,31 @@
             android:maxLength="71" />
     </com.google.android.material.textfield.TextInputLayout>
 
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/edit_payment_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:inputType="number"
+        app:endIconMode="clear_text"
+        app:helperTextTextColor="#125AEA"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edit_comment_input"
+        app:prefixTextColor="#125AEA">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edit_payment_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="To'lov"
+            android:inputType="number"
+            android:maxLength="9" />
+    </com.google.android.material.textfield.TextInputLayout>
+
     <Button
         android:id="@+id/add_contact_id"
         android:layout_width="match_parent"
@@ -260,10 +288,9 @@
         android:text="Qo'shish"
         android:textAllCaps="false"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edit_comment_input" />
-
+        app:layout_constraintTop_toBottomOf="@+id/edit_payment_input" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_edit_id"

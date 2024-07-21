@@ -4,7 +4,7 @@ import java.util.List;
 
 public class CityModel {
     private String name, nick, comment;
-    private int    totalSum, startSum, finishSum, amountMonth,sumMonth,  tel, year ;
+    private int    totalSum, startSum, finishSum, amountMonth,sumMonth,  tel, year,  payment;
 
 //    private List<String> regions;
 
@@ -12,7 +12,7 @@ public class CityModel {
 
     }
 
-    public CityModel(String name, String nick, int tel, String comment, int year, int totalSum, int startSum, int finishSum, int amountMonth, int sumMonth) {
+    public CityModel(String name, String nick, int tel, String comment, int year, int totalSum, int startSum, int finishSum, int amountMonth, int sumMonth, int payment) {
         this.name = name;
         this.nick = nick;
         this.tel = tel;
@@ -23,7 +23,7 @@ public class CityModel {
         this.finishSum = finishSum;
         this.amountMonth = amountMonth;
         this.sumMonth = sumMonth;
-//        this.regions = regions;
+        this.payment = payment;
     }
 
     public String getName() {
@@ -66,7 +66,11 @@ public class CityModel {
         return sumMonth;
     }
 
-//    public List<String> getRegions() {
+    public int getPayment() {
+        return payment;
+    }
+
+    //    public List<String> getRegions() {
 //        return regions;
 //    }
 }

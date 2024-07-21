@@ -90,6 +90,7 @@ public class HomeViewAdapter extends FirestoreRecyclerAdapter<CityModel, HomeVie
                 intent.putExtra("sumMonthEdit", cityModel.getSumMonth());
                 intent.putExtra("telEdit", cityModel.getTel());
                 intent.putExtra("commentEdit", cityModel.getComment());
+                intent.putExtra("paymentEdit", cityModel.getPayment());
 
 
                 intent.putExtra("collegGetId", firebaseDocId);
