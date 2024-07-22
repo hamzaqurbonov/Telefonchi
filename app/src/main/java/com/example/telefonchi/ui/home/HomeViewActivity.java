@@ -41,12 +41,19 @@ import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
 public class HomeViewActivity extends AppCompatActivity {
+
+    LocalDateTime DateObj = LocalDateTime.now();
+    DateTimeFormatter FormatObj = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+    String formattedDate = DateObj.format(FormatObj);
+
     private HomeViewAdapter adapterInt;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     String month, docId;
@@ -117,6 +124,9 @@ public class HomeViewActivity extends AppCompatActivity {
                 Intent intent = new Intent(HomeViewActivity.this, EditHameViewActivity.class);
                 intent.putExtra("docId", docId);
                 intent.putExtra("add", "a");
+                intent.putExtra("yearEdit", formattedDate);
+                        Log.d("demo27", formattedDate);
+//                addButtonId.setEnabled(false);
                 startActivity(intent);
             }
         });

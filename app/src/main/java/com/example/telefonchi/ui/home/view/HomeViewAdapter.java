@@ -59,7 +59,7 @@ public class HomeViewAdapter extends FirestoreRecyclerAdapter<CityModel, HomeVie
 
         holder.TextName.setText(cityModel.getName());
         holder.TextnNick.setText(cityModel.getNick());
-        holder.TextYear.setText(Integer.toString(cityModel.getYear()));
+        holder.TextYear.setText(cityModel.getYear());
         holder.TextTotalSum.setText(Integer.toString(cityModel.getTotalSum()));
         holder.TextStartSum.setText(Integer.toString(cityModel.getStartSum()));
         holder.TextFinshSum.setText(Integer.toString(cityModel.getFinishSum()));
@@ -67,6 +67,7 @@ public class HomeViewAdapter extends FirestoreRecyclerAdapter<CityModel, HomeVie
         holder.TextSumMonth.setText(Integer.toString(cityModel.getSumMonth()));
         holder.TextTel.setText(Integer.toString(cityModel.getTel()));
         holder.TextComment.setText(cityModel.getComment());
+        holder.TextPaymentId.setText(Integer.toString(cityModel.getPayment()));
 //        holder.TextListId.setText(String.valueOf(cityModel.getRegions()));
 
 //        Log.d("demo16", cityModel.getRegions().get(1));
@@ -96,6 +97,9 @@ public class HomeViewAdapter extends FirestoreRecyclerAdapter<CityModel, HomeVie
                 intent.putExtra("collegGetId", firebaseDocId);
                 intent.putExtra("collection", (CharSequence) activityllist.get(0));
                 intent.putExtra("add", "b");
+
+
+
                 v.getContext().startActivity(intent);
             }
         });
@@ -147,7 +151,7 @@ public class HomeViewAdapter extends FirestoreRecyclerAdapter<CityModel, HomeVie
 
     class LongHolder extends RecyclerView.ViewHolder {
 
-    TextView TextName, TextnNick, TextYear, TextTotalSum, TextStartSum, TextFinshSum, TextAmountSum, TextSumMonth, TextTel, TextComment, TextListId;
+    TextView TextName, TextnNick, TextYear, TextTotalSum, TextStartSum, TextFinshSum, TextAmountSum, TextSumMonth, TextTel, TextComment, TextListId, TextPaymentId;
     ImageView deleteSelect, editSelect;
         public LongHolder(View itemView) {
             super(itemView);
@@ -161,7 +165,8 @@ public class HomeViewAdapter extends FirestoreRecyclerAdapter<CityModel, HomeVie
             TextSumMonth = itemView.findViewById(R.id.text_view_sumMonth);
             TextTel = itemView.findViewById(R.id.text_view_tel);
             TextComment = itemView.findViewById(R.id.text_comment);
-            TextListId = itemView.findViewById(R.id.text_list_id);
+//            TextListId = itemView.findViewById(R.id.text_list_id);
+            TextPaymentId = itemView.findViewById(R.id.text_payment_id);
 
         deleteSelect = itemView.findViewById(R.id.delete_select);
         editSelect = itemView.findViewById(R.id.edit_select);

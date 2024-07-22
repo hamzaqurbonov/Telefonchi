@@ -44,7 +44,7 @@ public class EditHameViewActivity extends AppCompatActivity {
     EditHameViewActivityAdapter adapter;
 
     LocalDateTime DateObj = LocalDateTime.now();
-    DateTimeFormatter FormatObj = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm");
+    DateTimeFormatter FormatObj = DateTimeFormatter.ofPattern("dd.MM.yyyy");
     String formattedDate = DateObj.format(FormatObj);
 
 
@@ -83,20 +83,22 @@ public class EditHameViewActivity extends AppCompatActivity {
         addContactId = findViewById(R.id.add_contact_id);
 
         //collection Document ID
-        docId = getIntent().getExtras().getString("docId");
-        addTrue = getIntent().getExtras().getString("add");
-        collegGetId = getIntent().getExtras().getString("collegGetId");
-        collection = getIntent().getExtras().getString("collection");
+
 
         //HomeViewAdapter getEdit getIntent()
         Intent intentReceived = getIntent();
         Bundle extras = intentReceived.getExtras();
 //        getIntent().getExtras().getString("paymentEdit");
         if (extras != null){
-            Log.d("demo15", "0 ");
+            docId = getIntent().getExtras().getString("docId");
+            addTrue = getIntent().getExtras().getString("add");
+            collegGetId = getIntent().getExtras().getString("collegGetId");
+            collection = getIntent().getExtras().getString("collection");
+
+
             nameEdit = extras.getString("nameEdit");
             nickEdit = extras.getString("nickEdit");
-            yearEdit = String.valueOf(extras.getInt("yearEdit"));
+            yearEdit = extras.getString("yearEdit");
             totalSumEdit = String.valueOf(extras.getInt("totalSumEdit"));
             startSumEdit = String.valueOf(extras.getInt("startSumEdit"));
             finishSumEdit = String.valueOf(extras.getInt("finishSumEdit"));
@@ -104,8 +106,10 @@ public class EditHameViewActivity extends AppCompatActivity {
             sumMonthEdit = String.valueOf(extras.getInt("sumMonthEdit"));
             telEdit = String.valueOf(extras.getInt("telEdit"));
             commentEdit = extras.getString("commentEdit");
-            paymentEdit = extras.getString("paymentEdit");
-//            editPaymentEdit = "";
+            paymentEdit = String.valueOf(extras.getInt("paymentEdit"));
+            Log.d("demo27", "2 " + yearEdit);
+
+
         }
 
 
@@ -115,21 +119,30 @@ public class EditHameViewActivity extends AppCompatActivity {
         yearEditId.setText(yearEdit);
         totalSumEditId.setText(totalSumEdit);
         startSumEditId.setText(startSumEdit);
-        finishSumEditId.setText(Integer.toString(Integer.parseInt(totalSumEdit)  - Integer.parseInt(startSumEdit)));
+        finishSumEditId.setText(Integer.toString(Integer.parseInt(totalSumEdit)  - Integer.parseInt(startSumEdit) - Integer.parseInt(paymentEdit)));
         amountMonthEditId.setText(amountMonthEdit);
         if(Objects.equals(addTrue, "a")) {
             sumMonthEditId.setText(sumMonthEdit);
-            Log.d("demo15", "1 " + amountMonthEdit);
         } else if (Integer.parseInt(amountMonthEdit) == 0) {
             sumMonthEditId.setText(Integer.toString(Integer.parseInt("0")));
-            Log.d("demo15", "2 " + amountMonthEdit);
         } else if (Integer.parseInt(amountMonthEdit) > 0) {
             sumMonthEditId.setText(Integer.toString((Integer.parseInt(totalSumEdit) - Integer.parseInt(startSumEdit)) / Integer.parseInt(amountMonthEdit)));
-            Log.d("demo15", "3 " + amountMonthEdit);
         }
         telEditId.setText(telEdit);
         commentEditId.setText(commentEdit);
         editPaymentId.setText("");
+
+        Log.d("demo27", "addTrue " + addTrue);
+// android:enabled="false"
+        if(Objects.equals(addTrue, "b")) {
+            yearEditId.setEnabled(false);
+            amountMonthEditId.setEnabled(false);
+            totalSumEditId.setEnabled(false);
+            startSumEditId.setEnabled(false);
+        } else if (Objects.equals(addTrue, "a")) {
+            editPaymentId.setEnabled(false);
+        }
+
 
         addContactId.setOnClickListener(new View.OnClickListener() {
 
@@ -137,10 +150,10 @@ public class EditHameViewActivity extends AppCompatActivity {
             public void onClick(View v) {
                 nestedData.put("name", nameEditId.getText().toString());
                 nestedData.put("nick", nickEditId.getText().toString());
-                nestedData.put("year", Integer.parseInt(yearEditId.getText().toString()));
-                nestedData.put("totalSum", Integer.parseInt(totalSumEditId.getText().toString()));
+                nestedData.put("year", yearEditId.getText().toString());
+                nestedData.put("totalSum", (Integer.parseInt(totalSumEditId.getText().toString()) ));
                 nestedData.put("startSum", Integer.parseInt(startSumEditId.getText().toString()));
-                nestedData.put("finishSum", (Integer.parseInt(finishSumEditId.getText().toString())));
+                nestedData.put("finishSum", (Integer.parseInt(finishSumEditId.getText().toString()) - Integer.parseInt(editPaymentId.getText().toString())));
                 nestedData.put("amountMonth", Integer.parseInt(amountMonthEditId.getText().toString()));
                 nestedData.put("sumMonth", Integer.parseInt(sumMonthEditId.getText().toString()));
                 nestedData.put("tel", Integer.parseInt(telEditId.getText().toString()));
@@ -148,40 +161,39 @@ public class EditHameViewActivity extends AppCompatActivity {
                 nestedData.put("addSum",   activityllist);
                 nestedData.put("payment", Integer.parseInt(editPaymentId.getText().toString()));
 
+
                 if(Objects.equals(addTrue, "b")) {
-                    Log.d("demo17", "2 " +  activityllist);
+
+                    Intent i = new Intent(EditHameViewActivity.this, HomeViewActivity.class);
                     db.collection("users").document(collection + "/" + collection + "/" + collegGetId)
                             .set(nestedData)
                             .addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void aVoid) {
-//                                Log.d(TAG, "DocumentSnapshot successfully written!");
                                 }
                             })
                             .addOnFailureListener(new OnFailureListener() {
                                 @Override
                                 public void onFailure(@NonNull Exception e) {
-//                                Log.w(TAG, "Error writing document", e);
                                 }
                             });
                     DocumentReference Data = db.collection("users").document(collection + "/" + collection + "/" + collegGetId);
 //                    nestedData.update("timestamp", FieldValue.serverTimestamp());
                     Data.update("addSum", FieldValue.arrayUnion(editPaymentId.getText().toString() + " сўм  " + formattedDate ));
-                    Data.update("payment", FieldValue.increment(1));
+                    Data.update("payment", FieldValue.increment(Long.parseLong(paymentEdit)));
                     Refresh();
-
-                    Log.d("demo25", "fasle" + " " + paymentEdit);
-//                    Intent i = new Intent(EditHameViewActivity.this, HomeViewActivity.class);
-//                    startActivity(i);
 //                    nestedData.clear();
+                    Log.d("demo27", "2b " + nestedData);
+                    startActivity(i);
+//                    finish();
+
 
                 } else if (Objects.equals(addTrue, "a"))
-                {
+                { Log.d("demo27", "addTrue " + addTrue);
+//                    Intent i = new Intent(EditHameViewActivity.this, HomeViewActivity.class);
                     CollectionReference citiesRef = db.collection("users");
                     citiesRef.document(docId).collection(docId).add(nestedData);
-                    Log.d("demo8", "true");
-                    Intent i = new Intent(EditHameViewActivity.this, HomeViewActivity.class);
-                    startActivity(i);
+//                    startActivity(i);
 
                 }
 
@@ -197,8 +209,6 @@ public class EditHameViewActivity extends AppCompatActivity {
             return insets;
         });
     }
-
-
 
 
 private void Db() {

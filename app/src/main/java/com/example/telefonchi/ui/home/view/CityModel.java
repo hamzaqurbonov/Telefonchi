@@ -3,8 +3,8 @@ package com.example.telefonchi.ui.home.view;
 import java.util.List;
 
 public class CityModel {
-    private String name, nick, comment;
-    private int    totalSum, startSum, finishSum, amountMonth,sumMonth,  tel, year,  payment;
+    private String name, nick, comment , year ;
+    private int    totalSum, startSum, finishSum, amountMonth,sumMonth,  tel,  payment;
 
 //    private List<String> regions;
 
@@ -12,7 +12,7 @@ public class CityModel {
 
     }
 
-    public CityModel(String name, String nick, int tel, String comment, int year, int totalSum, int startSum, int finishSum, int amountMonth, int sumMonth, int payment) {
+    public CityModel(String name, String nick, int tel, String comment, String year, int totalSum, int startSum, int finishSum, int amountMonth, int sumMonth, int payment) {
         this.name = name;
         this.nick = nick;
         this.tel = tel;
@@ -42,7 +42,7 @@ public class CityModel {
         return comment;
     }
 
-    public int getYear() {
+    public String getYear() {
         return year;
     }
 

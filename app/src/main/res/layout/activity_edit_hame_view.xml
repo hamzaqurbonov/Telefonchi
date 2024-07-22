@@ -68,7 +68,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:enabled="false"
-        android:inputType="number"
         app:endIconMode="clear_text"
         app:helperTextTextColor="#125AEA"
         app:layout_constraintStart_toStartOf="parent"
@@ -81,8 +80,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Yil"
-            android:inputType="number"
-            android:maxLength="4" />
+             />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -90,7 +88,7 @@
         android:layout_width="174dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:enabled="false"
+
         android:inputType="number"
         app:endIconMode="clear_text"
         app:helperTextTextColor="#125AEA"
@@ -112,7 +110,7 @@
         android:id="@+id/edit_startSum_input"
         android:layout_width="173dp"
         android:layout_height="wrap_content"
-        android:enabled="false"
+
         android:inputType="number"
         app:endIconMode="clear_text"
         app:helperTextTextColor="#125AEA"
@@ -158,7 +156,6 @@
         android:id="@+id/edit_amountMonth_input"
         android:layout_width="173dp"
         android:layout_height="wrap_content"
-        android:enabled="false"
         android:inputType="number"
         app:endIconMode="clear_text"
         app:helperTextTextColor="#125AEA"
