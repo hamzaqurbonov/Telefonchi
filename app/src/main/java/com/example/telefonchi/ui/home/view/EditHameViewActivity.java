@@ -2,11 +2,14 @@ package com.example.telefonchi.ui.home.view;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.text.Html;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -82,7 +85,9 @@ public class EditHameViewActivity extends AppCompatActivity {
         //button
         addContactId = findViewById(R.id.add_contact_id);
 
-        //collection Document ID
+//        editPaymentId.setHint(Html.fromHtml("Qolgan summa <font color =\"#cc0029\" >0</font>"));
+        editPaymentId.setTextColor(Color.RED);
+
 
 
         //HomeViewAdapter getEdit getIntent()
@@ -90,6 +95,7 @@ public class EditHameViewActivity extends AppCompatActivity {
         Bundle extras = intentReceived.getExtras();
 //        getIntent().getExtras().getString("paymentEdit");
         if (extras != null){
+            //collection Document ID
             docId = getIntent().getExtras().getString("docId");
             addTrue = getIntent().getExtras().getString("add");
             collegGetId = getIntent().getExtras().getString("collegGetId");
@@ -107,9 +113,6 @@ public class EditHameViewActivity extends AppCompatActivity {
             telEdit = String.valueOf(extras.getInt("telEdit"));
             commentEdit = extras.getString("commentEdit");
             paymentEdit = String.valueOf(extras.getInt("paymentEdit"));
-            Log.d("demo27", "2 " + yearEdit);
-
-
         }
 
 
@@ -119,7 +122,7 @@ public class EditHameViewActivity extends AppCompatActivity {
         yearEditId.setText(yearEdit);
         totalSumEditId.setText(totalSumEdit);
         startSumEditId.setText(startSumEdit);
-        finishSumEditId.setText(Integer.toString(Integer.parseInt(totalSumEdit)  - Integer.parseInt(startSumEdit) - Integer.parseInt(paymentEdit)));
+        finishSumEditId.setText(finishSumEdit);
         amountMonthEditId.setText(amountMonthEdit);
         if(Objects.equals(addTrue, "a")) {
             sumMonthEditId.setText(sumMonthEdit);
@@ -130,9 +133,8 @@ public class EditHameViewActivity extends AppCompatActivity {
         }
         telEditId.setText(telEdit);
         commentEditId.setText(commentEdit);
-        editPaymentId.setText("");
+        editPaymentId.setText("0");
 
-        Log.d("demo27", "addTrue " + addTrue);
 // android:enabled="false"
         if(Objects.equals(addTrue, "b")) {
             yearEditId.setEnabled(false);
@@ -143,17 +145,15 @@ public class EditHameViewActivity extends AppCompatActivity {
             editPaymentId.setEnabled(false);
         }
 
-
         addContactId.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View v) {
                 nestedData.put("name", nameEditId.getText().toString());
                 nestedData.put("nick", nickEditId.getText().toString());
                 nestedData.put("year", yearEditId.getText().toString());
-                nestedData.put("totalSum", (Integer.parseInt(totalSumEditId.getText().toString()) ));
+                nestedData.put("totalSum", Integer.parseInt(totalSumEditId.getText().toString()));
                 nestedData.put("startSum", Integer.parseInt(startSumEditId.getText().toString()));
-                nestedData.put("finishSum", (Integer.parseInt(finishSumEditId.getText().toString()) - Integer.parseInt(editPaymentId.getText().toString())));
+                nestedData.put("finishSum", Integer.parseInt(totalSumEditId.getText().toString()) - Integer.parseInt(startSumEditId.getText().toString())  - Integer.parseInt(paymentEdit) - Integer.parseInt(editPaymentId.getText().toString()));
                 nestedData.put("amountMonth", Integer.parseInt(amountMonthEditId.getText().toString()));
                 nestedData.put("sumMonth", Integer.parseInt(sumMonthEditId.getText().toString()));
                 nestedData.put("tel", Integer.parseInt(telEditId.getText().toString()));
@@ -161,9 +161,14 @@ public class EditHameViewActivity extends AppCompatActivity {
                 nestedData.put("addSum",   activityllist);
                 nestedData.put("payment", Integer.parseInt(editPaymentId.getText().toString()));
 
+//                Log.d("demo28", "2a " + addTrue);
+                if(Integer.parseInt(finishSumEditId.getText().toString()) - Integer.parseInt(editPaymentId.getText().toString())  < 0) {
+//                    editPaymentId.setEnabled(false);
+                    Toast.makeText(v.getContext(),  "Сумма тўловдан ошиб кетаяпти!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
                 if(Objects.equals(addTrue, "b")) {
-
                     Intent i = new Intent(EditHameViewActivity.this, HomeViewActivity.class);
                     db.collection("users").document(collection + "/" + collection + "/" + collegGetId)
                             .set(nestedData)
@@ -179,22 +184,20 @@ public class EditHameViewActivity extends AppCompatActivity {
                             });
                     DocumentReference Data = db.collection("users").document(collection + "/" + collection + "/" + collegGetId);
 //                    nestedData.update("timestamp", FieldValue.serverTimestamp());
-                    Data.update("addSum", FieldValue.arrayUnion(editPaymentId.getText().toString() + " сўм  " + formattedDate ));
+                    Data.update("addSum", FieldValue.arrayUnion(formattedDate + " йил " + editPaymentId.getText().toString() + " сўм"));
                     Data.update("payment", FieldValue.increment(Long.parseLong(paymentEdit)));
                     Refresh();
-//                    nestedData.clear();
-                    Log.d("demo27", "2b " + nestedData);
+                    nestedData.clear();
                     startActivity(i);
-//                    finish();
-
+                    finish();
 
                 } else if (Objects.equals(addTrue, "a"))
-                { Log.d("demo27", "addTrue " + addTrue);
-//                    Intent i = new Intent(EditHameViewActivity.this, HomeViewActivity.class);
+                {
+                    Intent i = new Intent(EditHameViewActivity.this, HomeViewActivity.class);
                     CollectionReference citiesRef = db.collection("users");
                     citiesRef.document(docId).collection(docId).add(nestedData);
-//                    startActivity(i);
-
+                    startActivity(i);
+                    finish();
                 }
 
             }

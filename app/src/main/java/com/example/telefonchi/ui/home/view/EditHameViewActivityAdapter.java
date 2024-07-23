@@ -37,23 +37,8 @@ public class EditHameViewActivityAdapter extends RecyclerView.Adapter< RecyclerV
 
         @Override
         public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-//            CityModel member = activityllist.get(position);
-
-//            TextView TextName = ((HomeViewAdapterHolder) holder).TextViewName;
-//            TextName.setText(member.getName());
 //
-//            TextView TextSum = ((HomeViewAdapterHolder) holder).TextViewSum;
-//            TextSum.setText(member.getSum());
-
-//        TextView Url= ((OneChildAdapterViewHolder) holder).TextViewName;
-//        Url.setText(homeViewActivity.activityllist.get(position));
     ((HomeViewAdapterHolder) holder).TextViewName.setText(activityllist.get(position));
-//    ((HomeViewAdapterHolder) holder).TextViewSum.setText(homeViewActivity.activityllist.get(position));
-
-
-
-
-            Log.d("demo17", activityllist.get(0) );
         }
 
         @Override

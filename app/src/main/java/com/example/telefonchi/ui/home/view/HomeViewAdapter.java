@@ -5,11 +5,13 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -69,6 +71,13 @@ public class HomeViewAdapter extends FirestoreRecyclerAdapter<CityModel, HomeVie
         holder.TextComment.setText(cityModel.getComment());
         holder.TextPaymentId.setText(Integer.toString(cityModel.getPayment()));
 //        holder.TextListId.setText(String.valueOf(cityModel.getRegions()));
+
+        if(cityModel.getFinishSum() == 0) {
+//            holder.TextFinshSum.setTextColor(Color.RED);
+            holder.relativeLayout6.setBackgroundColor(Color.rgb(100, 187, 100));
+        }
+
+
 
 //        Log.d("demo16", cityModel.getRegions().get(1));
         holder.editSelect.setOnClickListener(new View.OnClickListener() {
@@ -150,7 +159,7 @@ public class HomeViewAdapter extends FirestoreRecyclerAdapter<CityModel, HomeVie
 
 
     class LongHolder extends RecyclerView.ViewHolder {
-
+    RelativeLayout  relativeLayout6;
     TextView TextName, TextnNick, TextYear, TextTotalSum, TextStartSum, TextFinshSum, TextAmountSum, TextSumMonth, TextTel, TextComment, TextListId, TextPaymentId;
     ImageView deleteSelect, editSelect;
         public LongHolder(View itemView) {
@@ -167,6 +176,7 @@ public class HomeViewAdapter extends FirestoreRecyclerAdapter<CityModel, HomeVie
             TextComment = itemView.findViewById(R.id.text_comment);
 //            TextListId = itemView.findViewById(R.id.text_list_id);
             TextPaymentId = itemView.findViewById(R.id.text_payment_id);
+            relativeLayout6 = itemView.findViewById(R.id.relativeLayout6);
 
         deleteSelect = itemView.findViewById(R.id.delete_select);
         editSelect = itemView.findViewById(R.id.edit_select);
