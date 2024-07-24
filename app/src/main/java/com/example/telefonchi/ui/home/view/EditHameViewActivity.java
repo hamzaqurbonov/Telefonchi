@@ -86,7 +86,7 @@ public class EditHameViewActivity extends AppCompatActivity {
         addContactId = findViewById(R.id.add_contact_id);
 
 //        editPaymentId.setHint(Html.fromHtml("Qolgan summa <font color =\"#cc0029\" >0</font>"));
-        editPaymentId.setTextColor(Color.RED);
+        editPaymentId.setTextColor(Color.GREEN);
 
 
 
@@ -115,6 +115,11 @@ public class EditHameViewActivity extends AppCompatActivity {
             paymentEdit = String.valueOf(extras.getInt("paymentEdit"));
         }
 
+//        if(Integer.parseInt(amountMonthEdit) == 0) {
+////                    Toast.makeText(v.getContext(),  "To'lov oyini ko'rsating!", Toast.LENGTH_SHORT).show();
+////                    amountMonthEditId.setTextColor(Color.RED);
+//            amountMonthEdit = "1";
+//        }
 
         //add Map text
         nameEditId.setText(nameEdit);
@@ -123,17 +128,15 @@ public class EditHameViewActivity extends AppCompatActivity {
         totalSumEditId.setText(totalSumEdit);
         startSumEditId.setText(startSumEdit);
         finishSumEditId.setText(finishSumEdit);
+
         amountMonthEditId.setText(amountMonthEdit);
-        if(Objects.equals(addTrue, "a")) {
-            sumMonthEditId.setText(sumMonthEdit);
-        } else if (Integer.parseInt(amountMonthEdit) == 0) {
-            sumMonthEditId.setText(Integer.toString(Integer.parseInt("0")));
-        } else if (Integer.parseInt(amountMonthEdit) > 0) {
-            sumMonthEditId.setText(Integer.toString((Integer.parseInt(totalSumEdit) - Integer.parseInt(startSumEdit)) / Integer.parseInt(amountMonthEdit)));
-        }
+        sumMonthEditId.setText(sumMonthEdit);
+
         telEditId.setText(telEdit);
         commentEditId.setText(commentEdit);
         editPaymentId.setText("0");
+
+
 
 // android:enabled="false"
         if(Objects.equals(addTrue, "b")) {
@@ -148,6 +151,22 @@ public class EditHameViewActivity extends AppCompatActivity {
         addContactId.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                if (nameEditId.getText().toString().isEmpty()) {
+                    Toast.makeText(v.getContext(),  "Исимни киритинг!", Toast.LENGTH_SHORT).show();
+                    return;
+                } else if (Integer.parseInt(amountMonthEditId.getText().toString()) == 0 ) {
+                    Toast.makeText(v.getContext(),  "Тўлов ойни киритинг!", Toast.LENGTH_SHORT).show();
+                    return;
+                } else if (Integer.parseInt(totalSumEditId.getText().toString()) == 0) {
+                    Toast.makeText(v.getContext(),  "Хисобландини киритинг!", Toast.LENGTH_SHORT).show();
+                    return;
+                }  else if(Integer.parseInt(totalSumEditId.getText().toString()) < Integer.parseInt(startSumEditId.getText().toString())) {
+                     Toast.makeText(v.getContext(),  "Бошланғич тўлов кўпайиб кетаяпти!", Toast.LENGTH_SHORT).show();
+                     return;
+                 }
+//                undefined
+
                 nestedData.put("name", nameEditId.getText().toString());
                 nestedData.put("nick", nickEditId.getText().toString());
                 nestedData.put("year", yearEditId.getText().toString());
@@ -155,15 +174,13 @@ public class EditHameViewActivity extends AppCompatActivity {
                 nestedData.put("startSum", Integer.parseInt(startSumEditId.getText().toString()));
                 nestedData.put("finishSum", Integer.parseInt(totalSumEditId.getText().toString()) - Integer.parseInt(startSumEditId.getText().toString())  - Integer.parseInt(paymentEdit) - Integer.parseInt(editPaymentId.getText().toString()));
                 nestedData.put("amountMonth", Integer.parseInt(amountMonthEditId.getText().toString()));
-                nestedData.put("sumMonth", Integer.parseInt(sumMonthEditId.getText().toString()));
+                nestedData.put("sumMonth", (Integer.parseInt(totalSumEditId.getText().toString()) - Integer.parseInt(startSumEditId.getText().toString())) / Integer.parseInt(amountMonthEditId.getText().toString()));
                 nestedData.put("tel", Integer.parseInt(telEditId.getText().toString()));
                 nestedData.put("comment", commentEditId.getText().toString());
                 nestedData.put("addSum",   activityllist);
                 nestedData.put("payment", Integer.parseInt(editPaymentId.getText().toString()));
 
-//                Log.d("demo28", "2a " + addTrue);
                 if(Integer.parseInt(finishSumEditId.getText().toString()) - Integer.parseInt(editPaymentId.getText().toString())  < 0) {
-//                    editPaymentId.setEnabled(false);
                     Toast.makeText(v.getContext(),  "Сумма тўловдан ошиб кетаяпти!", Toast.LENGTH_SHORT).show();
                     return;
                 }
@@ -262,27 +279,6 @@ private void Db() {
         adapter = new EditHameViewActivityAdapter(this, activityllist);
         recyclerView.setAdapter(adapter);
     }
-
-
-
-//    @Override
-//    public void onStart() {
-//        super.onStart();
-//        recyclerViewInt.getRecycledViewPool().clear();
-//        adapterInt.notifyDataSetChanged();
-//        adapterInt.startListening();
-////        if(adapter  != null) adapter.startListening();
-//    }
-//
-//    @Override
-//    public void onStop() {
-//        super.onStop();
-////        adapterInt.stopListening();
-//        if(adapter  != null) adapter.stopListening();
-//    }
-
-
-
 
 //    private List<Map<String, Object>> prepareMemerList() {
 //
