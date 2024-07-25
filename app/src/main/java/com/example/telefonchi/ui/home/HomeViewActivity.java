@@ -5,6 +5,7 @@ import android.app.SearchManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -49,7 +50,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class HomeViewActivity extends AppCompatActivity {
-
+    CityModel cityModel;
     LocalDateTime DateObj = LocalDateTime.now();
     DateTimeFormatter FormatObj = DateTimeFormatter.ofPattern("dd.MM.yyyy");
     String formattedDate = DateObj.format(FormatObj);
@@ -57,7 +58,7 @@ public class HomeViewActivity extends AppCompatActivity {
     private HomeViewAdapter adapterInt;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     String month, docId;
-    TextView nameTextView;
+    TextView nameTextView, textViewAmountId, textViewTotolId;
     Button addButtonId;
     private RecyclerView recyclerViewInt;
     public List<String> activityllist ;
@@ -73,12 +74,12 @@ public class HomeViewActivity extends AppCompatActivity {
         activity.setSupportActionBar( toolbar );
         activity.getSupportActionBar().setTitle("");
 
-//        AppCompatActivity activity = (AppCompatActivity) HomeViewActivity.this;
-//        setSupportActionBar(toolbar);
-//        Objects.requireNonNull(getSupportActionBar()).setTitle("");
+
+        nameTextView = findViewById(R.id.textView_id);
+        textViewAmountId = findViewById(R.id.textViewAmount_id);
+        textViewTotolId = findViewById(R.id.textViewTotol_id);
 
 
-        nameTextView = findViewById(R.id.textView);
         recyclerViewInt = findViewById(R.id.recycler_home_view_ID);
 
         month = getIntent().getExtras().getString("month");
@@ -87,8 +88,13 @@ public class HomeViewActivity extends AppCompatActivity {
         activityllist = Collections.singletonList(getIntent().getExtras().getString("docId"));
 
 
+
+
+
+
         createDb();
         AddButton();
+        totolFilter();
 //        refreshAdapter();
 
         nameTextView.setText(month);
@@ -98,6 +104,60 @@ public class HomeViewActivity extends AppCompatActivity {
             return insets;
         });
     }
+
+
+    private void totolFilter() {
+        ArrayList<String> size = new ArrayList<>();
+        db.collection("users" + "/" + docId + "/" + docId)
+                .whereEqualTo("finishSum", 0)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+
+
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+
+                                size.add(document.getId());
+                                Log.d("demo30", "true " + document.getId() + " => " + document.getData());
+                            }
+
+                            Log.d("demo30", "true size" + size.size());
+                            textViewAmountId.setText(" Yopilgan " + size.size());
+
+                        } else {
+                            Log.d("demo1", "Error getting documents: ", task.getException());
+                        }
+                    }
+                });
+
+        db.collection("users" + "/" + docId + "/" + docId)
+                .whereNotEqualTo("finishSum", 0)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            ArrayList<String> totolSize = new ArrayList<>();
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+
+                                totolSize.add(document.getId());
+                                Log.d("demo30", "total " + document.getId() + " => " + document.getData());
+                            }
+
+                            Log.d("demo30", "true size" + totolSize.size());
+
+                            textViewTotolId.setText(" Qolgan " +totolSize.size());
+                        } else {
+                            Log.d("demo1", "Error getting documents: ", task.getException());
+                        }
+                    }
+                });
+
+
+    }
+
 
 
     private void createDb() {
@@ -125,8 +185,8 @@ public class HomeViewActivity extends AppCompatActivity {
                 intent.putExtra("docId", docId);
                 intent.putExtra("add", "a");
                 intent.putExtra("yearEdit", formattedDate);
-                        Log.d("demo27", formattedDate);
-//                addButtonId.setEnabled(false);
+
+//                addButtonId.setEnabled(false); cityModel
                 startActivity(intent);
             }
         });

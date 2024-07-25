@@ -10,16 +10,43 @@
 
 
     <TextView
-        android:id="@+id/textView"
-        android:layout_width="match_parent"
+        android:id="@+id/textView_id"
+        android:layout_width="wrap_content"
         android:layout_height="30dp"
+        android:layout_marginStart="32dp"
         android:gravity="center"
-        android:text="TextView"
+        android:text="Oy"
         android:textColor="#E57F44"
         android:textSize="25dp"
-        android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar_search"
-        tools:layout_editor_absoluteX="0dp" />
+        android:textStyle="normal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar_search" />
+
+    <TextView
+        android:id="@+id/textViewTotol_id"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_marginStart="20dp"
+        android:gravity="center"
+        android:text="Qolganni"
+        android:textColor="#8DBCED"
+        android:textSize="18dp"
+        android:textStyle="normal"
+        app:layout_constraintStart_toEndOf="@+id/textView_id"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar_search" />
+
+    <TextView
+        android:id="@+id/textViewAmount_id"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_marginStart="20dp"
+        android:gravity="center"
+        android:text="Yopilgan"
+        android:textColor="#4CAF50"
+        android:textSize="18dp"
+        android:textStyle="normal"
+        app:layout_constraintStart_toEndOf="@+id/textViewTotol_id"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar_search" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_home_view_ID"
@@ -42,7 +69,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/textView_id" />
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar_search"

@@ -37,6 +37,7 @@ import java.util.List;
 public class HomeViewAdapter extends FirestoreRecyclerAdapter<CityModel, HomeViewAdapter.LongHolder> {
     private final FirestoreRecyclerOptions<CityModel> optionsInt;
     List<String> activityllist;
+    int lll;
     private OnItemClickListner listner;
 
     public HomeViewAdapter(FirestoreRecyclerOptions<CityModel> optionsInt, List<String> activityllist) {
@@ -75,6 +76,11 @@ public class HomeViewAdapter extends FirestoreRecyclerAdapter<CityModel, HomeVie
         if(cityModel.getFinishSum() == 0) {
 //            holder.TextFinshSum.setTextColor(Color.RED);
             holder.relativeLayout6.setBackgroundColor(Color.rgb(100, 187, 100));
+
+//            for (int i = 0; i==cityModel.getFinishSum(); i++) {
+//                lll = 1;
+//          }
+//            Log.d("demo10", String.valueOf(lll));
         }
 
 
