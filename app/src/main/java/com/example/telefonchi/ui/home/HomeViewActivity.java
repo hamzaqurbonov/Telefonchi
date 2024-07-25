@@ -87,11 +87,6 @@ public class HomeViewActivity extends AppCompatActivity {
 
         activityllist = Collections.singletonList(getIntent().getExtras().getString("docId"));
 
-
-
-
-
-
         createDb();
         AddButton();
         totolFilter();
