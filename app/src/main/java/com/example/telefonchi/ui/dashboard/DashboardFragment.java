@@ -1,5 +1,7 @@
 package com.example.telefonchi.ui.dashboard;
 
+import static java.util.Collections.*;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -30,8 +32,17 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.Flow;
+
 public class DashboardFragment extends Fragment {
     DashboardModel dashboardModel;
+    List<DashboardModel> asList = new ArrayList<>();
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference hadRef = db.collection("users/Yanvar/Yanvar");
 
@@ -71,9 +82,13 @@ public class DashboardFragment extends Fragment {
 
                                 for (DocumentChange doc : documentSnapshots.getDocumentChanges()) {
                                     if (doc.getType() == DocumentChange.Type.ADDED) {
+                                        List<DashboardModel> modellist = new ArrayList<>();
+
                                         DashboardModel dashboardModel = doc.getDocument().toObject(DashboardModel.class);
                                         Log.d("demo28", "collection2 "  + doc.getDocument().getId() + " " +  doc.getDocument().getData());
-                                        Log.d("demo28", "dashboardModel "  + dashboardModel.getName());
+                                        Log.d("demo28", "dashboardModel "  + modellist);
+                                        asList = Arrays.<DashboardModel>asList(dashboardModel);
+
                                     }
                                 }
 
@@ -87,20 +102,35 @@ public class DashboardFragment extends Fragment {
 
 
 
+//        List<DashboardModel>   мodalArrayList =
+        List<DashboardModel> мodalArrayList =  prepareMemerList();
 
+        Log.d("demo29", "dashboardModel "  + asList);
+        adapter = new DashboardAdapter(мodalArrayList);
 
+//        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new GridLayoutManager(getContext(),1  ));
+        recyclerView.setAdapter(adapter);
 
-        setUpRecyclerView();
+//        setUpRecyclerView();
         return root;
     }
 
 
-    private void setUpRecyclerView() {
+//    private void setUpRecyclerView() {
 
-        options = new FirestoreRecyclerOptions
-                .Builder<DashboardModel>()
-                .setQuery(db.collection("users/Yanvar/Yanvar").whereNotEqualTo("finishSum", 0), DashboardModel.class)
-                .build();
+//        for (int i = 0; i<3; i++) {
+//            options = new FirestoreRecyclerOptions
+//                .Builder<DashboardModel>()
+//                .setQuery(db.collection("users/Yanvar/Yanvar").whereNotEqualTo("finishSum", 0), DashboardModel.class)
+//                .build();
+//            Log.d("demo29", "dashboardModel ");
+//        }
+
+//        options = new FirestoreRecyclerOptions
+//                .Builder<DashboardModel>()
+//                .setQuery(db.collection("users/Yanvar/Yanvar").whereNotEqualTo("finishSum", 0), DashboardModel.class)
+//                .build();
 
 
 //        Query query = hadRef.whereNotEqualTo("finishSum", 0);
@@ -108,25 +138,43 @@ public class DashboardFragment extends Fragment {
 //        FirestoreRecyclerOptions<DashboardModel> options = new FirestoreRecyclerOptions.Builder<DashboardModel>().setQuery(query, DashboardModel.class).build();
 
 
-        adapter = new DashboardAdapter(options);
+//        adapter = new DashboardAdapter(мodalArrayList);
+//
+//        recyclerView.setHasFixedSize(true);
+//        recyclerView.setLayoutManager(new GridLayoutManager(getContext(),1  ));
+//        recyclerView.setAdapter(adapter);
+//    }
 
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new GridLayoutManager(getContext(),1  ));
-        recyclerView.setAdapter(adapter);
+    private List<DashboardModel> prepareMemerList() {
+
+        List<DashboardModel> modellist = new ArrayList<>();
+//        Map<String,Object> nestedData = new HashMap<>();
+//        nestedData.put("sum", "sdsd");
+//        nestedData.put("name", "sssss");
+
+        for (int i = 0; i<3; i++) {
+            modellist.add(new DashboardModel("name " + i, "nick", 1, "comment", "year",2, 3,4, 5,6,7));
+
+//            Log.d("demo16", "asdd " + modellist);
+        }
+        return modellist;
+
     }
 
 
-    @Override
-    public void onStart() {
-        super.onStart();
-        adapter.startListening();
-    }
 
-    @Override
-    public void onStop() {
-        super.onStop();
-        adapter.stopListening();
-    }
+
+//    @Override
+//    public void onStart() {
+//        super.onStart();
+//        adapter.startListening();
+//    }
+//
+//    @Override
+//    public void onStop() {
+//        super.onStop();
+//        adapter.stopListening();
+//    }
 
     @Override
     public void onDestroyView() {
