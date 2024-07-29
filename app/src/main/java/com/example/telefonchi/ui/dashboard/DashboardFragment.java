@@ -42,7 +42,8 @@ import java.util.concurrent.Flow;
 
 public class DashboardFragment extends Fragment {
     DashboardModel dashboardModel;
-    List<DashboardModel> asList = new ArrayList<>();
+    public List<DashboardModel> activityList = new ArrayList<>();
+//    List<DashboardModel> asList = new ArrayList<>();
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference hadRef = db.collection("users/Yanvar/Yanvar");
 
@@ -82,13 +83,30 @@ public class DashboardFragment extends Fragment {
 
                                 for (DocumentChange doc : documentSnapshots.getDocumentChanges()) {
                                     if (doc.getType() == DocumentChange.Type.ADDED) {
-                                        List<DashboardModel> modellist = new ArrayList<>();
+//
+                                        Map<String, Object> values = doc.getDocument().getData();
+////
+                                            activityList.add(new DashboardModel(
+                                                    (String) values.get("name"),
+                                                    (String) values.get("nick"),
+                                                    (String) values.get("comment"),
+                                                    (String) values.get("year"),
+                                                    Integer.parseInt(values.get("totalSum").toString()),
+                                                    Integer.parseInt(values.get("startSum").toString()),
+                                                    Integer.parseInt(values.get("finishSum").toString()),
+                                                    Integer.parseInt(values.get("amountMonth").toString()),
+                                                    Integer.parseInt(values.get("sumMonth").toString()),
+                                                    Integer.parseInt(values.get("tel").toString()),
+                                                    Integer.parseInt(values.get("payment").toString())
+                                            ));
 
-                                        DashboardModel dashboardModel = doc.getDocument().toObject(DashboardModel.class);
-                                        Log.d("demo28", "collection2 "  + doc.getDocument().getId() + " " +  doc.getDocument().getData());
-                                        Log.d("demo28", "dashboardModel "  + modellist);
-                                        asList = Arrays.<DashboardModel>asList(dashboardModel);
+//                                        DashboardModel dashboardModel = doc.getDocument().toObject(DashboardModel.class);
+//                                        Log.d("demo28", "collection2 "  + doc.getDocument().getId() + " " +  doc.getDocument().getData());
+//                                        Log.d("demo28", "collection3 "  +  doc.getDocument().getData().get("name"));
 
+                                        adapter = new DashboardAdapter(activityList);
+                                        recyclerView.setLayoutManager(new GridLayoutManager(getContext(),1  ));
+                                        recyclerView.setAdapter(adapter);
                                     }
                                 }
 
@@ -103,14 +121,10 @@ public class DashboardFragment extends Fragment {
 
 
 //        List<DashboardModel>   мodalArrayList =
-        List<DashboardModel> мodalArrayList =  prepareMemerList();
+//        List<DashboardModel> мodalArrayList =  prepareMemerList();
 
-        Log.d("demo29", "dashboardModel "  + asList);
-        adapter = new DashboardAdapter(мodalArrayList);
+        Log.d("demo28", "activityList "  + activityList);
 
-//        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new GridLayoutManager(getContext(),1  ));
-        recyclerView.setAdapter(adapter);
 
 //        setUpRecyclerView();
         return root;
@@ -153,7 +167,7 @@ public class DashboardFragment extends Fragment {
 //        nestedData.put("name", "sssss");
 
         for (int i = 0; i<3; i++) {
-            modellist.add(new DashboardModel("name " + i, "nick", 1, "comment", "year",2, 3,4, 5,6,7));
+//            modellist.add(new DashboardModel("name " + i, "nick", 1, "comment", "year",2, 3,4, 5,6,7));
 
 //            Log.d("demo16", "asdd " + modellist);
         }

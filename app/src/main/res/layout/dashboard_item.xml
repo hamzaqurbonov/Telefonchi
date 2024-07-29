@@ -1,0 +1,515 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp"
+    android:elevation="0dp"
+    app:cardCornerRadius="4dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="3dp"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:id="@+id/relativeLayout"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="0dp">
+
+            <ImageView
+                android:id="@+id/edit_select"
+                android:layout_width="40dp"
+                android:layout_height="30dp"
+                android:src="@drawable/baseline_border_color_24" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="292dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="2dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_toEndOf="@+id/relativeLayout"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/relativeLayout1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp">
+
+                <TextView
+                    android:id="@+id/textView1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="0dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center|left"
+                    android:padding="0dp"
+                    android:text="Ismi"
+                    android:textColor="#0C2D48"
+                    android:textSize="14dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/text_view_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toEndOf="@+id/textView1"
+                    android:layout_weight="1"
+                    android:gravity="center|end"
+                    android:padding="0dp"
+                    android:text="name"
+                    android:textColor="#286D56"
+                    android:textSize="14dp"
+                    android:textStyle="normal" />
+            </RelativeLayout>
+
+<!--            <RelativeLayout-->
+<!--                android:id="@+id/relativeLayout2"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_below="@+id/relativeLayout1"-->
+<!--                android:layout_marginTop="2dp">-->
+
+<!--                <TextView-->
+<!--                    android:id="@+id/textView2"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_alignParentStart="true"-->
+<!--                    android:layout_alignParentTop="true"-->
+<!--                    android:layout_marginStart="0dp"-->
+<!--                    android:layout_marginLeft="5dp"-->
+<!--                    android:layout_marginTop="0dp"-->
+<!--                    android:layout_weight="1"-->
+<!--                    android:gravity="center|left"-->
+<!--                    android:padding="0dp"-->
+<!--                    android:text="Mo'ljal(F.I.O yoki manzil)"-->
+<!--                    android:textColor="#0C2D48"-->
+<!--                    android:textSize="14dp"-->
+<!--                    android:textStyle="bold" />-->
+
+<!--                <TextView-->
+<!--                    android:id="@+id/text_view_nick"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_alignParentEnd="true"-->
+<!--                    android:layout_marginStart="5dp"-->
+<!--                    android:layout_marginLeft="5dp"-->
+<!--                    android:layout_toEndOf="@+id/textView2"-->
+<!--                    android:layout_weight="1"-->
+<!--                    android:gravity="center|end"-->
+<!--                    android:padding="0dp"-->
+<!--                    android:text="name"-->
+<!--                    android:textColor="#286D56"-->
+<!--                    android:textSize="14dp"-->
+<!--                    android:textStyle="normal" />-->
+<!--            </RelativeLayout>-->
+
+            <RelativeLayout
+                android:id="@+id/relativeLayout3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/relativeLayout1"
+                android:layout_marginTop="2dp">
+
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="0dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center|left"
+                    android:padding="0dp"
+                    android:text="Yil"
+                    android:textColor="#0C2D48"
+                    android:textSize="14dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/text_view_year"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toEndOf="@+id/textView3"
+                    android:layout_weight="1"
+                    android:gravity="center|end"
+                    android:padding="0dp"
+                    android:text="name"
+                    android:textColor="#286D56"
+                    android:textSize="14dp"
+                    android:textStyle="normal" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/relativeLayout4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/relativeLayout3"
+                android:layout_marginTop="2dp">
+
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="0dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center|left"
+                    android:padding="0dp"
+                    android:text="Hisoblangan summa"
+                    android:textColor="#0C2D48"
+                    android:textSize="14dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/text_view_totalSum"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toEndOf="@+id/textView4"
+                    android:layout_weight="1"
+                    android:gravity="center|end"
+                    android:padding="0dp"
+                    android:text="name"
+                    android:textColor="#286D56"
+                    android:textSize="14dp"
+                    android:textStyle="normal" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/relativeLayout5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/relativeLayout4"
+                android:layout_marginTop="2dp">
+
+                <TextView
+                    android:id="@+id/textView5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="0dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center|left"
+                    android:padding="0dp"
+                    android:text="Boshlang'ich to'lov"
+                    android:textColor="#0C2D48"
+                    android:textSize="14dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/text_view_startSum"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toEndOf="@+id/textView5"
+                    android:layout_weight="1"
+                    android:gravity="center|end"
+                    android:padding="0dp"
+                    android:text="name"
+                    android:textColor="#286D56"
+                    android:textSize="14dp"
+                    android:textStyle="normal" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/relativeLayout12"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/relativeLayout5"
+                android:layout_marginTop="2dp">
+
+                <TextView
+                    android:id="@+id/textView11"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="0dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center|left"
+                    android:padding="0dp"
+                    android:text="Jami to'lov"
+                    android:textColor="#0C2D48"
+                    android:textSize="14dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/text_view_payment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toEndOf="@+id/textView11"
+                    android:layout_weight="1"
+                    android:gravity="center|end"
+                    android:padding="0dp"
+                    android:text="List"
+                    android:textColor="#286D56"
+                    android:textSize="14dp"
+                    android:textStyle="normal" />
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:id="@+id/relativeLayout6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/relativeLayout12"
+                android:layout_marginTop="2dp">
+
+                <TextView
+                    android:id="@+id/textView6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="0dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center|left"
+                    android:padding="0dp"
+                    android:text="Qolgan summa"
+                    android:textColor="#0C2D48"
+                    android:textSize="14dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/text_view_finishSum"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toEndOf="@+id/textView6"
+                    android:layout_weight="1"
+                    android:gravity="center|end"
+                    android:padding="0dp"
+                    android:text="name"
+                    android:textColor="#286D56"
+                    android:textSize="14dp"
+                    android:textStyle="normal" />
+            </RelativeLayout>
+
+<!--            <RelativeLayout-->
+<!--                android:id="@+id/relativeLayout7"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_below="@+id/relativeLayout6"-->
+<!--                android:layout_marginTop="2dp">-->
+
+<!--                <TextView-->
+<!--                    android:id="@+id/textView7"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_alignParentStart="true"-->
+<!--                    android:layout_alignParentTop="true"-->
+<!--                    android:layout_marginStart="0dp"-->
+<!--                    android:layout_marginLeft="5dp"-->
+<!--                    android:layout_marginTop="0dp"-->
+<!--                    android:layout_weight="1"-->
+<!--                    android:gravity="center|left"-->
+<!--                    android:padding="0dp"-->
+<!--                    android:text="To'lov oyi"-->
+<!--                    android:textColor="#0C2D48"-->
+<!--                    android:textSize="14dp"-->
+<!--                    android:textStyle="bold" />-->
+
+<!--                <TextView-->
+<!--                    android:id="@+id/text_view_amountMonth"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_alignParentEnd="true"-->
+<!--                    android:layout_marginStart="5dp"-->
+<!--                    android:layout_marginLeft="5dp"-->
+<!--                    android:layout_toEndOf="@+id/textView7"-->
+<!--                    android:layout_weight="1"-->
+<!--                    android:gravity="center|end"-->
+<!--                    android:padding="0dp"-->
+<!--                    android:text="name"-->
+<!--                    android:textColor="#286D56"-->
+<!--                    android:textSize="14dp"-->
+<!--                    android:textStyle="normal" />-->
+<!--            </RelativeLayout>-->
+
+            <RelativeLayout
+                android:id="@+id/relativeLayout8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/relativeLayout6"
+                android:layout_marginTop="2dp">
+
+                <TextView
+                    android:id="@+id/textView8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="0dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center|left"
+                    android:padding="0dp"
+                    android:text="Oyiga to'lov"
+                    android:textColor="#0C2D48"
+                    android:textSize="14dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/text_view_sumMonth"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toEndOf="@+id/textView8"
+                    android:layout_weight="1"
+                    android:gravity="center|end"
+                    android:padding="0dp"
+                    android:text="name"
+                    android:textColor="#286D56"
+                    android:textSize="14dp"
+                    android:textStyle="normal" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/relativeLayout9"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/relativeLayout8"
+                android:layout_marginTop="2dp">
+
+                <TextView
+                    android:id="@+id/textView9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="0dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center|left"
+                    android:padding="0dp"
+                    android:text="Telefon"
+                    android:textColor="#0C2D48"
+                    android:textSize="14dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/text_view_tel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toEndOf="@+id/textView9"
+                    android:layout_weight="1"
+                    android:gravity="center|end"
+                    android:padding="0dp"
+                    android:text="name"
+                    android:textColor="#286D56"
+                    android:textSize="14dp"
+                    android:textStyle="normal" />
+            </RelativeLayout>
+
+<!--            <RelativeLayout-->
+<!--                android:id="@+id/relativeLayout10"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_below="@+id/relativeLayout9"-->
+<!--                android:layout_marginTop="2dp">-->
+
+<!--                <TextView-->
+<!--                    android:id="@+id/textView10"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_alignParentStart="true"-->
+<!--                    android:layout_alignParentTop="true"-->
+<!--                    android:layout_marginStart="0dp"-->
+<!--                    android:layout_marginLeft="5dp"-->
+<!--                    android:layout_marginTop="0dp"-->
+<!--                    android:layout_weight="1"-->
+<!--                    android:gravity="center|left"-->
+<!--                    android:padding="0dp"-->
+<!--                    android:text="Izoh"-->
+<!--                    android:textColor="#0C2D48"-->
+<!--                    android:textSize="14dp"-->
+<!--                    android:textStyle="bold" />-->
+
+<!--                <TextView-->
+<!--                    android:id="@+id/text_comment"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_alignParentEnd="true"-->
+<!--                    android:layout_marginStart="5dp"-->
+<!--                    android:layout_marginLeft="5dp"-->
+<!--                    android:layout_toEndOf="@+id/textView10"-->
+<!--                    android:layout_weight="1"-->
+<!--                    android:gravity="center|end"-->
+<!--                    android:padding="0dp"-->
+<!--                    android:text="name"-->
+<!--                    android:textColor="#286D56"-->
+<!--                    android:textSize="14dp"-->
+<!--                    android:textStyle="normal" />-->
+<!--            </RelativeLayout>-->
+        </RelativeLayout>
+
+<!--        <RelativeLayout-->
+<!--            android:id="@+id/relativeLayout11"-->
+<!--            android:layout_width="40dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_alignParentEnd="true"-->
+<!--            android:gravity="center|end"-->
+<!--            android:padding="0dp">-->
+
+<!--            <ImageView-->
+<!--                android:id="@+id/delete_select"-->
+<!--                android:layout_width="40dp"-->
+<!--                android:layout_height="30dp"-->
+<!--                android:layout_alignParentEnd="true"-->
+<!--                android:layout_marginEnd="0dp"-->
+<!--                android:gravity="center"-->
+<!--                android:src="@drawable/baseline_auto_delete_24" />-->
+
+<!--        </RelativeLayout>-->
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

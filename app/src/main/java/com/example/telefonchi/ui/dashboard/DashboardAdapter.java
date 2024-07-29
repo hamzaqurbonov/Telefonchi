@@ -1,5 +1,6 @@
 package com.example.telefonchi.ui.dashboard;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -34,14 +35,22 @@ public class DashboardAdapter  extends RecyclerView.Adapter<DashboardAdapter .Vi
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.home_item, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.dashboard_item, parent, false);
         return new ViewHolder(view);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         DashboardModel modal = мodalArrayList.get(position);
-        holder.courseTracksTV.setText(modal.getName());
+        holder.text_view_name.setText(modal.getName());
+        holder.text_view_year.setText(modal.getYear());
+        holder.text_view_totalSum.setText(String.valueOf(modal.getTotalSum()));
+        holder.text_view_startSum.setText(String.valueOf(modal.getStartSum()));
+        holder.text_view_payment.setText(String.valueOf(modal.getPayment()));
+        holder.text_view_finishSum.setText(String.valueOf(modal.getFinishSum()));
+        holder.text_view_sumMonth.setText(String.valueOf(modal.getSumMonth()));
+        holder.text_view_tel.setText(String.valueOf(modal.getTel()));
 
 //        holder.idTebel.setText(Integer.toString(modal.getId()));
 
@@ -61,14 +70,21 @@ public class DashboardAdapter  extends RecyclerView.Adapter<DashboardAdapter .Vi
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        private TextView  courseTracksTV, courseIdTest, idTebel;
+        private TextView  text_view_name, text_view_year, text_view_totalSum, text_view_startSum, text_view_payment, text_view_finishSum, text_view_sumMonth, text_view_tel;
         ImageView deleteSelect;
 
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 //        idTebel = itemView.findViewById(R.id.id_tebel);
-            courseTracksTV = itemView.findViewById(R.id.home_id_month);
+            text_view_name = itemView.findViewById(R.id.text_view_name);
+            text_view_year = itemView.findViewById(R.id.text_view_year);
+            text_view_totalSum = itemView.findViewById(R.id.text_view_totalSum);
+            text_view_startSum = itemView.findViewById(R.id.text_view_startSum);
+            text_view_payment = itemView.findViewById(R.id.text_view_payment);
+            text_view_finishSum = itemView.findViewById(R.id.text_view_finishSum);
+            text_view_sumMonth = itemView.findViewById(R.id.text_view_sumMonth);
+            text_view_tel = itemView.findViewById(R.id.text_view_tel);
         }
     }
 

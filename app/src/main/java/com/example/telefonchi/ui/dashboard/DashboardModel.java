@@ -4,18 +4,18 @@ public class DashboardModel {
 
 
     private String name, nick, comment , year ;
-    private int    totalSum, startSum, finishSum, amountMonth,sumMonth,  tel,  payment;
+    private Integer    totalSum, startSum, finishSum, amountMonth,sumMonth,  tel,  payment;
 
 //    private List<String> regions;
 
-    public DashboardModel() {
+//    public DashboardModel() {
+//
+//    }
 
-    }
 
-    public DashboardModel(String name, String nick, int tel, String comment, String year, int totalSum, int startSum, int finishSum, int amountMonth, int sumMonth, int payment) {
+    public DashboardModel(String name, String nick, String comment, String year, Integer totalSum, Integer startSum, Integer finishSum, Integer amountMonth, Integer sumMonth, Integer tel, Integer payment) {
         this.name = name;
         this.nick = nick;
-        this.tel = tel;
         this.comment = comment;
         this.year = year;
         this.totalSum = totalSum;
@@ -23,6 +23,7 @@ public class DashboardModel {
         this.finishSum = finishSum;
         this.amountMonth = amountMonth;
         this.sumMonth = sumMonth;
+        this.tel = tel;
         this.payment = payment;
     }
 
@@ -34,10 +35,6 @@ public class DashboardModel {
         return nick;
     }
 
-    public int getTel() {
-        return tel;
-    }
-
     public String getComment() {
         return comment;
     }
@@ -46,27 +43,31 @@ public class DashboardModel {
         return year;
     }
 
-    public int getTotalSum() {
+    public Integer getTotalSum() {
         return totalSum;
     }
 
-    public int getStartSum() {
+    public Integer getStartSum() {
         return startSum;
     }
 
-    public int getFinishSum() {
+    public Integer getFinishSum() {
         return finishSum;
     }
 
-    public int getAmountMonth() {
+    public Integer getAmountMonth() {
         return amountMonth;
     }
 
-    public int getSumMonth() {
+    public Integer getSumMonth() {
         return sumMonth;
     }
 
-    public int getPayment() {
+    public Integer getTel() {
+        return tel;
+    }
+
+    public Integer getPayment() {
         return payment;
     }
 }
