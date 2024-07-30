@@ -6,6 +6,7 @@ import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputType;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -153,6 +154,7 @@ public class DashboardFragment extends Fragment {
         menuItem = menu.findItem(R.id.menu_search_id);
         searchView = (SearchView) MenuItemCompat.getActionView(menuItem);
         searchView.setIconified(true);
+        searchView.setInputType(InputType.TYPE_CLASS_NUMBER);
         searchView.setQueryHint("Qidiruv");
 
 
