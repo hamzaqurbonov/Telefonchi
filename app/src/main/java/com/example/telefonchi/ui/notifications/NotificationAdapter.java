@@ -1,6 +1,7 @@
 package com.example.telefonchi.ui.notifications;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,12 +14,18 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.telefonchi.R;
 import com.example.telefonchi.ui.dashboard.DashboardAdapter;
 import com.example.telefonchi.ui.dashboard.DashboardModel;
+import com.example.telefonchi.ui.home.HomeViewActivity;
+import com.example.telefonchi.ui.home.view.EditHameViewActivity;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapter.ViewHolder>  {
-
-
+    LocalDateTime DateObj = LocalDateTime.now();
+    DateTimeFormatter Format = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+    String DateMMDD = DateObj.format(Format);
+    NotificationsFragment notificationsFragment;
     private List<NotificationModel> мodalArrayList;
 
 
@@ -47,7 +54,24 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
         holder.text_view_sumMonth.setText(String.valueOf(modal.getSumMonth()));
         holder.text_view_tel.setText(String.valueOf(modal.getTel()));
 
-//        holder.idTebel.setText(Integer.toString(modal.getId()));
+
+        holder.send_select.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setAction(Intent.ACTION_SEND);
+                intent.putExtra(Intent.EXTRA_TEXT,
+                        "Asslomu alaykum " + modal.getName() + "!\n" +
+                        modal.getYear() + " кun xolatiga jami qarzdorlik " + modal.getTotalSum() + "so'm" +
+                        "\nBoshlangich to'lov " + modal.getStartSum() + "so'm" +
+                        "\nKeyingi to'lovlaringiz " + modal.getPayment() + "so'm" +
+                        "\nHozirda " + DateMMDD + " kunga qolgan summa " + modal.getFinishSum() + "so'm" +
+                        "\nOyma-oy to'lovingiz " + modal.getSumMonth() + "so'm"
+                );
+                intent.setType("text/plain");
+                v.getContext(). startActivity(intent);
+            }
+        });
 
 
 
@@ -66,7 +90,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         private TextView text_view_name, text_view_year, text_view_totalSum, text_view_startSum, text_view_payment, text_view_finishSum, text_view_sumMonth, text_view_tel;
-        ImageView deleteSelect;
+        ImageView send_select;
 
 
         public ViewHolder(@NonNull View itemView) {
@@ -80,6 +104,9 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
             text_view_finishSum = itemView.findViewById(R.id.text_view_finishSum);
             text_view_sumMonth = itemView.findViewById(R.id.text_view_sumMonth);
             text_view_tel = itemView.findViewById(R.id.text_view_tel);
+
+            send_select = itemView.findViewById(R.id.send_select);
+
         }
     }
 
