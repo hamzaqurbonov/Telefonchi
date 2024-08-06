@@ -3,6 +3,7 @@ package com.example.telefonchi.ui.notifications;
 import android.annotation.SuppressLint;
 import android.app.SearchManager;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
 import android.util.Log;
@@ -14,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.SearchView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -45,6 +47,7 @@ import java.util.Map;
 
 public class NotificationsFragment extends Fragment {
 
+//    private NotificationAdapter.RecyclerViewClickListner listner;
     LocalDateTime DateObj = LocalDateTime.now();
     DateTimeFormatter Format = DateTimeFormatter.ofPattern("dd.MM.yyyy");
     DateTimeFormatter FormatObj = DateTimeFormatter.ofPattern("dd");
@@ -96,7 +99,7 @@ public class NotificationsFragment extends Fragment {
 
                         doc.getDocument().getReference().collection(doc.getDocument().getId()).whereNotEqualTo("finishSum", 0)
                                 .whereGreaterThanOrEqualTo("year", formattedDate)
-                                .whereLessThanOrEqualTo("year",  "\uf8ff")
+                                .whereLessThanOrEqualTo("year",  formattedDate + "\uf8ff")
                                 .addSnapshotListener(new EventListener<QuerySnapshot>() {
                             @Override
                             public void onEvent(QuerySnapshot documentSnapshots, FirebaseFirestoreException e) {
@@ -120,16 +123,18 @@ public class NotificationsFragment extends Fragment {
                                                     Integer.parseInt(values.get("amountMonth").toString()),
                                                     Integer.parseInt(values.get("sumMonth").toString()),
                                                     Integer.parseInt(values.get("tel").toString()),
-                                                    Integer.parseInt(values.get("payment").toString())
+                                                    Integer.parseInt(values.get("payment").toString()),
+                                                    doc.getDocument().getReference().getPath()
                                             ));
 
 //                                        DashboardModel dashboardModel = doc.getDocument().toObject(DashboardModel.class);
-//                                        Log.d("demo28", "collection2 "  + doc.getDocument().getId() + " " +  doc.getDocument().getData());
+                                        Log.d("demo28", "collection2 "  + doc.getDocument().getReference().getPath() + " " +  doc.getDocument().getData());
 //                                        Log.d("demo28", "collection3 "  +  doc.getDocument().getData().get("name"));
 
                                             adapter = new NotificationAdapter(activityList);
                                             recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 1));
                                             recyclerView.setAdapter(adapter);
+//                                            setOnClickListner();
                                         }
                                     }
                                 }
@@ -145,6 +150,30 @@ public class NotificationsFragment extends Fragment {
 
         return view;
     }
+
+
+//    private void setOnClickListner() {
+//
+//        listner = new NotificationAdapter.RecyclerViewClickListner() {
+//            @Override
+//            public void onClick(View v, int position) {
+////                Intent intent = new Intent();
+////                cueVideoInitYouTubePlayer();
+//
+////                Toast.makeText(LongChildOne.this, "ID " + activityllist.get(position), Toast.LENGTH_SHORT).show();
+//
+////                Log.d("demo33", activityList.get(position));
+////                intent.putExtra( "part",activityllist.get(position));
+////                    Toast.makeText(this, "ID " + notificationModel.getName(), Toast.LENGTH_SHORT).show();
+////                intent.putExtra("dokumentId", dokumentIdModel);
+////                intent.putExtra("getName",  getName);
+////                startActivity(intent);
+////                finish();
+//            }
+//
+//        };
+//
+//    }
 
 //    @Override
 //    public void onCreate(Bundle savedInstanceState) {

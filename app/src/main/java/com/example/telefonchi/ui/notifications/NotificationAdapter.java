@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -22,6 +23,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapter.ViewHolder>  {
+//    private RecyclerViewClickListner listner;
     LocalDateTime DateObj = LocalDateTime.now();
     DateTimeFormatter Format = DateTimeFormatter.ofPattern("dd.MM.yyyy");
     String DateMMDD = DateObj.format(Format);
@@ -31,6 +33,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
 
     public NotificationAdapter (List<NotificationModel> мodalArrayList) {
         this.мodalArrayList = мodalArrayList;
+//        this.listner = listner;
 
     }
 
@@ -45,6 +48,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
     @Override
     public void onBindViewHolder(@NonNull NotificationAdapter.ViewHolder holder, int position) {
         NotificationModel modal = мodalArrayList.get(position);
+
         holder.text_view_name.setText(modal.getName());
         holder.text_view_year.setText(modal.getYear());
         holder.text_view_totalSum.setText(String.valueOf(modal.getTotalSum()));
@@ -53,6 +57,34 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
         holder.text_view_finishSum.setText(String.valueOf(modal.getFinishSum()));
         holder.text_view_sumMonth.setText(String.valueOf(modal.getSumMonth()));
         holder.text_view_tel.setText(String.valueOf(modal.getTel()));
+
+        holder.relativeLayoutId.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), EditHameViewActivity.class);
+
+                intent.putExtra("nameEdit", modal.getName());
+                intent.putExtra("nickEdit", modal.getNick());
+                intent.putExtra("yearEdit", modal.getYear());
+                intent.putExtra("totalSumEdit", modal.getTotalSum());
+                intent.putExtra("startSumEdit", modal.getStartSum());
+                intent.putExtra("finishSumEdit", modal.getFinishSum());
+                intent.putExtra("amountMonthEdit", modal.getAmountMonth());
+                intent.putExtra("sumMonthEdit", modal.getSumMonth());
+                intent.putExtra("telEdit", modal.getTel());
+                intent.putExtra("commentEdit", modal.getComment());
+                intent.putExtra("paymentEdit", modal.getPayment());
+
+
+                intent.putExtra("pathlink", modal.getPathlink());
+//                intent.putExtra("collection", (CharSequence) activityllist.get(0));
+                intent.putExtra("add", "b");
+
+
+
+                v.getContext(). startActivity(intent);
+            }
+        });
 
 
         holder.send_select.setOnClickListener(new View.OnClickListener() {
@@ -88,10 +120,10 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
         return мodalArrayList.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder  {
         private TextView text_view_name, text_view_year, text_view_totalSum, text_view_startSum, text_view_payment, text_view_finishSum, text_view_sumMonth, text_view_tel;
         ImageView send_select;
-
+        RelativeLayout relativeLayoutId;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -105,9 +137,21 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
             text_view_sumMonth = itemView.findViewById(R.id.text_view_sumMonth);
             text_view_tel = itemView.findViewById(R.id.text_view_tel);
 
+            relativeLayoutId = itemView.findViewById(R.id.relative_layout_id);
             send_select = itemView.findViewById(R.id.send_select);
 
+//            itemView.setOnClickListener(this);
+
         }
+//        @Override
+//        public void onClick(View v) {
+//            listner.onClick(itemView, getAdapterPosition());
+//        }
+
     }
+
+//    public interface RecyclerViewClickListner {
+//        void onClick(View v, int position);
+//    }
 
 }

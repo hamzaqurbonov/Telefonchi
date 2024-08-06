@@ -114,7 +114,8 @@ public class DashboardFragment extends Fragment {
                                                     Integer.parseInt(values.get("amountMonth").toString()),
                                                     Integer.parseInt(values.get("sumMonth").toString()),
                                                     Integer.parseInt(values.get("tel").toString()),
-                                                    Integer.parseInt(values.get("payment").toString())
+                                                    Integer.parseInt(values.get("payment").toString()),
+                                                    doc.getDocument().getReference().getPath()
                                             ));
 
 //                                        DashboardModel dashboardModel = doc.getDocument().toObject(DashboardModel.class);
@@ -223,7 +224,8 @@ public class DashboardFragment extends Fragment {
                                                     Integer.parseInt(values.get("amountMonth").toString()),
                                                     Integer.parseInt(values.get("sumMonth").toString()),
                                                     Integer.parseInt(values.get("tel").toString()),
-                                                    Integer.parseInt(values.get("payment").toString())
+                                                    Integer.parseInt(values.get("payment").toString()),
+                                                    doc.getDocument().getReference().getPath()
                                             ));
 
 //                                        DashboardModel dashboardModel = doc.getDocument().toObject(DashboardModel.class);

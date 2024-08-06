@@ -3,7 +3,7 @@ package com.example.telefonchi.ui.dashboard;
 public class DashboardModel {
 
 
-    private String name, nick, comment , year ;
+    private String name, nick, comment , year, pathlink ;
     private Integer    totalSum, startSum, finishSum, amountMonth,sumMonth,  tel,  payment;
 
 //    private List<String> regions;
@@ -13,7 +13,8 @@ public class DashboardModel {
 //    }
 
 
-    public DashboardModel(String name, String nick, String comment, String year, Integer totalSum, Integer startSum, Integer finishSum, Integer amountMonth, Integer sumMonth, Integer tel, Integer payment) {
+    public DashboardModel(String name, String nick, String comment, String year,
+                          Integer totalSum, Integer startSum, Integer finishSum, Integer amountMonth, Integer sumMonth, Integer tel, Integer payment, String pathlink) {
         this.name = name;
         this.nick = nick;
         this.comment = comment;
@@ -25,6 +26,7 @@ public class DashboardModel {
         this.sumMonth = sumMonth;
         this.tel = tel;
         this.payment = payment;
+        this.pathlink = pathlink;
     }
 
     public String getName() {
@@ -69,5 +71,9 @@ public class DashboardModel {
 
     public Integer getPayment() {
         return payment;
+    }
+
+    public String getPathlink() {
+        return pathlink;
     }
 }

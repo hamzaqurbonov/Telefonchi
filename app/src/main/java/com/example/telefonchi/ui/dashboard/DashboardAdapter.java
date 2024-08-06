@@ -2,10 +2,12 @@ package com.example.telefonchi.ui.dashboard;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -14,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.telefonchi.R;
 import com.example.telefonchi.ui.home.HomeAdapter;
+import com.example.telefonchi.ui.home.view.EditHameViewActivity;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -53,7 +56,33 @@ public class DashboardAdapter  extends RecyclerView.Adapter<DashboardAdapter .Vi
         holder.text_view_tel.setText(String.valueOf(modal.getTel()));
 
 //        holder.idTebel.setText(Integer.toString(modal.getId()));
+        holder.relativeLayoutId.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), EditHameViewActivity.class);
 
+                intent.putExtra("nameEdit", modal.getName());
+                intent.putExtra("nickEdit", modal.getNick());
+                intent.putExtra("yearEdit", modal.getYear());
+                intent.putExtra("totalSumEdit", modal.getTotalSum());
+                intent.putExtra("startSumEdit", modal.getStartSum());
+                intent.putExtra("finishSumEdit", modal.getFinishSum());
+                intent.putExtra("amountMonthEdit", modal.getAmountMonth());
+                intent.putExtra("sumMonthEdit", modal.getSumMonth());
+                intent.putExtra("telEdit", modal.getTel());
+                intent.putExtra("commentEdit", modal.getComment());
+                intent.putExtra("paymentEdit", modal.getPayment());
+
+
+                intent.putExtra("pathlink", modal.getPathlink());
+//                intent.putExtra("collection", (CharSequence) activityllist.get(0));
+                intent.putExtra("add", "b");
+
+
+
+                v.getContext(). startActivity(intent);
+            }
+        });
 
 
     }
@@ -72,7 +101,7 @@ public class DashboardAdapter  extends RecyclerView.Adapter<DashboardAdapter .Vi
     public class ViewHolder extends RecyclerView.ViewHolder {
         private TextView  text_view_name, text_view_year, text_view_totalSum, text_view_startSum, text_view_payment, text_view_finishSum, text_view_sumMonth, text_view_tel;
         ImageView deleteSelect;
-
+        RelativeLayout relativeLayoutId;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -85,6 +114,8 @@ public class DashboardAdapter  extends RecyclerView.Adapter<DashboardAdapter .Vi
             text_view_finishSum = itemView.findViewById(R.id.text_view_finishSum);
             text_view_sumMonth = itemView.findViewById(R.id.text_view_sumMonth);
             text_view_tel = itemView.findViewById(R.id.text_view_tel);
+
+            relativeLayoutId = itemView.findViewById(R.id.relative_layout_id);
         }
     }
 
