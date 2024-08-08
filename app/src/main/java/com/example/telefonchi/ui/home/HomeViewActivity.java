@@ -57,7 +57,7 @@ public class HomeViewActivity extends AppCompatActivity {
 
     private HomeViewAdapter adapterInt;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    String month, docId;
+    String month, docId1, pathlink;
     TextView nameTextView, textViewAmountId, textViewTotolId;
     Button addButtonId;
     private RecyclerView recyclerViewInt;
@@ -83,9 +83,11 @@ public class HomeViewActivity extends AppCompatActivity {
         recyclerViewInt = findViewById(R.id.recycler_home_view_ID);
 
         month = getIntent().getExtras().getString("month");
-        docId = getIntent().getExtras().getString("docId");
+        docId1 = getIntent().getExtras().getString("docId1");
+        pathlink = getIntent().getExtras().getString("pathlink");
+        Log.d("demo36", "HomeViewActivity " + docId1);
 
-        activityllist = Collections.singletonList(getIntent().getExtras().getString("docId"));
+        activityllist = Collections.singletonList(getIntent().getExtras().getString("docId1"));
 
         createDb();
         AddButton();
@@ -103,7 +105,7 @@ public class HomeViewActivity extends AppCompatActivity {
 
     private void totolFilter() {
         ArrayList<String> size = new ArrayList<>();
-        db.collection("users" + "/" + docId + "/" + docId)
+        db.collection("users" + "/" + docId1 + "/" + docId1)
                 .whereEqualTo("finishSum", 0)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -127,7 +129,7 @@ public class HomeViewActivity extends AppCompatActivity {
                     }
                 });
 
-        db.collection("users" + "/" + docId + "/" + docId)
+        db.collection("users" + "/" + docId1 + "/" + docId1)
                 .whereNotEqualTo("finishSum", 0)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -158,8 +160,8 @@ public class HomeViewActivity extends AppCompatActivity {
     private void createDb() {
 
         Query query = db.collection("users")
-                .document(docId)
-                .collection(docId).orderBy("name", Query.Direction.DESCENDING);
+                .document(docId1)
+                .collection(docId1).orderBy("name", Query.Direction.DESCENDING);
 
         FirestoreRecyclerOptions<CityModel> optionsInt = new FirestoreRecyclerOptions.Builder<CityModel>()
                 .setQuery(query, CityModel.class).build();
@@ -177,10 +179,14 @@ public class HomeViewActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(HomeViewActivity.this, EditHameViewActivity.class);
-                intent.putExtra("docId", docId);
-                intent.putExtra("add", "a");
-                intent.putExtra("yearEdit", formattedDate);
+                Bundle data1 = new Bundle();
 
+                data1.putString("docId2", docId1);
+                data1.putString("add", "a");
+                data1.putString("yearEdit", formattedDate);
+
+                data1.putString("pathlink", pathlink + "/" + docId1);
+                intent.putExtras(data1);
 //                addButtonId.setEnabled(false); cityModel
                 startActivity(intent);
             }
@@ -217,8 +223,8 @@ public class HomeViewActivity extends AppCompatActivity {
 
     private void processSearch(String s) {
         Query query = db.collection("users")
-                .document(docId)
-                .collection(docId).orderBy("name", Query.Direction.DESCENDING)
+                .document(docId1)
+                .collection(docId1).orderBy("name", Query.Direction.DESCENDING)
                 .whereGreaterThanOrEqualTo("name", s)
                 .whereLessThanOrEqualTo("name", s + "\uf8ff");
 

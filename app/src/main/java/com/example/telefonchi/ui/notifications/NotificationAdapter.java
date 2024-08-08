@@ -2,6 +2,7 @@ package com.example.telefonchi.ui.notifications;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,11 +30,12 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
     String DateMMDD = DateObj.format(Format);
     NotificationsFragment notificationsFragment;
     private List<NotificationModel> мodalArrayList;
+//    private List<String> activityllist;
 
 
     public NotificationAdapter (List<NotificationModel> мodalArrayList) {
         this.мodalArrayList = мodalArrayList;
-//        this.listner = listner;
+//        this.activityllist = activityllist;
 
     }
 
@@ -75,11 +77,13 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
                 intent.putExtra("commentEdit", modal.getComment());
                 intent.putExtra("paymentEdit", modal.getPayment());
 
-
+//                intent.putExtra("collection",  (CharSequence) activityllist.get(position));
                 intent.putExtra("pathlink", modal.getPathlink());
 //                intent.putExtra("collection", (CharSequence) activityllist.get(0));
-                intent.putExtra("add", "b");
+                intent.putExtra("add", "d");
 
+
+//                Log.d("demo37", "collection "  + (CharSequence) activityllist.get(position));
 
 
                 v.getContext(). startActivity(intent);

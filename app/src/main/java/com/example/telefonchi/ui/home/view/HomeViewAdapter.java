@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -59,7 +60,6 @@ public class HomeViewAdapter extends FirestoreRecyclerAdapter<CityModel, HomeVie
 
         String firebaseDocId = getSnapshots().getSnapshot(position).getId();
 
-
         holder.TextName.setText(cityModel.getName());
         holder.TextnNick.setText(cityModel.getNick());
         holder.TextYear.setText(cityModel.getYear());
@@ -95,7 +95,7 @@ public class HomeViewAdapter extends FirestoreRecyclerAdapter<CityModel, HomeVie
 //                Log.d("demo22", cityModel.getName() + " " + cityModel.getTotalSum());
 //            Intent intent = new Intent(activity, EditHameViewActivity.class);
                 Intent intent = new Intent(v.getContext(), EditHameViewActivity.class);
-
+                Bundle data1 = new Bundle();
                 intent.putExtra("nameEdit", cityModel.getName());
                 intent.putExtra("nickEdit", cityModel.getNick());
                 intent.putExtra("yearEdit", cityModel.getYear());
@@ -113,7 +113,9 @@ public class HomeViewAdapter extends FirestoreRecyclerAdapter<CityModel, HomeVie
                 intent.putExtra("collection", (CharSequence) activityllist.get(0));
                 intent.putExtra("add", "b");
 
+                intent.putExtra("pathlinkCollection",  "users/" + (CharSequence) activityllist.get(0) + "/" + (CharSequence) activityllist.get(0) + "/" + firebaseDocId);
 
+                Log.d("demo36", "HomeAdapter " + (CharSequence) activityllist.get(0));
 
                 v.getContext().startActivity(intent);
             }

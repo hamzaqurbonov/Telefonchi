@@ -67,13 +67,15 @@ public class HomeFragment extends Fragment {
             public void onItemClick(DocumentSnapshot documentSnapshot, int position) {
                 HomeModel noteMode = documentSnapshot.toObject(HomeModel.class);
                 String dokumentId = documentSnapshot.getId();
-                String path = documentSnapshot.getReference().getPath();
+                String pathlink = documentSnapshot.getReference().getPath();
 
                 String getMonth = adapter.getItem(position).getMonth();
 
                 Intent intent = new Intent(getContext(), HomeViewActivity.class);
                 intent.putExtra("month", getMonth);
-                intent.putExtra("docId", dokumentId);
+                intent.putExtra("docId1", dokumentId);
+//                intent.putExtra("pathlink", pathlink);
+//                Log.d("demo35", "true " + pathlink);
                 startActivity(intent);
 
             }

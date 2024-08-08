@@ -53,7 +53,7 @@ public class NotificationsFragment extends Fragment {
     DateTimeFormatter FormatObj = DateTimeFormatter.ofPattern("dd");
     String DateMMDD = DateObj.format(Format);
     String formattedDate = DateObj.format(FormatObj);
-
+    public List<String> activityllist = new ArrayList<>();
 
     public List<NotificationModel> activityList = new ArrayList<>();
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -95,7 +95,7 @@ public class NotificationsFragment extends Fragment {
                 for (DocumentChange doc : documentSnapshots.getDocumentChanges()) {
                     if (doc.getType() == DocumentChange.Type.ADDED) {
                         Log.d("demo28", "users doc "  + doc.getDocument().getId());
-
+//                        activityList.add(doc.getDocument().getId());
 
                         doc.getDocument().getReference().collection(doc.getDocument().getId()).whereNotEqualTo("finishSum", 0)
                                 .whereGreaterThanOrEqualTo("year", formattedDate)
@@ -128,7 +128,7 @@ public class NotificationsFragment extends Fragment {
                                             ));
 
 //                                        DashboardModel dashboardModel = doc.getDocument().toObject(DashboardModel.class);
-                                        Log.d("demo28", "collection2 "  + doc.getDocument().getReference().getPath() + " " +  doc.getDocument().getData());
+                                        Log.d("demo37", "collection2 "  + doc.getDocument().getReference().getPath() + " " +  "doc.getDocument().getData()");
 //                                        Log.d("demo28", "collection3 "  +  doc.getDocument().getData().get("name"));
 
                                             adapter = new NotificationAdapter(activityList);

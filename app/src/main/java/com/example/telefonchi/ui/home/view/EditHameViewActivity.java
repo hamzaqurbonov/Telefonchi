@@ -55,7 +55,7 @@ public class EditHameViewActivity extends AppCompatActivity {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     EditText nameEditId, nickEditId, yearEditId, totalSumEditId, startSumEditId, finishSumEditId, amountMonthEditId, sumMonthEditId, telEditId, commentEditId, editPaymentId;
     Button addContactId;
-    String docId, addTrue, collegGetId, collection;
+    String docId2, addTrue, collegGetId, collection, pathlink , pathlinkCollection;
     String nameEdit, nickEdit, yearEdit, totalSumEdit, startSumEdit, finishSumEdit, amountMonthEdit, sumMonthEdit, telEdit, commentEdit, paymentEdit;
     private RecyclerView recyclerView;
     public List<String> activityllist = new ArrayList<>();
@@ -94,13 +94,23 @@ public class EditHameViewActivity extends AppCompatActivity {
         Intent intentReceived = getIntent();
         Bundle extras = intentReceived.getExtras();
 //        getIntent().getExtras().getString("paymentEdit");
-        if (extras != null){
+//        if (extras != null){
             //collection Document ID
-            docId = getIntent().getExtras().getString("docId");
+            docId2 = getIntent().getExtras().getString("docId2");
             addTrue = getIntent().getExtras().getString("add");
             collegGetId = getIntent().getExtras().getString("collegGetId");
             collection = getIntent().getExtras().getString("collection");
+            pathlink = getIntent().getExtras().getString("pathlink");
 
+            if (Objects.equals(addTrue, "d")) {
+                pathlinkCollection  = getIntent().getExtras().getString("pathlink");
+
+            } else {
+                pathlinkCollection = getIntent().getExtras().getString("pathlinkCollection");
+//                Log.d("demo36", "EditActivityCreate B" + pathlinkCollection);
+            }
+
+             Log.d("demo36", "EditActivityCreate " + addTrue + " " + pathlinkCollection);
 
             nameEdit = extras.getString("nameEdit");
             nickEdit = extras.getString("nickEdit");
@@ -113,8 +123,9 @@ public class EditHameViewActivity extends AppCompatActivity {
             telEdit = String.valueOf(extras.getInt("telEdit"));
             commentEdit = extras.getString("commentEdit");
             paymentEdit = String.valueOf(extras.getInt("paymentEdit"));
-        }
+//        }
 
+        Log.d("demo36", "EditActivityCreate " + collection);
 //        if(Integer.parseInt(amountMonthEdit) == 0) {
 ////                    Toast.makeText(v.getContext(),  "To'lov oyini ko'rsating!", Toast.LENGTH_SHORT).show();
 ////                    amountMonthEditId.setTextColor(Color.RED);
@@ -139,7 +150,7 @@ public class EditHameViewActivity extends AppCompatActivity {
 
 
 // android:enabled="false"
-        if(Objects.equals(addTrue, "b")) {
+        if(Objects.equals(addTrue, "b") || Objects.equals(addTrue, "d")) {
             yearEditId.setEnabled(false);
             amountMonthEditId.setEnabled(false);
             totalSumEditId.setEnabled(false);
@@ -185,9 +196,9 @@ public class EditHameViewActivity extends AppCompatActivity {
                     return;
                 }
 
-                if(Objects.equals(addTrue, "b")) {
+                if(Objects.equals(addTrue, "b") || Objects.equals(addTrue, "d")) {
                     Intent i = new Intent(EditHameViewActivity.this, HomeViewActivity.class);
-                    db.collection("users").document(collection + "/" + collection + "/" + collegGetId)
+                    db.document(pathlinkCollection)
                             .set(nestedData)
                             .addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
@@ -199,20 +210,32 @@ public class EditHameViewActivity extends AppCompatActivity {
                                 public void onFailure(@NonNull Exception e) {
                                 }
                             });
-                    DocumentReference Data = db.collection("users").document(collection + "/" + collection + "/" + collegGetId);
+                    DocumentReference Data = db.document(pathlinkCollection);
 //                    nestedData.update("timestamp", FieldValue.serverTimestamp());
                     Data.update("addSum", FieldValue.arrayUnion(formattedDate + " йил " + editPaymentId.getText().toString() + " сўм"));
                     Data.update("payment", FieldValue.increment(Long.parseLong(paymentEdit)));
-                    Refresh();
+//                    Refresh();
+                    Log.d("demo38", "addTrue, b  " + addTrue + " "+ pathlinkCollection);
+
+                    Bundle data1 = new Bundle();
+                    data1.putString("docId1",  collection);
+                    i.putExtras(data1);
+                    Log.d("demo38", "EditActivity " + collection);
                     nestedData.clear();
                     startActivity(i);
                     finish();
 
                 } else if (Objects.equals(addTrue, "a"))
                 {
+                    Log.d("demo38", "addTrue, a  " +  addTrue  + " " + pathlinkCollection);
                     Intent i = new Intent(EditHameViewActivity.this, HomeViewActivity.class);
                     CollectionReference citiesRef = db.collection("users");
-                    citiesRef.document(docId).collection(docId).add(nestedData);
+                    citiesRef.document(docId2).collection(docId2).add(nestedData);
+                    Log.d("demo36", "true " + docId2);
+
+                    Bundle data1 = new Bundle();
+                    data1.putString("docId1", docId2);
+                    i.putExtras(data1);
                     startActivity(i);
                     finish();
                 }
@@ -240,7 +263,7 @@ private void Db() {
                 if (document.exists()) {
 
                     activityllist = (ArrayList<String>) document.get("addSum");
-                    Log.d("demo17", "Map  " + activityllist.toString());
+                    Log.d("demo38", "Db  " + pathlinkCollection);
                     refreshAdapter(activityllist);
 
                 }
