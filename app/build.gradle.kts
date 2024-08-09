@@ -65,4 +65,8 @@ dependencies {
     implementation ("com.google.firebase:firebase-core:21.1.1")
     implementation ("com.firebaseui:firebase-ui-firestore:7.1.1")
 
+    // swiperefreshlayout()
+    implementation ("androidx.recyclerview:recyclerview:1.1.0")
+    implementation ("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
+
 }
