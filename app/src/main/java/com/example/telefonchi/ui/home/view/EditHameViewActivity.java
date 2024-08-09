@@ -1,6 +1,7 @@
 package com.example.telefonchi.ui.home.view;
 
 import android.annotation.SuppressLint;
+import android.app.Notification;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -109,7 +110,7 @@ public class EditHameViewActivity extends AppCompatActivity {
                 pathlinkCollection = getIntent().getExtras().getString("pathlinkCollection");
 //                Log.d("demo36", "EditActivityCreate B" + pathlinkCollection);
             }
-
+             Log.d("demo39", "EditActivityCreate  " + pathlinkCollection + " " + docId2 + " " + collegGetId + " " + pathlink);
              Log.d("demo36", "EditActivityCreate " + addTrue + " " + pathlinkCollection);
 
             nameEdit = extras.getString("nameEdit");
@@ -196,8 +197,10 @@ public class EditHameViewActivity extends AppCompatActivity {
                     return;
                 }
 
-                if(Objects.equals(addTrue, "b") || Objects.equals(addTrue, "d")) {
+                if(Objects.equals(addTrue, "b")) {
+
                     Intent i = new Intent(EditHameViewActivity.this, HomeViewActivity.class);
+
                     db.document(pathlinkCollection)
                             .set(nestedData)
                             .addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -217,13 +220,45 @@ public class EditHameViewActivity extends AppCompatActivity {
 //                    Refresh();
                     Log.d("demo38", "addTrue, b  " + addTrue + " "+ pathlinkCollection);
 
-                    Bundle data1 = new Bundle();
-                    data1.putString("docId1",  collection);
-                    i.putExtras(data1);
-                    Log.d("demo38", "EditActivity " + collection);
-                    nestedData.clear();
-                    startActivity(i);
-                    finish();
+
+                        Bundle data1 = new Bundle();
+                        data1.putString("docId1",  collection);
+                        i.putExtras(data1);
+                        Log.d("demo38", "EditActivity " + collection);
+                        nestedData.clear();
+                        startActivity(i);
+                        finish();
+
+
+                } else if(Objects.equals(addTrue, "d")) {
+//                    Intent i = new Intent(EditHameViewActivity.this, EditHameViewActivity.class);
+                    db.document(pathlinkCollection)
+                            .set(nestedData)
+                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void aVoid) {
+                                }
+                            })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                }
+                            });
+                    DocumentReference Data = db.document(pathlinkCollection);
+//                    nestedData.update("timestamp", FieldValue.serverTimestamp());
+                    Data.update("addSum", FieldValue.arrayUnion(formattedDate + " йил " + editPaymentId.getText().toString() + " сўм"));
+                    Data.update("payment", FieldValue.increment(Long.parseLong(paymentEdit)));
+
+                    editPaymentId.setText("0");
+                    Refresh();
+                    Log.d("demo38", "addTrue, b  " + addTrue + " "+ pathlinkCollection);
+
+//                    Bundle data1 = new Bundle();
+//                    data1.putString("docId1",  collection);
+//                    i.putExtras(data1);
+//                    Log.d("demo38", "EditActivity " + collection);
+//                    nestedData.clear();
+//                    startActivity(i);
 
                 } else if (Objects.equals(addTrue, "a"))
                 {
@@ -255,22 +290,45 @@ public class EditHameViewActivity extends AppCompatActivity {
 
 
 private void Db() {
-          db.collection("users").document(collection + "/" + collection + "/" + collegGetId).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-        @Override
-        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-            if (task.isSuccessful()) {
-                DocumentSnapshot document = task.getResult();
-                if (document.exists()) {
 
-                    activityllist = (ArrayList<String>) document.get("addSum");
-                    Log.d("demo38", "Db  " + pathlinkCollection);
-                    refreshAdapter(activityllist);
+    if(Objects.equals(addTrue, "d") || Objects.equals(addTrue, "b")) {
+        db.document(pathlinkCollection).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
 
+                        activityllist = (ArrayList<String>) document.get("addSum");
+                        Log.d("demo39", "Db1  " + pathlinkCollection + " " + docId2 + " " + collegGetId + " " + pathlink);
+                        refreshAdapter(activityllist);
+
+                    }
                 }
             }
-        }
 
-    });
+        });
+
+    }
+//    else {
+//          db.collection("users").document(docId2 + "/" + docId2 + "/" + collegGetId).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+//        @Override
+//        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+//            if (task.isSuccessful()) {
+//                DocumentSnapshot document = task.getResult();
+//                if (document.exists()) {
+//
+//                    activityllist = (ArrayList<String>) document.get("addSum");
+//                    Log.d("demo39", "Db2  " + pathlinkCollection + " " + docId2 + " " + collegGetId + " " + pathlink);
+//                    refreshAdapter(activityllist);
+//
+//                }
+//            }
+//        }
+//
+//    });
+//
+//    }
 
 }
 

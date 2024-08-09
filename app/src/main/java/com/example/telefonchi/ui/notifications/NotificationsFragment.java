@@ -73,6 +73,7 @@ public class NotificationsFragment extends Fragment {
 
     @SuppressLint("SetTextI18n")
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
         View view =    inflater.inflate(R.layout.fragment_notifications, container, false);
 
         recyclerView = view.findViewById(R.id.recycler_notification_Id);
@@ -151,6 +152,12 @@ public class NotificationsFragment extends Fragment {
         return view;
     }
 
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+  
+        super.onCreate(savedInstanceState);
+    }
 
 //    private void setOnClickListner() {
 //
