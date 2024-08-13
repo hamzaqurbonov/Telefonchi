@@ -57,7 +57,7 @@ public class HomeViewActivity extends AppCompatActivity {
 
     private HomeViewAdapter adapterInt;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    String month, docId1, pathlink;
+    String month, docId1, pathlink, monthData;
     TextView nameTextView, textViewAmountId, textViewTotolId;
     Button addButtonId;
     private RecyclerView recyclerViewInt;
@@ -79,13 +79,27 @@ public class HomeViewActivity extends AppCompatActivity {
         textViewAmountId = findViewById(R.id.textViewAmount_id);
         textViewTotolId = findViewById(R.id.textViewTotol_id);
 
-
+        addButtonId = findViewById(R.id.add_button_id);
         recyclerViewInt = findViewById(R.id.recycler_home_view_ID);
 
         month = getIntent().getExtras().getString("month");
         docId1 = getIntent().getExtras().getString("docId1");
         pathlink = getIntent().getExtras().getString("pathlink");
-        Log.d("demo36", "HomeViewActivity " + docId1);
+        monthData = getIntent().getExtras().getString("monthData");
+
+
+
+
+        DateTimeFormatter FormatObj = DateTimeFormatter.ofPattern("MM");
+        String monthFormat = DateObj.format(FormatObj);
+//        Log.d("demo40", "FormatObj " + monthFormat + " " + monthData);
+        if(monthData.equals(monthFormat)) {
+            Log.d("demo40", "if " + monthFormat + " " + monthData);
+            addButtonId.setEnabled(true);
+        }  else {
+            Log.d("demo40", "else " + monthFormat + " " + monthData);
+            addButtonId.setEnabled(false);
+        }
 
         activityllist = Collections.singletonList(getIntent().getExtras().getString("docId1"));
 
@@ -174,7 +188,7 @@ public class HomeViewActivity extends AppCompatActivity {
     }
 
     private void AddButton() {
-        addButtonId = findViewById(R.id.add_button_id);
+
         addButtonId.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

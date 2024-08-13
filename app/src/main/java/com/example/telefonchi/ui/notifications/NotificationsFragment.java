@@ -49,7 +49,7 @@ import java.util.Map;
 public class NotificationsFragment extends Fragment {
 
 //    private NotificationAdapter.RecyclerViewClickListner listner;
-    public SwipeRefreshLayout swipeRefreshLayout;
+    private SwipeRefreshLayout swipeRefreshLayout;
     LocalDateTime DateObj = LocalDateTime.now();
     DateTimeFormatter Format = DateTimeFormatter.ofPattern("dd.MM.yyyy");
     DateTimeFormatter FormatObj = DateTimeFormatter.ofPattern("dd");
@@ -91,6 +91,22 @@ public class NotificationsFragment extends Fragment {
 
         Log.d("demo32", "Error : " + formattedDate);
 
+        Db();
+
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                swipeRefreshLayout.setRefreshing(false);
+                activityList.clear();
+                Db();
+            }
+        });
+
+
+        return view;
+    }
+
+    public void Db() {
         db.collection("users").addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(QuerySnapshot documentSnapshots, FirebaseFirestoreException e) {
@@ -106,143 +122,53 @@ public class NotificationsFragment extends Fragment {
                                 .whereGreaterThanOrEqualTo("year", formattedDate)
                                 .whereLessThanOrEqualTo("year",  formattedDate + "\uf8ff")
                                 .addSnapshotListener(new EventListener<QuerySnapshot>() {
-                            @Override
-                            public void onEvent(QuerySnapshot documentSnapshots, FirebaseFirestoreException e) {
-                                if (e != null) {
-                                    Log.d("demo28",  "collection1 "+ "Error : " + e.getMessage());
-                                } else {
+                                    @Override
+                                    public void onEvent(QuerySnapshot documentSnapshots, FirebaseFirestoreException e) {
+                                        if (e != null) {
+                                            Log.d("demo28",  "collection1 "+ "Error : " + e.getMessage());
+                                        } else {
 
-                                    for (DocumentChange doc : documentSnapshots.getDocumentChanges()) {
-                                        if (doc.getType() == DocumentChange.Type.ADDED) {
+                                            for (DocumentChange doc : documentSnapshots.getDocumentChanges()) {
+                                                if (doc.getType() == DocumentChange.Type.ADDED) {
 //
-                                            Map<String, Object> values = doc.getDocument().getData();
+                                                    Map<String, Object> values = doc.getDocument().getData();
 ////
-                                            activityList.add(new NotificationModel(
-                                                    (String) values.get("name"),
-                                                    (String) values.get("nick"),
-                                                    (String) values.get("comment"),
-                                                    (String) values.get("year"),
-                                                    Integer.parseInt(values.get("totalSum").toString()),
-                                                    Integer.parseInt(values.get("startSum").toString()),
-                                                    Integer.parseInt(values.get("finishSum").toString()),
-                                                    Integer.parseInt(values.get("amountMonth").toString()),
-                                                    Integer.parseInt(values.get("sumMonth").toString()),
-                                                    Integer.parseInt(values.get("tel").toString()),
-                                                    Integer.parseInt(values.get("payment").toString()),
-                                                    doc.getDocument().getReference().getPath()
-                                            ));
+                                                    activityList.add(new NotificationModel(
+                                                            (String) values.get("name"),
+                                                            (String) values.get("nick"),
+                                                            (String) values.get("comment"),
+                                                            (String) values.get("year"),
+                                                            Integer.parseInt(values.get("totalSum").toString()),
+                                                            Integer.parseInt(values.get("startSum").toString()),
+                                                            Integer.parseInt(values.get("finishSum").toString()),
+                                                            Integer.parseInt(values.get("amountMonth").toString()),
+                                                            Integer.parseInt(values.get("sumMonth").toString()),
+                                                            Integer.parseInt(values.get("tel").toString()),
+                                                            Integer.parseInt(values.get("payment").toString()),
+                                                            doc.getDocument().getReference().getPath()
+                                                    ));
 
 //                                        DashboardModel dashboardModel = doc.getDocument().toObject(DashboardModel.class);
-                                        Log.d("demo37", "collection2 "  + doc.getDocument().getReference().getPath() + " " +  "doc.getDocument().getData()");
+                                                    Log.d("demo37", "collection2 "  + doc.getDocument().getReference().getPath() + " " +  "doc.getDocument().getData()");
 //                                        Log.d("demo28", "collection3 "  +  doc.getDocument().getData().get("name"));
 
 //                                            adapter = new NotificationAdapter(activityList);
 //                                            recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 1));
 //                                            recyclerView.setAdapter(adapter);
 //                                            setOnClickListner();
-                                            recycler();
+                                                    recycler();
 
-
-
-                                        }
-                                    }
-                                }
-
-                            }
-
-
-
-                        });
-                    }
-
-                }
-
-            }});
-
-        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                swipeRefreshLayout.setRefreshing(false);
-
-                activityList.clear();
-                db.collection("users").addSnapshotListener(new EventListener<QuerySnapshot>() {
-                    @Override
-                    public void onEvent(QuerySnapshot documentSnapshots, FirebaseFirestoreException e) {
-                        if (e != null) {
-                            Log.d("demo28", "Error : " + e.getMessage());
-                        }
-                        for (DocumentChange doc : documentSnapshots.getDocumentChanges()) {
-                            if (doc.getType() == DocumentChange.Type.ADDED) {
-                                Log.d("demo28", "users doc "  + doc.getDocument().getId());
-//                        activityList.add(doc.getDocument().getId());
-
-                                doc.getDocument().getReference().collection(doc.getDocument().getId()).whereNotEqualTo("finishSum", 0)
-                                        .whereGreaterThanOrEqualTo("year", formattedDate)
-                                        .whereLessThanOrEqualTo("year",  formattedDate + "\uf8ff")
-                                        .addSnapshotListener(new EventListener<QuerySnapshot>() {
-                                            @Override
-                                            public void onEvent(QuerySnapshot documentSnapshots, FirebaseFirestoreException e) {
-                                                if (e != null) {
-                                                    Log.d("demo28",  "collection1 "+ "Error : " + e.getMessage());
-                                                } else {
-
-                                                    for (DocumentChange doc : documentSnapshots.getDocumentChanges()) {
-                                                        if (doc.getType() == DocumentChange.Type.ADDED) {
-//
-                                                            Map<String, Object> values = doc.getDocument().getData();
-////
-                                                            activityList.add(new NotificationModel(
-                                                                    (String) values.get("name"),
-                                                                    (String) values.get("nick"),
-                                                                    (String) values.get("comment"),
-                                                                    (String) values.get("year"),
-                                                                    Integer.parseInt(values.get("totalSum").toString()),
-                                                                    Integer.parseInt(values.get("startSum").toString()),
-                                                                    Integer.parseInt(values.get("finishSum").toString()),
-                                                                    Integer.parseInt(values.get("amountMonth").toString()),
-                                                                    Integer.parseInt(values.get("sumMonth").toString()),
-                                                                    Integer.parseInt(values.get("tel").toString()),
-                                                                    Integer.parseInt(values.get("payment").toString()),
-                                                                    doc.getDocument().getReference().getPath()
-                                                            ));
-
-//                                        DashboardModel dashboardModel = doc.getDocument().toObject(DashboardModel.class);
-                                                            Log.d("demo37", "collection2 "  + doc.getDocument().getReference().getPath() + " " +  "doc.getDocument().getData()");
-//                                        Log.d("demo28", "collection3 "  +  doc.getDocument().getData().get("name"));
-
-//                                            adapter = new NotificationAdapter(activityList);
-//                                            recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 1));
-//                                            recyclerView.setAdapter(adapter);
-//                                            setOnClickListner();
-                                                            recycler();
-
-
-
-                                                        }
-                                                    }
                                                 }
-
                                             }
+                                        }
 
-
-
-                                        });
+                                    }
+                                });
                             }
-
                         }
 
-                    }});
-
-
-
-
-            }
-        });
-
-
-        return view;
+                 }});
     }
-
 
     public void recycler() {
         adapter = new NotificationAdapter(activityList);

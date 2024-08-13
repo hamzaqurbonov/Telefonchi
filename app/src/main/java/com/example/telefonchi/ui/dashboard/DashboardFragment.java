@@ -25,6 +25,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.telefonchi.R;
 import com.example.telefonchi.databinding.FragmentDashboardBinding;
@@ -53,6 +54,7 @@ import java.util.concurrent.Flow;
 
 public class DashboardFragment extends Fragment {
     DashboardModel dashboardModel;
+    private SwipeRefreshLayout swipeRefreshLayout;
     public List<DashboardModel> activityList = new ArrayList<>();
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference hadRef = db.collection("users/Yanvar/Yanvar");
@@ -72,6 +74,8 @@ public class DashboardFragment extends Fragment {
 //        View root = binding.getRoot();
         View view =    inflater.inflate(R.layout.fragment_dashboard, container, false);
 
+        swipeRefreshLayout = view. findViewById(R.id.swipeRefreshLayout);
+
         recyclerView = view.findViewById(R.id.recycler_dashboard_Id);
 
         toolbar = view.findViewById( R.id.toolbar_search_dash);
@@ -80,6 +84,25 @@ public class DashboardFragment extends Fragment {
         activity.setSupportActionBar(toolbar );
         activity.getSupportActionBar().setTitle("");
 
+
+
+        Db();
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                swipeRefreshLayout.setRefreshing(false);
+                activityList.clear();
+                Db();
+
+            }
+        });
+
+
+        return view;
+    }
+
+
+    public void Db () {
         db.collection("users").addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(QuerySnapshot documentSnapshots, FirebaseFirestoreException e) {
@@ -103,20 +126,20 @@ public class DashboardFragment extends Fragment {
 //
                                         Map<String, Object> values = doc.getDocument().getData();
 ////
-                                            activityList.add(new DashboardModel(
-                                                    (String) values.get("name"),
-                                                    (String) values.get("nick"),
-                                                    (String) values.get("comment"),
-                                                    (String) values.get("year"),
-                                                    Integer.parseInt(values.get("totalSum").toString()),
-                                                    Integer.parseInt(values.get("startSum").toString()),
-                                                    Integer.parseInt(values.get("finishSum").toString()),
-                                                    Integer.parseInt(values.get("amountMonth").toString()),
-                                                    Integer.parseInt(values.get("sumMonth").toString()),
-                                                    Integer.parseInt(values.get("tel").toString()),
-                                                    Integer.parseInt(values.get("payment").toString()),
-                                                    doc.getDocument().getReference().getPath()
-                                            ));
+                                        activityList.add(new DashboardModel(
+                                                (String) values.get("name"),
+                                                (String) values.get("nick"),
+                                                (String) values.get("comment"),
+                                                (String) values.get("year"),
+                                                Integer.parseInt(values.get("totalSum").toString()),
+                                                Integer.parseInt(values.get("startSum").toString()),
+                                                Integer.parseInt(values.get("finishSum").toString()),
+                                                Integer.parseInt(values.get("amountMonth").toString()),
+                                                Integer.parseInt(values.get("sumMonth").toString()),
+                                                Integer.parseInt(values.get("tel").toString()),
+                                                Integer.parseInt(values.get("payment").toString()),
+                                                doc.getDocument().getReference().getPath()
+                                        ));
 
 //                                        DashboardModel dashboardModel = doc.getDocument().toObject(DashboardModel.class);
 //                                        Log.d("demo28", "collection2 "  + doc.getDocument().getId() + " " +  doc.getDocument().getData());
@@ -135,10 +158,8 @@ public class DashboardFragment extends Fragment {
                 }
 
             }});
-
-
-        return view;
     }
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

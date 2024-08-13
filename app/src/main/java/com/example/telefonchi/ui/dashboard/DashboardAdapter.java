@@ -76,7 +76,7 @@ public class DashboardAdapter  extends RecyclerView.Adapter<DashboardAdapter .Vi
 
                 intent.putExtra("pathlink", modal.getPathlink());
 //                intent.putExtra("collection", (CharSequence) activityllist.get(0));
-                intent.putExtra("add", "b");
+                intent.putExtra("add", "d");
 
 
 
