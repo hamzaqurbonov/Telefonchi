@@ -49,7 +49,7 @@ public class HomeFragment extends Fragment {
 
     private void setUpRecyclerView() {
 
-        Query query = hadRef.orderBy("month", Query.Direction.DESCENDING);
+        Query query = hadRef.orderBy("number", Query.Direction.ASCENDING);
 
         FirestoreRecyclerOptions<HomeModel> options = new FirestoreRecyclerOptions.Builder<HomeModel>().setQuery(query, HomeModel.class).build();
 
@@ -57,7 +57,7 @@ public class HomeFragment extends Fragment {
         adapter = new HomeAdapter(options);
 
         recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new GridLayoutManager(getContext(),1  ));
+        recyclerView.setLayoutManager(new GridLayoutManager(getContext(),2  ));
 
         recyclerView.setAdapter(adapter);
 
@@ -70,22 +70,26 @@ public class HomeFragment extends Fragment {
                 String pathlink = documentSnapshot.getReference().getPath();
 
                 String getMonth = adapter.getItem(position).getMonth();
+                String monthData = adapter.getItem(position).getColour();
 
                 Intent intent = new Intent(getContext(), HomeViewActivity.class);
                 intent.putExtra("month", getMonth);
                 intent.putExtra("docId1", dokumentId);
-                if (dokumentId.equals("January")) intent.putExtra("monthData", "01");
-                if (dokumentId.equals("February")) intent.putExtra("monthData", "02");
-                if (dokumentId.equals("March")) intent.putExtra("monthData", "03");
-                if (dokumentId.equals("April")) intent.putExtra("monthData", "04");
-                if (dokumentId.equals("May")) intent.putExtra("monthData", "05");
-                if (dokumentId.equals("June")) intent.putExtra("monthData", "06");
-                if (dokumentId.equals("July")) intent.putExtra("monthData", "07");
-                if (dokumentId.equals("Avgust")) intent.putExtra("monthData", "08");
-                if (dokumentId.equals("September")) intent.putExtra("monthData", "09");
-                if (dokumentId.equals("October")) intent.putExtra("monthData", "10");
-                if (dokumentId.equals("November")) intent.putExtra("monthData", "11");
-                if (dokumentId.equals("December")) intent.putExtra("monthData", "12");
+                intent.putExtra("monthData", monthData);
+
+
+//                if (dokumentId.equals("January")) intent.putExtra("monthData", "01");
+//                if (dokumentId.equals("February")) intent.putExtra("monthData", "02");
+//                if (dokumentId.equals("March")) intent.putExtra("monthData", "03");
+//                if (dokumentId.equals("April")) intent.putExtra("monthData", "04");
+//                if (dokumentId.equals("May")) intent.putExtra("monthData", "05");
+//                if (dokumentId.equals("June")) intent.putExtra("monthData", "06");
+//                if (dokumentId.equals("July")) intent.putExtra("monthData", "07");
+//                if (dokumentId.equals("Avgust")) intent.putExtra("monthData", "08");
+//                if (dokumentId.equals("September")) intent.putExtra("monthData", "09");
+//                if (dokumentId.equals("October")) intent.putExtra("monthData", "10");
+//                if (dokumentId.equals("November")) intent.putExtra("monthData", "11");
+//                if (dokumentId.equals("December")) intent.putExtra("monthData", "12");
 //                Log.d("demo40", "HomeFragment " + dokumentId );
 //                intent.putExtra("pathlink", pathlink);
 //                Log.d("demo35", "true " + pathlink);
