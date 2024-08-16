@@ -44,7 +44,7 @@ public class HomeAdapter extends FirestoreRecyclerAdapter<HomeModel, HomeAdapter
         DateTimeFormatter FormatObj = DateTimeFormatter.ofPattern("MM");
         String formattedDate = DateObj.format(FormatObj);
 
-
+        Log.d("demo40", "Adapter " + noteModel.getColour() + " " + formattedDate);
 
         holder.homeIdMonth.setText(noteModel.getMonth());
         if(Objects.equals(noteModel.getColour(), formattedDate)) {
@@ -56,6 +56,7 @@ public class HomeAdapter extends FirestoreRecyclerAdapter<HomeModel, HomeAdapter
 //                lll = 1;
 //          }
 //            Log.d("demo10", String.valueOf(lll));
+
         }
 
     }

@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Html;
+import android.text.InputType;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -89,7 +90,7 @@ public class EditHameViewActivity extends AppCompatActivity {
 //        editPaymentId.setHint(Html.fromHtml("Qolgan summa <font color =\"#cc0029\" >0</font>"));
         editPaymentId.setTextColor(Color.GREEN);
 
-
+//        yearEditId.setInputType(InputType.TYPE_NULL);
 
         //HomeViewAdapter getEdit getIntent()
         Intent intentReceived = getIntent();
@@ -158,6 +159,7 @@ public class EditHameViewActivity extends AppCompatActivity {
             startSumEditId.setEnabled(false);
         } else if (Objects.equals(addTrue, "a")) {
             editPaymentId.setEnabled(false);
+            yearEditId.setEnabled(true);
         }
 
         addContactId.setOnClickListener(new View.OnClickListener() {
@@ -262,14 +264,39 @@ public class EditHameViewActivity extends AppCompatActivity {
 
                 } else if (Objects.equals(addTrue, "a"))
                 {
-                    Log.d("demo38", "addTrue, a  " +  addTrue  + " " + pathlinkCollection);
+
+//                    DateTimeFormatter FormatObj = DateTimeFormatter.ofPattern("MM");
+//                    String monthDate1 = DateObj.format(FormatObj);
+
+                    ArrayList<String> data = new ArrayList<>();
+                    for(char c: yearEditId.getText().toString().toCharArray()) {
+                        data.add(String.valueOf(c));
+                    }
+                    String monthDate2 = data.get(3) + data.get(4);
+                    String month = "";
+
+                if (monthDate2.equals("01")) month = "January";
+                if (monthDate2.equals("02")) month = "February";
+                if (monthDate2.equals("03")) month = "March";
+                if (monthDate2.equals("04")) month = "April";
+                if (monthDate2.equals("05")) month = "May";
+                if (monthDate2.equals("06")) month = "June";;
+                if (monthDate2.equals("07")) month = "July";
+                if (monthDate2.equals("08")) month = "Avgust";
+                if (monthDate2.equals("09")) month = "September";
+                if (monthDate2.equals("10")) month = "October";
+                if (monthDate2.equals("11")) month = "November";
+                if (monthDate2.equals("12")) month = "December";
+
+                    Log.d("demo41", "EditActivity " + month);
+//
                     Intent i = new Intent(EditHameViewActivity.this, HomeViewActivity.class);
                     CollectionReference citiesRef = db.collection("users");
-                    citiesRef.document(docId2).collection(docId2).add(nestedData);
+                    citiesRef.document(month).collection(month).add(nestedData);
                     Log.d("demo36", "true " + docId2);
 
                     Bundle data1 = new Bundle();
-                    data1.putString("docId1", docId2);
+                    data1.putString("docId1", month);
                     i.putExtras(data1);
                     startActivity(i);
                     finish();
