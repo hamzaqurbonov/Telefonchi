@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.Notification;
 import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.Html;
 import android.text.InputType;
@@ -22,12 +23,14 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.telefonchi.MainActivity;
 import com.example.telefonchi.R;
 import com.example.telefonchi.ui.home.HomeViewActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -47,7 +50,7 @@ import java.util.Objects;
 
 public class EditHameViewActivity extends AppCompatActivity {
     EditHameViewActivityAdapter adapter;
-
+    int clickTel;
     LocalDateTime DateObj = LocalDateTime.now();
     DateTimeFormatter FormatObj = DateTimeFormatter.ofPattern("dd.MM.yyyy");
     String formattedDate = DateObj.format(FormatObj);
@@ -157,6 +160,7 @@ public class EditHameViewActivity extends AppCompatActivity {
             amountMonthEditId.setEnabled(false);
             totalSumEditId.setEnabled(false);
             startSumEditId.setEnabled(false);
+//            telEditId.setEnabled(false);
         } else if (Objects.equals(addTrue, "a")) {
             editPaymentId.setEnabled(false);
             yearEditId.setEnabled(true);
@@ -288,23 +292,51 @@ public class EditHameViewActivity extends AppCompatActivity {
                 if (monthDate2.equals("11")) month = "November";
                 if (monthDate2.equals("12")) month = "December";
 
-                    Log.d("demo41", "EditActivity " + month);
+//                    Log.d("demo41", "EditActivity " + month);
 //
                     Intent i = new Intent(EditHameViewActivity.this, HomeViewActivity.class);
                     CollectionReference citiesRef = db.collection("users");
-                    citiesRef.document(month).collection(month).add(nestedData);
+                    citiesRef.document(docId2).collection(docId2).add(nestedData);
                     Log.d("demo36", "true " + docId2);
 
                     Bundle data1 = new Bundle();
                     data1.putString("docId1", month);
                     i.putExtras(data1);
                     startActivity(i);
-                    finish();
+//                    finish();
                 }
 
             }
 
         });
+
+
+//        TextInputEditText telEditId = findViewById(R.id.edit_tel_id);
+//        Button callButton = findViewById(R.id.edit_tel_input); // Бу сиз босадиган кнопка
+
+        telEditId.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                clickTel++;
+                Log.d("demo42", "true " + clickTel);
+                String phoneNumber = telEditId.getText().toString().trim();
+                if (!phoneNumber.isEmpty() && clickTel >= 2 ) {
+                    // Телефон рақамга "tel:" префиксини қўшиш
+                    String dial = "tel:+998" + phoneNumber;
+
+                    // Intent ёрдамида телефон қилувчи иловага ўтиш
+                    Intent intent = new Intent(Intent.ACTION_DIAL);
+                    intent.setData(Uri.parse(dial));
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(EditHameViewActivity.this, "Телефон рақамини киритинг", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+
+
+
 
         Db();
 
