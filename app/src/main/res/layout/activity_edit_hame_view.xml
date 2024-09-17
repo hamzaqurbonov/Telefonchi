@@ -68,7 +68,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:enabled="false"
-        android:inputType="date"
+        android:inputType="number"
         app:helperTextTextColor="#125AEA"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edit_nick_input"
@@ -79,6 +79,8 @@
             android:id="@+id/edit_year_id"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:inputType="date"
+            android:maxLength="10"
             android:hint="Yil"
              />
     </com.google.android.material.textfield.TextInputLayout>

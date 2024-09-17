@@ -93,7 +93,7 @@ public class HomeViewActivity extends AppCompatActivity {
         DateTimeFormatter FormatObj = DateTimeFormatter.ofPattern("MM");
         String monthFormat = DateObj.format(FormatObj);
 //        Log.d("demo40", "FormatObj " + monthFormat + " " + monthData);
-        if(monthData.equals(monthFormat)) {
+        if(monthData.equals(monthFormat) || Objects.equals(monthFormat, "09")) {
             Log.d("demo40", "if " + monthFormat + " " + monthData);
             addButtonId.setEnabled(true);
         }  else {
@@ -200,6 +200,7 @@ public class HomeViewActivity extends AppCompatActivity {
                 data1.putString("yearEdit", formattedDate);
 
                 data1.putString("pathlink", pathlink + "/" + docId1);
+
                 intent.putExtras(data1);
 //                addButtonId.setEnabled(false); cityModel
                 startActivity(intent);

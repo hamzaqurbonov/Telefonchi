@@ -153,15 +153,22 @@ public class EditHameViewActivity extends AppCompatActivity {
         editPaymentId.setText("0");
 
 
-
 // android:enabled="false"
+        LocalDateTime Date = LocalDateTime.now();
+        DateTimeFormatter Format = DateTimeFormatter.ofPattern("MM");
+        String format = Date.format(Format);
+
+
         if(Objects.equals(addTrue, "b") || Objects.equals(addTrue, "d")) {
             yearEditId.setEnabled(false);
             amountMonthEditId.setEnabled(false);
             totalSumEditId.setEnabled(false);
             startSumEditId.setEnabled(false);
 //            telEditId.setEnabled(false);
-        } else if (Objects.equals(addTrue, "a")) {
+        } else if (Objects.equals(addTrue, "a")  && Objects.equals(format, "09")) {
+
+            Log.d("demo43", "EditActivityCreate " + format);
+
             editPaymentId.setEnabled(false);
             yearEditId.setEnabled(true);
         }
@@ -279,25 +286,52 @@ public class EditHameViewActivity extends AppCompatActivity {
                     String monthDate2 = data.get(3) + data.get(4);
                     String month = "";
 
-                if (monthDate2.equals("01")) month = "January";
-                if (monthDate2.equals("02")) month = "February";
-                if (monthDate2.equals("03")) month = "March";
-                if (monthDate2.equals("04")) month = "April";
-                if (monthDate2.equals("05")) month = "May";
-                if (monthDate2.equals("06")) month = "June";;
-                if (monthDate2.equals("07")) month = "July";
-                if (monthDate2.equals("08")) month = "Avgust";
-                if (monthDate2.equals("09")) month = "September";
-                if (monthDate2.equals("10")) month = "October";
-                if (monthDate2.equals("11")) month = "November";
-                if (monthDate2.equals("12")) month = "December";
+                    switch (monthDate2) {
+                        case "01":
+                            month = "January";
+                            break;
+                        case "02":
+                            month = "February";
+                            break;
+                        case "03":
+                            month = "March";
+                            break;
+                        case "04":
+                            month = "April";
+                            break;
+                        case "05":
+                            month = "May";
+                            break;
+                        case "06":
+                            month = "June";
+                            break;
+                        case "07":
+                            month = "July";
+                            break;
+                        case "08":
+                            month = "Avgust";
+                            break;
+                        case "09":
+                            month = "September";
+                            break;
+                        case "10":
+                            month = "October";
+                            break;
+                        case "11":
+                            month = "November";
+                            break;
+                        case "12":
+                            month = "December";
+                            break;
+                        default:
+                            Toast.makeText(v.getContext(), "Сана хато киритилаяпти!", Toast.LENGTH_SHORT).show();
+                            return;
+                    }
 
-//                    Log.d("demo41", "EditActivity " + month);
-//
                     Intent i = new Intent(EditHameViewActivity.this, HomeViewActivity.class);
                     CollectionReference citiesRef = db.collection("users");
-                    citiesRef.document(docId2).collection(docId2).add(nestedData);
-                    Log.d("demo36", "true " + docId2);
+                    citiesRef.document(month).collection(month).add(nestedData);
+                    Log.d("demo43", "true " + docId2 + " " + monthDate2 + " " + month);
 
                     Bundle data1 = new Bundle();
                     data1.putString("docId1", month);
