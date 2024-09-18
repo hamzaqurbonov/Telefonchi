@@ -77,7 +77,7 @@ public class HomeFragment extends Fragment {
                 intent.putExtra("docId1", dokumentId);
                 intent.putExtra("monthData", monthData);
 
-
+                Log.d("demo40", "true " + monthData);
 //                if (dokumentId.equals("January")) intent.putExtra("monthData", "01");
 //                if (dokumentId.equals("February")) intent.putExtra("monthData", "02");
 //                if (dokumentId.equals("March")) intent.putExtra("monthData", "03");
