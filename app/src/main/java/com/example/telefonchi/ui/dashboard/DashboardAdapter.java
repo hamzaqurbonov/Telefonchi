@@ -21,11 +21,15 @@ import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.firestore.DocumentSnapshot;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
 public class DashboardAdapter  extends RecyclerView.Adapter<DashboardAdapter .ViewHolder>  {
-
+    LocalDateTime DateObj = LocalDateTime.now();
+    DateTimeFormatter Format = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+    String DateMMDD = DateObj.format(Format);
 
     private List<DashboardModel> мodalArrayList;
 
@@ -85,6 +89,26 @@ public class DashboardAdapter  extends RecyclerView.Adapter<DashboardAdapter .Vi
         });
 
 
+        holder.send_select.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setAction(Intent.ACTION_SEND);
+                intent.putExtra(Intent.EXTRA_TEXT,
+                        "Asslomu alaykum " + modal.getName() + "!\n" +
+                                modal.getYear() + " кun xolatiga jami qarzdorlik " + modal.getTotalSum() + "so'm" +
+                                "\nBoshlangich to'lov " + modal.getStartSum() + "so'm" +
+                                "\nKeyingi to'lovlaringiz " + modal.getPayment() + "so'm" +
+                                "\nHozirda " + DateMMDD + " kunga qolgan summa " + modal.getFinishSum() + "so'm" +
+                                "\nOyma-oy to'lovingiz " + modal.getSumMonth() + "so'm"
+                );
+                intent.setType("text/plain");
+                v.getContext(). startActivity(intent);
+            }
+        });
+
+
+
     }
 
 //    void Refresh(ArrayList<DashboardModel> events) {
@@ -100,7 +124,7 @@ public class DashboardAdapter  extends RecyclerView.Adapter<DashboardAdapter .Vi
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         private TextView  text_view_name, text_view_year, text_view_totalSum, text_view_startSum, text_view_payment, text_view_finishSum, text_view_sumMonth, text_view_tel;
-        ImageView deleteSelect;
+        ImageView send_select;
         RelativeLayout relativeLayoutId;
 
         public ViewHolder(@NonNull View itemView) {
@@ -116,6 +140,7 @@ public class DashboardAdapter  extends RecyclerView.Adapter<DashboardAdapter .Vi
             text_view_tel = itemView.findViewById(R.id.text_view_tel);
 
             relativeLayoutId = itemView.findViewById(R.id.relative_layout_id);
+            send_select = itemView.findViewById(R.id.send_select);
         }
     }
 

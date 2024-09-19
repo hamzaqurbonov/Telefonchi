@@ -284,6 +284,33 @@ public class EditHameViewActivity extends AppCompatActivity {
                         data.add(String.valueOf(c));
                     }
                     String monthDate2 = data.get(3) + data.get(4);
+                    String dayDate = data.get(0) + data.get(1);
+                    String yearDate = data.get(6) + data.get(7) + data.get(8) + data.get(9);
+
+                    Log.d("demo43", "true " + dayDate + " " + monthDate2 + " " + yearDate);
+
+                    List<String> validDayDate = Arrays.asList("01", "02", "03", "04", "05", "06", "07", "08", "09", "10",
+                            "11", "12", "13", "14", "15", "16", "17", "18", "19", "20",
+                            "21", "22", "23", "24", "25", "26", "27", "28", "29", "30" , "31");
+                    if (!validDayDate.contains(dayDate)) {
+                        Log.d("demo43", "dayDate " + dayDate );
+                        Toast.makeText(v.getContext(), "Сана хато киритилаяпти!", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    List<String> validMonthDate2 = Arrays.asList("01", "02", "03", "04", "05", "06", "07", "08", "09", "10","11", "12");
+                    if (!validMonthDate2.contains(monthDate2)) {
+                        Toast.makeText(v.getContext(), "Ой хато киритилаяпти!", Toast.LENGTH_SHORT).show();
+                        Log.d("demo43", "monthDate2 " + monthDate2 );
+                        return;
+                    }
+                    List<String> validYearDate = Arrays.asList("2020", "2021", "2022", "2023", "2024");
+                    if (!validYearDate.contains(yearDate)) {
+                        Toast.makeText(v.getContext(), "Йил хато киритилаяпти!", Toast.LENGTH_SHORT).show();
+                        Log.d("demo43", "yearDate " + yearDate );
+                        return;
+                    }
+
+
                     String month = "";
 
                     switch (monthDate2) {

@@ -93,9 +93,10 @@ public class HomeViewActivity extends AppCompatActivity {
         DateTimeFormatter FormatObj = DateTimeFormatter.ofPattern("MM");
         String monthFormat = DateObj.format(FormatObj);
 //        Log.d("demo40", "FormatObj " + monthFormat + " " + monthData);
-        if(monthData.equals(monthFormat) || Objects.equals(monthFormat, "09")) {
+        if(monthData.equals(monthFormat) ) {
             Log.d("demo40", "if " + monthFormat + " " + monthData);
             addButtonId.setEnabled(true);
+
         }  else {
             Log.d("demo40", "else " + monthFormat + " " + monthData);
             addButtonId.setEnabled(false);
