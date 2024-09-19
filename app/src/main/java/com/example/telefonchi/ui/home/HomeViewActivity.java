@@ -241,8 +241,8 @@ public class HomeViewActivity extends AppCompatActivity {
         Query query = db.collection("users")
                 .document(docId1)
                 .collection(docId1).orderBy("name", Query.Direction.DESCENDING)
-                .whereGreaterThanOrEqualTo("name", s)
-                .whereLessThanOrEqualTo("name", s + "\uf8ff");
+                .whereGreaterThanOrEqualTo("name", s.toLowerCase() )
+                .whereLessThanOrEqualTo("name", s.toLowerCase()  + "\uf8ff");
 
         FirestoreRecyclerOptions<CityModel> optionsInt = new FirestoreRecyclerOptions.Builder<CityModel>()
                 .setQuery(query, CityModel.class).build();
