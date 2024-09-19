@@ -27,16 +27,19 @@ import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
-
+import java.util.Map;
 
 
 public class HomeViewAdapter extends FirestoreRecyclerAdapter<CityModel, HomeViewAdapter.LongHolder> {
     private final FirestoreRecyclerOptions<CityModel> optionsInt;
+    Map<String,Object> putDelete = new HashMap<>();
     List<String> activityllist;
     int lll;
     private OnItemClickListner listner;
@@ -131,8 +134,26 @@ public class HomeViewAdapter extends FirestoreRecyclerAdapter<CityModel, HomeVie
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
 
-//              Delete fiuksiyasini qo'shish mumkun
+
                         FirebaseFirestore db = FirebaseFirestore.getInstance();
+          //           Delete faylni saqlab qolish
+                        putDelete.put("name", cityModel.getName());
+                        putDelete.put("nick", cityModel.getNick());
+                        putDelete.put("year", cityModel.getYear());
+                        putDelete.put("totalSum", cityModel.getTotalSum());
+                        putDelete.put("startSum", cityModel.getStartSum());
+                        putDelete.put("finishSum", cityModel.getFinishSum());
+                        putDelete.put("amountMonth", cityModel.getAmountMonth());
+                        putDelete.put("sumMonth", cityModel.getSumMonth());
+                        putDelete.put("tel", cityModel.getTel());
+                        putDelete.put("comment", cityModel.getComment());
+                        putDelete.put("addSum",   cityModel.getAddSum());
+                        putDelete.put("payment", cityModel.getPayment());
+
+                        db.collection("delete").add(putDelete);
+
+
+          //              Delete fiuksiyasini qo'shish mumkun
                         db.collection("users").document(activityllist.get(0) + '/' + activityllist.get(0) + '/' + firebaseDocId)
                                 .delete()
                                 .addOnSuccessListener(new OnSuccessListener<Void>() {

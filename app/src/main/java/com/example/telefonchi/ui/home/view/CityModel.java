@@ -6,13 +6,14 @@ public class CityModel {
     private String name, nick, comment , year ;
     private int    totalSum, startSum, finishSum, amountMonth,sumMonth,  tel,  payment;
 
-//    private List<String> regions;
+    private List<String> addSum;
 
     public CityModel() {
 
     }
 
-    public CityModel(String name, String nick, int tel, String comment, String year, int totalSum, int startSum, int finishSum, int amountMonth, int sumMonth, int payment) {
+    public CityModel(List<String> addSum, String name, String nick, int tel, String comment, String year, int totalSum, int startSum, int finishSum, int amountMonth, int sumMonth, int payment) {
+        this.addSum = addSum;
         this.name = name;
         this.nick = nick;
         this.tel = tel;
@@ -70,7 +71,7 @@ public class CityModel {
         return payment;
     }
 
-    //    public List<String> getRegions() {
-//        return regions;
-//    }
+    public List<String> getAddSum() {
+        return addSum;
+    }
 }
