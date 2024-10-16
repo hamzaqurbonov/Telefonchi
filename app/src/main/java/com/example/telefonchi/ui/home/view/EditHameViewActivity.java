@@ -165,12 +165,13 @@ public class EditHameViewActivity extends AppCompatActivity {
             totalSumEditId.setEnabled(false);
             startSumEditId.setEnabled(false);
 //            telEditId.setEnabled(false);
-        } else if (Objects.equals(addTrue, "a")  && Objects.equals(format, "09")) {
-
-            Log.d("demo43", "EditActivityCreate " + format);
-
+        }
+        // Қолдиқ киритиш
+        else if ( Objects.equals(format, "10")) {
             editPaymentId.setEnabled(false);
             yearEditId.setEnabled(true);
+        } else if (Objects.equals(addTrue, "a")) {
+            editPaymentId.setEnabled(false);
         }
 
         addContactId.setOnClickListener(new View.OnClickListener() {
